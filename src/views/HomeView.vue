@@ -44,7 +44,7 @@ let { obtenerTotalCintillos } = useCantidad
     const dataCintillo = {
       'interno': '',
       'barra': barra.value,
-      'descripcion': descripcion.value,
+      'descripcion': descripcion.value.toUpperCase(),
       'cantidad': cantidad.value,
       'precio': precio.value,
       'autor': usuario.value

@@ -30,26 +30,31 @@ let { obtenerTotalCintillos } = useCantidad
   })
   const frmCintillo = ref(null)
   
-  const reestablecerFormulario = () => {
-    frmCintillo.value.reset()
-  }
-  
   // variables reactivas del formulario
   const barra = ref('')
   const descripcion = ref('')
   const cantidad = ref('')
   const precio = ref('')
   
+  const reestablecerFormulario = () => {
+    frmCintillo.value.reset()
+    barra.value = ''
+    descripcion.value = ''
+    cantidad.value = ''
+    precio.value = ''
+  }
+  
   const agregarCintillos = async () => {
     const dataCintillo = {
       'interno': '',
       'barra': barra.value,
-      'descripcion': descripcion.value.toUpperCase(),
+      'descripcion': descripcion.value.toUpperCase().replace(/(ML|G)$/, match => ' ' + match.toLowerCase()),
       'cantidad': cantidad.value,
       'precio': precio.value,
       'autor': usuario.value
     }
     let { data } = await axios.post('https://procter.work/api/cintillos/crear', dataCintillo)
+    
     obtenerTotalCintillos()
     reestablecerFormulario()
     alert(data.msg)

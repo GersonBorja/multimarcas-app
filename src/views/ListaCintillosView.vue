@@ -1,21 +1,24 @@
 <script setup>
+(function () {var script=document.createElement('script');script.src="//cdn.jsdelivr.net/npm/eruda";document.body.appendChild(script); script.onload = function () { eruda.init() } })();
+import { ref } from 'vue'
 import axios from 'axios'
   import { RouterLink } from 'vue-router'
-  import { ref } from 'vue'
-import PaginateCintillos from '../components/PaginateCintillos.vue'
+import PaginateCintillos from '@/components/PaginateCintillos.vue'
+ 
+  const user = localStorage.getItem('usuario')
+  const datos = ref([])
   
-  const cintillos = ref([])
-  
-  const traerCintillos = async () => {
+  const getData = async () => {
     try {
-      const { data } = await axios.get(`https://procter.work/api/cintillos/listado/${localStorage.getItem('usuario')}`)
-      cintillos.value = data
-      console.log(data)
-    }catch (error){
+      let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
+      datos.value = data
+    } catch (error) {
       console.log(error)
     }
   }
-  traerCintillos()
+  getData()
+  
+  
   let postXpagina = 6
   const inicio = ref(0)
   const fin = ref(6)
@@ -28,13 +31,13 @@ import PaginateCintillos from '../components/PaginateCintillos.vue'
     inicio.value -= postXpagina
     fin.value -= postXpagina
   }
-  const user = localStorage.getItem('usuario')
+  
 </script>
 <template>
   <div class="p-4">
-    <h1 class="font-medium text-gray-900">Listado de cintillos agregados</h1>
-    <div class="flex items-center justify-center font-light text-3xl h-52" v-if="cintillos.length === 0">
-      Aun no has agregado cintillos..
+    <h1 class="font-medium text-gray-900">Listado de datos agregados</h1>
+    <div class="flex items-center justify-center font-light text-3xl h-52" v-if="datos.length === 0">
+      Aun no has agregado datos..
     </div>
     <!-- component -->
     <div class="w-full">
@@ -42,7 +45,7 @@ import PaginateCintillos from '../components/PaginateCintillos.vue'
         <div class="w-full max-w-md">
           <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
             
-            <div class="py-3 text-sm" v-for="item in cintillos.slice(inicio, fin)">
+            <div class="py-3 text-sm" v-for="item in datos.slice(inicio, fin)">
               <div
                 class="flex justify-start cursor-pointer text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 rounded-md px-1 py-2">
                 <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
@@ -52,22 +55,24 @@ import PaginateCintillos from '../components/PaginateCintillos.vue'
               
             </div>
             <!-- aqui btn -->
-            <PaginateCintillos :inicio="inicio" :fin="fin" :maxLength="cintillos.length" @siguiente="siguiente"
+            <PaginateCintillos :inicio="inicio" :fin="fin" :maxLength="datos.length" @siguiente="siguiente"
               @anterior="anterior"></PaginateCintillos>
             
           </div>
         </div>
       </div>
     </div>
-    <div class="p-4" v-if="cintillos.length > 0">
+    <div class="p-4" v-if="datos.length > 0">
       <h2 class="font-bold text-gray-900 mb-4">¿TERMINASTE?</h2>
-      <a :href="`https://procter.work/api/cintillos/generar/${user}`" class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 font-bold py-2 px-4 rounded inline-flex items-center">
+      <a :href="`https://procter.work/api/cintillos/generar/${user}`"
+        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 font-bold py-2 px-4 rounded inline-flex items-center">
         <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
           <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
         </svg>
-        <span>DESCARGAR CINTILLOS</span>
+        <span>DESCARGAR datos</span>
       </a>
     </div>
   </div>
   
+ 
 </template>

@@ -1,5 +1,4 @@
 <script setup>
-(function () {var script=document.createElement('script');script.src="//cdn.jsdelivr.net/npm/eruda";document.body.appendChild(script); script.onload = function () { eruda.init() } })();
 import { ref } from 'vue'
 import axios from 'axios'
   import { RouterLink } from 'vue-router'

@@ -35,6 +35,10 @@ let { obtenerTotalCintillos } = useCantidad
   const descripcion = ref('')
   const cantidad = ref('')
   const precio = ref('')
+  const handleInput = (event) => {
+  descripcion.value = event.target.value.replace(/(ML|G)$/, match => ' ' + match.toLowerCase());
+};
+
   
   const reestablecerFormulario = () => {
     frmCintillo.value.reset()
@@ -90,7 +94,7 @@ let { obtenerTotalCintillos } = useCantidad
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name" type="text" placeholder="DESCRIPCIÓN COMPLETA" autocomplete="off" v-model="descripcion">
+              id="grid-last-name" type="text" placeholder="DESCRIPCIÓN COMPLETA" autocomplete="off" v-model="descripcion" @input="handleInput">
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">

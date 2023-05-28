@@ -28,6 +28,20 @@ let { obtenerTotalCintillos } = useCantidad
       return false
     }
   })
+
+  const formatearDescription = (description) => {
+    // Reemplaza los caracteres de medida a minúsculas
+    description = description.replace(/ML/g, 'ml');
+    description = description.replace(/G/g, 'g');
+    description = description.replace(/U/g, 'u');
+    description = description.replace(/CAPSULAS/g, 'capsulas');
+    description = description.replace(/PIEZAS/g, 'piezas');
+
+    // Añade un espacio antes de los caracteres de medida si no existe
+    description = description.replace(/(\d)(ml|g|u|capsulas|piezas)/g, '$1 $2');
+
+    return description;
+}
   const frmCintillo = ref(null)
   
   // variables reactivas del formulario
@@ -36,7 +50,8 @@ let { obtenerTotalCintillos } = useCantidad
   const cantidad = ref('')
   const precio = ref('')
   const handleInput = (event) => {
-  descripcion.value = event.target.value.replace(/(ML|G)$/, match => ' ' + match.toLowerCase());
+    descripcion.value = formatearDescription(event.target.value)
+  //descripcion.value = event.target.value.replace(/(ML|G)$/, match => ' ' + match.toLowerCase());
 };
 
   
@@ -52,7 +67,7 @@ let { obtenerTotalCintillos } = useCantidad
     const dataCintillo = {
       'interno': '',
       'barra': barra.value,
-      'descripcion': descripcion.value.toUpperCase().replace(/(ML|G)$/, match => ' ' + match.toLowerCase()),
+      'descripcion': formatearDescription(descripcion.value),
       'cantidad': cantidad.value,
       'precio': precio.value,
       'autor': usuario.value
@@ -67,8 +82,8 @@ let { obtenerTotalCintillos } = useCantidad
   
 </script>
 <template>
-  <div v-if="usuarioCreado || validarUsuario">
-    <div class="p-4">
+  <div v-if="usuarioCreado || validarUsuario " class="w-full m-auto">
+    <div class="p-4 m-auto">
       <h1 class="text-gray-800 pb-4 font-medium flex items-center justify-between"><span><font-awesome-icon
             :icon="['fas', 'house']" class="mr-1" />Inicio</span>
         <div><font-awesome-icon :icon="['fas', 'user']" /> Bienvenido {{ usuario }}</div>

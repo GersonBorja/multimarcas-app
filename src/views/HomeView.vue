@@ -30,6 +30,7 @@ let { obtenerTotalCintillos } = useCantidad
   })
 
   const formatearDescription = (description) => {
+    description = description.toUpperCase();
     // Reemplaza los caracteres de medida a minúsculas
     description = description.replace(/ML/g, 'ml');
     description = description.replace(/G/g, 'g');

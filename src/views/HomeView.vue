@@ -80,9 +80,11 @@ let { obtenerTotalCintillos } = useCantidad
     cantidad.value = ''
     precio.value = ''
   }
-  
+  const estadoButton = ref(null)
   const agregarCintillos = async () => {
-    const dataCintillo = {
+    try{
+      estadoButton.value = true
+      const dataCintillo = {
       'interno': '',
       'barra': barra.value,
       'descripcion': formatearDescription(descripcion.value),
@@ -102,6 +104,11 @@ let { obtenerTotalCintillos } = useCantidad
     reestablecerFormulario()
     alert(data.msg)
     console.log(msg)
+    }catch(error){
+      console.log(error)
+    }finally{
+      estadoButton.value = false
+    }
   }
   
   
@@ -164,7 +171,7 @@ let { obtenerTotalCintillos } = useCantidad
         
         <input type="submit"
           class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-700 rounded"
-          value="AGREGAR CINTILLO">
+          value="AGREGAR CINTILLO" :disabled="estadoButtons">
       </form>
     </div>
   </div>

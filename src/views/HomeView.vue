@@ -140,7 +140,7 @@ let { obtenerTotalCintillos } = useCantidad
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name" type="text" placeholder="DESCRIPCIÓN COMPLETA" autocomplete="off" v-model="descripcion" @input="handleInput">
+              id="grid-last-name" type="text" placeholder="DESCRIPCIÓN COMPLETA" autocomplete="off" v-model="descripcion" @input="handleInput" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -150,7 +150,7 @@ let { obtenerTotalCintillos } = useCantidad
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-password" type="number" placeholder="CANTIDAD" autocomplete="off" v-model="cantidad">
+              id="grid-password" type="number" placeholder="CANTIDAD" autocomplete="off" v-model="cantidad" required>
             <p class="text-gray-600 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
               cantidad de cintillos que necesitas para este producto</p>
           </div>
@@ -162,7 +162,7 @@ let { obtenerTotalCintillos } = useCantidad
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-password" type="text" placeholder="PRECIO" autocomplete="off" v-model="precio">
+              id="grid-password" type="text" placeholder="PRECIO" autocomplete="off" v-model="precio" required>
             <p class="text-gray-600 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá el
               precio correcto para este producto</p>
           </div>
@@ -183,7 +183,7 @@ let { obtenerTotalCintillos } = useCantidad
         </label>
         <input
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-password" type="text" placeholder="USUARIO" autocomplete="off" v-model="user">
+          id="grid-password" type="text" placeholder="USUARIO" autocomplete="off" v-model="user" required>
         <p class="text-gray-400 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
           El nombre de usuario no debe llevar espacios ni carácteres especiales</p>
       </div>

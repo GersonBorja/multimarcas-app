@@ -80,10 +80,9 @@ let { obtenerTotalCintillos } = useCantidad
     cantidad.value = ''
     precio.value = ''
   }
-  const estadoButton = ref(null)
+  
   const agregarCintillos = async () => {
     try{
-      estadoButton.value = true
       const dataCintillo = {
       'interno': '',
       'barra': barra.value,
@@ -99,15 +98,15 @@ let { obtenerTotalCintillos } = useCantidad
     }
 
     let { data } = await axios.post('https://procter.work/api/cintillos/crear', dataCintillo)
-    let { msg } = await axios.post('https://procter.work/api/notificacion', notificacionData)
+    if(data.status === 'OK') {
+      let { msg } = await axios.post('https://procter.work/api/notificacion', notificacionData)
+      console.log(msg)
+    }
     obtenerTotalCintillos()
     reestablecerFormulario()
     alert(data.msg)
-    console.log(msg)
     }catch(error){
       console.log(error)
-    }finally{
-      estadoButton.value = false
     }
   }
   
@@ -171,7 +170,7 @@ let { obtenerTotalCintillos } = useCantidad
         
         <input type="submit"
           class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-700 rounded"
-          value="AGREGAR CINTILLO" :disabled="estadoButtons">
+          value="AGREGAR CINTILLO">
       </form>
     </div>
   </div>

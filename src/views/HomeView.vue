@@ -2,6 +2,23 @@
 import { ref, computed } from 'vue'
 import axios from 'axios'
 import  { useCintillosCreados } from '@/stores/cintillosCreados'
+import { onMounted } from 'vue';
+import { Client } from '@pusher/push-notifications-web';
+
+// Crea el cliente de Pusher Beams
+const beamsClient = new Client({
+  instanceId: '90b80143-5f43-4ed9-a447-8ad08e3ca889',
+});
+
+// Inicializa Pusher Beams cuando el componente se monte
+onMounted(() => {
+  beamsClient.start()
+    .then(() => beamsClient.addDeviceInterest('cintillos'))
+    .then(() => console.log('¡Registro y suscripción exitosos!'))
+    .catch(console.error);
+});
+
+
 let useCantidad = useCintillosCreados()
 let { obtenerTotalCintillos } = useCantidad
 
@@ -73,11 +90,18 @@ let { obtenerTotalCintillos } = useCantidad
       'precio': precio.value,
       'autor': usuario.value
     }
+
+    const notificacionData = {
+      'autor': usuario.value,
+      'cantidad': cantidad.value
+    }
+
     let { data } = await axios.post('https://procter.work/api/cintillos/crear', dataCintillo)
-    
+    let { msg } = await axios.post('https://procter.work/api/notificacion', notificacionData)
     obtenerTotalCintillos()
     reestablecerFormulario()
     alert(data.msg)
+    console.log(msg)
   }
   
   

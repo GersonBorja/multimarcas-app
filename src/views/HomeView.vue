@@ -46,17 +46,20 @@ let { obtenerTotalCintillos } = useCantidad
     }
   })
 
-  const formatearDescription = (description) => {
-    description = description.toUpperCase();
-    // Reemplaza los caracteres de medida a minúsculas
-    description = description.replace(/ML/g, 'ml');
-    description = description.replace(/G/g, 'g');
-    description = description.replace(/U/g, 'u');
-    description = description.replace(/CAPSULAS/g, 'capsulas');
-    description = description.replace(/PIEZAS/g, 'piezas');
 
-    // Añade un espacio antes de los caracteres de medida si no existe
-    description = description.replace(/(\d)(ml|g|u|capsulas|piezas)/g, '$1 $2');
+function formatearDescription(description) {
+    // Convertir todo a mayúsculas primero
+    description = description.toUpperCase();
+
+    // Encuentra y reemplaza los casos en que las unidades de medida están inmediatamente después de un número
+    description = description.replace(/(\d)(ML|G|U|CAPSULAS|PIEZAS)/g, function(match, p1, p2){
+        return p1 + ' ' + p2.toLowerCase();
+    });
+
+    // Encuentra y reemplaza los casos en que las unidades de medida están después de un espacio
+    description = description.replace(/(\s)(ML|G|U|CAPSULAS|PIEZAS)/g, function(match, p1, p2){
+        return p1 + p2.toLowerCase();
+    });
 
     return description;
 }

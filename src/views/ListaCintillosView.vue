@@ -50,13 +50,12 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
             <div class="py-3 text-sm" v-for="item in datos.slice(inicio, fin)">
               <div
                 class="cursor-pointer text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 rounded-md px-1 py-2 border-b border-solid border-gray-400">
-                <div class="flex items-center space-between">
-                  
                 <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-                <div class="flex-grow font-medium px-2">{{ item.descripcion }}</div>
-                <div class="text-sm font-normal text-gray-500 tracking-wide">${{ item.precio }}</div>
-                </div>
-                <div class="px-1 py-2 font-medium font-black">CANTIDAD: {{ item.cantidad }}</div>
+                <div class="font-medium px-2">{{ item.descripcion }}</div>
+                 <div class="px-1 py-2 flex items-center justify-between">
+                <div><b class="font-bold font-black">CANTIDAD:</b> {{ item.cantidad }}</div>
+                <div><b class="font-bold font-black">PRECIO:</b> ${{ item.precio }}</div>
+              </div>
               </div>
               
             </div>

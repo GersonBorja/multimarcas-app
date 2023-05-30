@@ -47,7 +47,7 @@ let { obtenerTotalCintillos } = useCantidad
   })
 
 
-function formatearDescription(description) {
+/*function formatearDescription(description) {
     // Convertir todo a mayúsculas primero
     description = description.toUpperCase();
 
@@ -58,6 +58,22 @@ function formatearDescription(description) {
 
     // Encuentra y reemplaza los casos en que las unidades de medida están después de un espacio
     description = description.replace(/(\s)(ML|G|U|CAPSULAS|PIEZAS)/g, function(match, p1, p2){
+        return p1 + p2.toLowerCase();
+    });
+
+    return description;
+}*/
+
+
+function formatearDescription(description) {
+    // Convierte todo a mayúsculas primero
+    description = description.toUpperCase();
+
+    // Añade un espacio antes de las unidades de medida si no existe
+    description = description.replace(/(\d)(ML|G|U|CÁPSULAS|CAPSULAS|PIEZAS)/g, '$1 $2');
+
+    // Cambia las unidades de medida a minúsculas si están precedidas por un espacio o un número
+    description = description.replace(/(\s|\d)(ML|G|U|CÁPSULAS|CAPSULAS|PIEZAS)(?=\s|$)/g, function(match, p1, p2) {
         return p1 + p2.toLowerCase();
     });
 

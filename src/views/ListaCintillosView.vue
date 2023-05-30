@@ -7,10 +7,13 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
   const user = localStorage.getItem('usuario')
   const datos = ref([])
   
+  
+  
   const getData = async () => {
     try {
       let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
-      datos.value = data
+      let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
+      datos.value = uniqueData
     } catch (error) {
       console.log(error)
     }
@@ -46,10 +49,14 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
             
             <div class="py-3 text-sm" v-for="item in datos.slice(inicio, fin)">
               <div
-                class="flex justify-start cursor-pointer text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 rounded-md px-1 py-2">
+                class="cursor-pointer text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 rounded-md px-1 py-2 border-b border-solid border-gray-400">
+                <div class="flex items-center space-between">
+                  
                 <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                 <div class="flex-grow font-medium px-2">{{ item.descripcion }}</div>
                 <div class="text-sm font-normal text-gray-500 tracking-wide">${{ item.precio }}</div>
+                </div>
+                <div class="px-1 py-2 font-medium font-black">CANTIDAD: {{ item.cantidad }}</div>
               </div>
               
             </div>

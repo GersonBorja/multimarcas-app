@@ -1,9 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
-  import { RouterLink } from 'vue-router'
 import PaginateCintillos from '@/components/PaginateCintillos.vue'
  
+import { storeToRefs } from 'pinia';
+import { useCintillosStore } from '@/stores/cintillos'
+
+
+const useProductos = useCintillosStore()
+const { listaCintillos } = storeToRefs(useProductos)
+const { agregarCintillos } = useProductos
+
   const user = localStorage.getItem('usuario')
   const datos = ref([])
   const total = ref(null)
@@ -13,6 +20,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
   const getData = async () => {
     try {
       let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
+      agregarCintillos(data)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData
@@ -40,7 +48,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
 <template>
   <div class="p-4">
     
-    <div v-if="datos.length > 0">
+    <div v-if="listaCintillos.length > 0">
       <h1 class="font-bold text-gray-800 mb-3">GENERAR DOCUMENTO</h1>
       
       <div class="flex items-center justify-between mb-3">
@@ -56,8 +64,8 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
     </div>
 
     <h1 class="font-bold text-gray-800 mb-3">LISTADO DE CINTILLOS</h1>
-    <div class="flex items-center justify-center font-light text-3xl h-52" v-if="datos.length === 0">
-      Aun no has agregado datos..
+    <div class="flex items-center justify-center font-light text-2xl h-52 text-gray-500" v-if="datos.length === 0">
+      <font-awesome-icon :icon="['fas', 'face-sad-cry']" /> Aun no has agregado datos..
     </div>
     <!-- component -->
     <div class="w-full">

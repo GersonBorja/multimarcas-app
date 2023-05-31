@@ -39,7 +39,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
   <div class="p-4">
     
     <div v-if="datos.length > 0">
-      <h1 class="font-medium text-gray-900 mb-4">Generar documento</h1>
+      <h1 class="font-bold text-gray-800 mb-4">GENERAR DOCUMENTO</h1>
 
       <a :href="`https://procter.work/api/cintillos/generar/${user}`"
         class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium mb-4 py-2 px-4 rounded inline-flex items-center">
@@ -48,7 +48,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
       </a>
     </div>
 
-    <h1 class="font-medium text-gray-900">Listado de datos agregados</h1>
+    <h1 class="font-bold text-gray-800 mb-4">LISTADO DE CINTILLOS</h1>
     <div class="flex items-center justify-center font-light text-3xl h-52" v-if="datos.length === 0">
       Aun no has agregado datos..
     </div>
@@ -58,9 +58,9 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
         <div class="w-full max-w-md">
           <div class="bg-white shadow-md">
             
-            <div class="text-sm" v-for="item in datos.slice(inicio, fin)">
+            <div class="text-sm border border-solid border-gray-200 border-b-0" v-for="item in datos.slice(inicio, fin)">
               <div
-                class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 border-b border-solid border-gray-200">
+                class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100">
                 
                 <div class="font-medium p-3">{{ item.descripcion }}</div>
                  <div class="p-2 flex items-center justify-between">

@@ -47,33 +47,16 @@ let { obtenerTotalCintillos } = useCantidad
   })
 
 
-/*function formatearDescription(description) {
-    // Convertir todo a mayúsculas primero
-    description = description.toUpperCase();
-
-    // Encuentra y reemplaza los casos en que las unidades de medida están inmediatamente después de un número
-    description = description.replace(/(\d)(ML|G|U|CAPSULAS|PIEZAS)/g, function(match, p1, p2){
-        return p1 + ' ' + p2.toLowerCase();
-    });
-
-    // Encuentra y reemplaza los casos en que las unidades de medida están después de un espacio
-    description = description.replace(/(\s)(ML|G|U|CAPSULAS|PIEZAS)/g, function(match, p1, p2){
-        return p1 + p2.toLowerCase();
-    });
-
-    return description;
-}*/
-
 
 function formatearDescription(description) {
     // Convierte todo a mayúsculas primero
     description = description.toUpperCase();
 
     // Añade un espacio antes de las unidades de medida si no existe
-    description = description.replace(/(\d)(ML|G|U|CÁPSULAS|CAPSULAS|PIEZAS)/g, '$1 $2');
+    description = description.replace(/(\d)(ML|G|U|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)/g, '$1 $2');
 
     // Cambia las unidades de medida a minúsculas si están precedidas por un espacio o un número
-    description = description.replace(/(\s|\d)(ML|G|U|CÁPSULAS|CAPSULAS|PIEZAS)(?=\s|$)/g, function(match, p1, p2) {
+    description = description.replace(/(\s|\d)(ML|G|U|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)(?=\s|$)/g, function(match, p1, p2) {
         return p1 + p2.toLowerCase();
     });
 
@@ -88,7 +71,6 @@ function formatearDescription(description) {
   const precio = ref('')
   const handleInput = (event) => {
     descripcion.value = formatearDescription(event.target.value)
-  //descripcion.value = event.target.value.replace(/(ML|G)$/, match => ' ' + match.toLowerCase());
 };
 
   
@@ -99,9 +81,10 @@ function formatearDescription(description) {
     cantidad.value = ''
     precio.value = ''
   }
-  
+  const enviando = ref(false)
   const agregarCintillos = async () => {
     try{
+      enviando.value = true
       const dataCintillo = {
       'interno': '',
       'barra': barra.value,
@@ -126,13 +109,15 @@ function formatearDescription(description) {
     alert(data.msg)
     }catch(error){
       console.log(error)
+    }finally{
+      enviando.value = false
     }
   }
   
   
 </script>
 <template>
-  <div v-if="usuarioCreado || validarUsuario " class="w-full m-auto">
+  <div v-if="usuarioCreado || validarUsuario " class="max-w-md w-full m-auto">
     <div class="p-4 m-auto">
       <h1 class="text-gray-800 pb-4 font-medium flex items-center justify-between"><span><font-awesome-icon
             :icon="['fas', 'house']" class="mr-1" />Inicio</span>
@@ -191,6 +176,9 @@ function formatearDescription(description) {
           class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-700 rounded"
           value="AGREGAR CINTILLO">
       </form>
+    </div>
+    <div class="fixed w-full h-full bg-black/[.8] top-0 left-0 flex items-center justify-center" v-if="enviando">
+      <div class="bg-white w-[90%] p-4"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Agregando Cintillos...</div>
     </div>
   </div>
   <div class="p-4" v-else>

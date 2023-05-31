@@ -37,6 +37,18 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
 </script>
 <template>
   <div class="p-4">
+    
+    <div class="p-4" v-if="datos.length > 0">
+      <h2 class="font-bold text-gray-900 mb-4">¿TERMINASTE?</h2>
+      <a :href="`https://procter.work/api/cintillos/generar/${user}`"
+        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 font-bold py-2 px-4 rounded inline-flex items-center">
+        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+        </svg>
+        <span>DESCARGAR datos</span>
+      </a>
+    </div>
+
     <h1 class="font-medium text-gray-900">Listado de datos agregados</h1>
     <div class="flex items-center justify-center font-light text-3xl h-52" v-if="datos.length === 0">
       Aun no has agregado datos..
@@ -45,14 +57,14 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
     <div class="w-full">
       <div class="flex justify-center">
         <div class="w-full max-w-md">
-          <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
+          <div class="bg-white shadow-md">
             
-            <div class="py-3 text-sm" v-for="item in datos.slice(inicio, fin)">
+            <div class="text-sm" v-for="item in datos.slice(inicio, fin)">
               <div
-                class="cursor-pointer text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 rounded-md px-1 py-2 border-b border-solid border-gray-400">
-                <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-                <div class="font-medium px-2">{{ item.descripcion }}</div>
-                 <div class="px-1 py-2 flex items-center justify-between">
+                class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100 border-b border-solid border-gray-200">
+                
+                <div class="font-medium p-3">{{ item.descripcion }}</div>
+                 <div class="p-2 flex items-center justify-between">
                 <div><b class="font-bold font-black">CANTIDAD:</b> {{ item.cantidad }}</div>
                 <div><b class="font-bold font-black">PRECIO:</b> ${{ item.precio }}</div>
               </div>
@@ -66,16 +78,6 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
           </div>
         </div>
       </div>
-    </div>
-    <div class="p-4" v-if="datos.length > 0">
-      <h2 class="font-bold text-gray-900 mb-4">¿TERMINASTE?</h2>
-      <a :href="`https://procter.work/api/cintillos/generar/${user}`"
-        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 font-bold py-2 px-4 rounded inline-flex items-center">
-        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-        </svg>
-        <span>DESCARGAR datos</span>
-      </a>
     </div>
   </div>
   

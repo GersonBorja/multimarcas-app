@@ -43,7 +43,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
     <div v-if="datos.length > 0">
       <h1 class="font-bold text-gray-800 mb-4">GENERAR DOCUMENTO</h1>
       
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between mb-4">
         <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">135</span></div>
         <a :href="`https://procter.work/api/cintillos/generar/${user}`"
         class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center">

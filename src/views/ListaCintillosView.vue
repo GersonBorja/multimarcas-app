@@ -6,12 +6,14 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
  
   const user = localStorage.getItem('usuario')
   const datos = ref([])
+  const total = ref(null)
   
   
   
   const getData = async () => {
     try {
       let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
+      total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData
     } catch (error) {
@@ -40,12 +42,17 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
     
     <div v-if="datos.length > 0">
       <h1 class="font-bold text-gray-800 mb-4">GENERAR DOCUMENTO</h1>
-
-      <a :href="`https://procter.work/api/cintillos/generar/${user}`"
-        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium mb-4 py-2 px-4 rounded inline-flex items-center">
+      
+      <div class="flex items-center justify-between">
+        <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">135</span></div>
+        <a :href="`https://procter.work/api/cintillos/generar/${user}`"
+        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center">
         <font-awesome-icon :icon="['fas', 'download']" />
         <span> Generar cintillos</span>
       </a>
+
+      </div>
+      
     </div>
 
     <h1 class="font-bold text-gray-800 mb-4">LISTADO DE CINTILLOS</h1>

@@ -41,9 +41,9 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
   <div class="p-4">
     
     <div v-if="datos.length > 0">
-      <h1 class="font-bold text-gray-800 mb-4">GENERAR DOCUMENTO</h1>
+      <h1 class="font-bold text-gray-800 mb-3">GENERAR DOCUMENTO</h1>
       
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center justify-between mb-3">
         <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">135</span></div>
         <a :href="`https://procter.work/api/cintillos/generar/${user}`"
         class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center">
@@ -55,7 +55,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
       
     </div>
 
-    <h1 class="font-bold text-gray-800 mb-4">LISTADO DE CINTILLOS</h1>
+    <h1 class="font-bold text-gray-800 mb-3">LISTADO DE CINTILLOS</h1>
     <div class="flex items-center justify-center font-light text-3xl h-52" v-if="datos.length === 0">
       Aun no has agregado datos..
     </div>

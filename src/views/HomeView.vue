@@ -177,7 +177,7 @@ function formatearDescription(description) {
           value="AGREGAR CINTILLO">
       </form>
     </div>
-    <div class="fixed w-full h-full bg-black/[.8] top-0 left-0 flex items-center justify-center" v-if="enviando">
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="enviando">
       <div class="bg-white w-[90%] p-4"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Agregando Cintillos...</div>
     </div>
   </div>

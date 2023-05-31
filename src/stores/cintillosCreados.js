@@ -5,6 +5,10 @@ import axios from 'axios'
 export const useCintillosCreados = defineStore('cantidadTotal', () => {
   const cantidadTotal = ref('')
   
+  const resetCintillos = () => {
+    cantidadTotal.value = 0
+  }
+  
   const obtenerTotalCintillos = async () => {
     try {
       let { data } = await axios.get(`https://procter.work/api/cintillos/cantidad/${localStorage.getItem('usuario')}`)
@@ -16,6 +20,7 @@ export const useCintillosCreados = defineStore('cantidadTotal', () => {
   
   return {
     cantidadTotal,
-    obtenerTotalCintillos
+    obtenerTotalCintillos,
+    resetCintillos
   }
 })

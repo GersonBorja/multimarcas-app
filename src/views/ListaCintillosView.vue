@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import PaginateCintillos from '@/components/PaginateCintillos.vue'
- 
+ import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useCintillosStore } from '@/stores/cintillos'
-
+import  { useCintillosCreados } from '@/stores/cintillosCreados'
+let useCantidad = useCintillosCreados()
+let { resetCintillos } = useCantidad
 
 const useProductos = useCintillosStore()
 const { listaCintillos } = storeToRefs(useProductos)
@@ -44,6 +46,20 @@ const { agregarCintillos } = useProductos
     fin.value -= postXpagina
   }
   
+  
+  /* generar archivos */
+  const modal = ref(false)
+  const router = useRouter()
+  const generarButton = () => {
+    modal.value = true
+    location.href= `https://procter.work/api/cintillos/generar/${user}`
+  }
+  const cerrarModal = () => {
+    modal.value = false
+    agregarCintillos([])
+    router.push('/')
+    resetCintillos()
+  }
 </script>
 <template>
   <div class="p-4">
@@ -53,14 +69,24 @@ const { agregarCintillos } = useProductos
       
       <div class="flex items-center justify-between mb-3">
         <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">135</span></div>
-        <a :href="`https://procter.work/api/cintillos/generar/${user}`"
-        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center">
+        <button
+        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center" @click="generarButton">
         <font-awesome-icon :icon="['fas', 'download']" />
-        <span> Generar cintillos</span>
-      </a>
+        Generar cintillos
+      </button>
 
       </div>
-      
+      <div class="bg-black/[.5] fixed top-0 left-0 w-full h-full z-30 flex items-center justify-center" v-if="modal">
+        <div class="bg-white w-[90%] p-4">
+          <h1 class="font-bold text-sm text-gray-700 mb-4">ARCHIVO GENERADO EXITOSAMENTE</h1>
+          <p class="text-gray-700">
+            <font-awesome-icon :icon="['fas', 'face-smile-beam']" />Tu documento ha sido descargado...<br>Gracias por usar nuestra aplicación, si te ha gustado compártela!!
+          </p>
+          <div class="flex justify-end">
+            <button class="bg-emerald-400 hover:bg-emerald-400 text-emerald-900 text-sm font-medium mt-2 py-2 px-4 rounded inline-flex items-center" @click="cerrarModal">Terminar</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <h1 class="font-bold text-gray-800 mb-3">LISTADO DE CINTILLOS</h1>

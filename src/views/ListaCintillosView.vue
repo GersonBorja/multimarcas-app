@@ -68,7 +68,7 @@ const { agregarCintillos } = useProductos
       <h1 class="font-bold text-gray-800 mb-3">GENERAR DOCUMENTO</h1>
       
       <div class="flex items-center justify-between mb-3">
-        <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">135</span></div>
+        <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">210</span></div>
         <button
         class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center" @click="generarButton">
         <font-awesome-icon :icon="['fas', 'download']" />

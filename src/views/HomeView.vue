@@ -53,10 +53,10 @@ function formatearDescription(description) {
     description = description.toUpperCase();
 
     // Añade un espacio antes de las unidades de medida si no existe
-    description = description.replace(/(\d)(ML|G|U|KG|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)/g, '$1 $2');
+    description = description.replace(/(\d)(ML|G|U|L|KG|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)/g, '$1 $2');
 
     // Cambia las unidades de medida a minúsculas si están precedidas por un espacio o un número
-    description = description.replace(/(\s|\d)(ML|G|U|KG|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)(?=\s|$)/g, function(match, p1, p2) {
+    description = description.replace(/(\s|\d)(ML|G|U|L|KG|CÁPSULAS|CAPSULAS|TABLETAS|PIEZAS)(?=\s|$)/g, function(match, p1, p2) {
         return p1 + p2.toLowerCase();
     });
 

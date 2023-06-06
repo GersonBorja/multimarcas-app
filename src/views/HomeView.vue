@@ -101,9 +101,9 @@ function formatearDescription(description) {
       'cantidad': cantidad.value
     }
 
-    let { data } = await axios.post('http://procter.work/api/cintillos/crear', dataCintillo)
+    let { data } = await axios.post('https://procter.work/api/cintillos/crear', dataCintillo)
     if(data.status === 'OK') {
-      let { msg } = await axios.post('http://procter.work/api/notificacion', notificacionData)
+      let { msg } = await axios.post('https://procter.work/api/notificacion', notificacionData)
       console.log(msg)
     }
     obtenerTotalCintillos()

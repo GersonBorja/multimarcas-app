@@ -4,6 +4,7 @@ import axios from 'axios'
 import  { useCintillosCreados } from '@/stores/cintillosCreados'
 import { onMounted } from 'vue';
 import { Client } from '@pusher/push-notifications-web';
+import { v4 as uuidv4 } from 'uuid';
 
 // Crea el cliente de Pusher Beams
 const beamsClient = new Client({
@@ -91,7 +92,8 @@ function formatearDescription(description) {
       'descripcion': formatearDescription(descripcion.value),
       'cantidad': cantidad.value,
       'precio': precio.value,
-      'autor': usuario.value
+      'autor': usuario.value,
+      'uuid': uuidv4()
     }
 
     const notificacionData = {
@@ -99,9 +101,9 @@ function formatearDescription(description) {
       'cantidad': cantidad.value
     }
 
-    let { data } = await axios.post('https://procter.work/api/cintillos/crear', dataCintillo)
+    let { data } = await axios.post('http://localhost/api/cintillos/crear', dataCintillo)
     if(data.status === 'OK') {
-      let { msg } = await axios.post('https://procter.work/api/notificacion', notificacionData)
+      let { msg } = await axios.post('http://localhost/api/notificacion', notificacionData)
       console.log(msg)
     }
     obtenerTotalCintillos()

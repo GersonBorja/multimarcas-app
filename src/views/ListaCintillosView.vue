@@ -21,7 +21,7 @@ const { agregarCintillos } = useProductos
   
   const getData = async () => {
     try {
-      let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
+      let { data } = await axios.get(`http://localhost/api/cintillos/listado/${user}`)
       agregarCintillos(data)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);

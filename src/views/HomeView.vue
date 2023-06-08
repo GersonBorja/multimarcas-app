@@ -128,7 +128,7 @@ function formatearDescription(description) {
       
       <h2 class="text-gray-700 font-medium">Agregar Cintillos</h2>
       
-      <div class="bg-emerald-100 text-sm p-2 border border-solid border-emerald-200 shadow mt-2">
+      <div class="bg-emerald-50 text-sm p-2 border border-solid mt-2">
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>

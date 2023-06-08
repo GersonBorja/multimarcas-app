@@ -4,10 +4,16 @@ import { defineStore } from 'pinia'
 export const useCintillosStore = defineStore('cintillos', () => {
 
   const listaCintillos = ref([])
+
+  const cintilloDetalles = ref([])
   
   const agregarCintillos = (cintillos) => {
     listaCintillos.value = cintillos
   }
 
-  return { listaCintillos, agregarCintillos }
+  const agregarDetallesCintillo = (info) => {
+    cintilloDetalles.value = info
+  }
+
+  return { listaCintillos, agregarCintillos, cintilloDetalles, agregarDetallesCintillo }
 })

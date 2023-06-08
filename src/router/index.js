@@ -12,6 +12,11 @@ const router = createRouter({
       path: '/cintillos',
       name: 'cintillos',
       component: () => import('../views/ListaCintillosView.vue')
+    },
+    {
+      path: '/editar/:uuid',
+      name: 'editarcintillo',
+      component: () => import('../views/EditarCintilloView.vue')
     }
   ]
 })

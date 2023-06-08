@@ -11,7 +11,7 @@ let { resetCintillos } = useCantidad
 
 const useProductos = useCintillosStore()
 const { listaCintillos } = storeToRefs(useProductos)
-const { agregarCintillos } = useProductos
+const { agregarCintillos, agregarDetallesCintillo } = useProductos
 
   const user = localStorage.getItem('usuario')
   const datos = ref([])
@@ -103,7 +103,7 @@ const { agregarCintillos } = useProductos
               <div
                 class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100">
                 
-                <div class="font-medium p-3">{{ item.descripcion }}</div>
+                <div class="font-medium p-3 flex items-center justify-between">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="font-medium"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
                  <div class="p-2 flex items-center justify-between">
                 <div><b class="font-bold font-black">CANTIDAD:</b> {{ item.cantidad }}</div>
                 <div><b class="font-bold font-black">PRECIO:</b> ${{ item.precio }}</div>

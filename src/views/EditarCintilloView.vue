@@ -86,7 +86,7 @@ const guardarDatos = async() => {
         
         <input type="submit"
           class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-700 rounded"
-          value="AGREGAR CINTILLO">
+          value="GUARDAR INFORMACIÓN">
       </form>
     </div>
     </template>

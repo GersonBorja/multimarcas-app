@@ -103,7 +103,7 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
               <div
                 class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100">
                 
-                <div class="font-medium p-3 flex items-center justify-between">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="font-medium w-[55px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
+                <div class="font-medium p-3 flex items-center justify-between">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="font-medium w-[63px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
                  <div class="p-2 flex items-center justify-between">
                 <div><b class="font-bold font-black">CANTIDAD:</b> {{ item.cantidad }}</div>
                 <div><b class="font-bold font-black">PRECIO:</b> ${{ item.precio }}</div>

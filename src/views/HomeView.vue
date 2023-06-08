@@ -127,8 +127,12 @@ function formatearDescription(description) {
       </h1>
       
       <h2 class="text-gray-700 font-medium">Agregar Cintillos</h2>
+      
+      <div class="bg-emerald-100 text-sm p-2 border border-solid border-emerald-200 shadow mt-2">
+        Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
+      </div>
     </div>
-    <div class="p-4">
+    <div class="p-4 pt-0">
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">

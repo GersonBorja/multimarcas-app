@@ -14,7 +14,7 @@ const beamsClient = new Client({
 // Inicializa Pusher Beams cuando el componente se monte
 onMounted(() => {
   beamsClient.start()
-    .then(() => beamsClient.addDeviceInterest('noticias'))
+    .then(() => beamsClient.addDeviceInterest('eventosapp'))
     .then(() => console.log('¡Registro y suscripción exitosos!'))
     .catch(console.error);
 });

@@ -119,89 +119,89 @@ function formatearDescription(description) {
   
 </script>
 <template>
-  <div v-if="usuarioCreado || validarUsuario " class="max-w-md w-full m-auto">
+  <div v-if="usuarioCreado || validarUsuario " class="w-full max-w-md m-auto">
     <div class="p-4 m-auto">
-      <h1 class="text-gray-800 pb-4 font-medium flex items-center justify-between"><span><font-awesome-icon
+      <h1 class="flex items-center justify-between pb-4 font-medium text-gray-800"><span><font-awesome-icon
             :icon="['fas', 'house']" class="mr-1" />Inicio</span>
         <div><font-awesome-icon :icon="['fas', 'user']" /> Bienvenido {{ usuario }}</div>
       </h1>
       
-      <h2 class="text-gray-700 font-medium">Agregar Cintillos</h2>
+      <h2 class="font-medium text-gray-700">Agregar Cintillos</h2>
       
-      <div class="bg-emerald-50 text-sm p-2 border border-solid mt-2">
+      <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
     <div class="p-4 pt-0">
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        <div class="flex flex-wrap mb-6 -mx-3">
+          <div class="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-first-name">
               CODIGO DE BARRA:
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
-              <p class="text-gray-600 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" />El código de barra es opcional</p>
+              <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" />El código de barra es opcional</p>
           </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+          <div class="w-full px-3 md:w-1/2">
+            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-last-name">
               DESCRIPCIÓN DEL PRODUCTO:
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-last-name" type="text" placeholder="DESCRIPCIÓN COMPLETA" autocomplete="off" v-model="descripcion" @input="handleInput" required>
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap mb-6 -mx-3">
           <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
               CANTIDAD:
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password" type="number" placeholder="CANTIDAD" autocomplete="off" v-model="cantidad" required>
-            <p class="text-gray-600 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
+            <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
               cantidad de cintillos que necesitas para este producto</p>
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap mb-6 -mx-3">
           <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
               PRECIO DEL PRODUCTO:
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password" type="text" placeholder="PRECIO" autocomplete="off" v-model="precio" required>
-            <p class="text-gray-600 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá el
+            <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá el
               precio correcto para este producto</p>
           </div>
         </div>
         
         <input type="submit"
-          class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-700 rounded"
+          class="w-full px-4 py-2 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md"
           value="AGREGAR CINTILLO">
       </form>
     </div>
-    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="enviando">
-      <div class="bg-white w-[90%] p-4"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Agregando Cintillos...</div>
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center"  v-if="enviando">
+      <div class="flex items-center justify-center text-white bg-[#263238] w-[90%] h-[60%] p-4 text-xl"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Agregando Cintillos...</div>
     </div>
   </div>
   <div class="p-4" v-else>
     <h1 class="font-medium text-gray-900"><font-awesome-icon :icon="['fas', 'user']" /> CREA TU CUENTA {{ user }}</h1>
     <form @submit.prevent="crearUsuario(`${user}`)">
       <div class="w-full mt-4">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
           USUARIO:
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-password" type="text" placeholder="USUARIO" autocomplete="off" v-model="user" required>
-        <p class="text-gray-400 text-xs font-light"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
+        <p class="text-xs font-light text-gray-400"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
           El nombre de usuario no debe llevar espacios ni carácteres especiales</p>
       </div>
       <input type="submit"
-        class="w-full bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border border-emerald-600 rounded mt-4"
+        class="w-full px-4 py-2 mt-4 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md"
         value="CREAR CUENTA">
     </form>
   </div>

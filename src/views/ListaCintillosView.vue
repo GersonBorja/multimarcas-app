@@ -54,43 +54,28 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
     modal.value = true
     location.href= `https://procter.work/api/cintillos/generar/${user}`
   }
-  const cerrarModal = () => {
-    modal.value = false
-    agregarCintillos([])
-    router.push('/')
-    resetCintillos()
-  }
+  
 </script>
 <template>
   <div class="p-4">
     
     <div v-if="listaCintillos.length > 0">
-      <h1 class="font-bold text-gray-800 mb-3">GENERAR DOCUMENTO</h1>
+      <h1 class="mb-3 font-bold text-gray-800">GENERAR DOCUMENTO</h1>
       
       <div class="flex items-center justify-between mb-3">
-        <div class="text-gray-400 text-sm"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">252</span></div>
-        <button
-        class="bg-emerald-300 hover:bg-emerald-400 text-emerald-800 text-sm font-medium py-2 px-4 rounded inline-flex items-center" @click="generarButton">
+        <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">252</span></div>
+        <router-link :to="`/descargas/${user}`"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#455A64] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-md">
         <font-awesome-icon :icon="['fas', 'download']" />
         Generar cintillos
-      </button>
+      </router-link>
 
       </div>
-      <div class="bg-black/[.5] fixed top-0 left-0 w-full h-full z-30 flex items-center justify-center" v-if="modal">
-        <div class="bg-white w-[90%] p-4">
-          <h1 class="font-bold text-sm text-gray-700 mb-4">ARCHIVO GENERADO EXITOSAMENTE</h1>
-          <p class="text-gray-700">
-            <font-awesome-icon :icon="['fas', 'face-smile-beam']" />Tu documento ha sido descargado...<br>Gracias por usar nuestra aplicación, si te ha gustado compártela!!
-          </p>
-          <div class="flex justify-end">
-            <button class="bg-emerald-400 hover:bg-emerald-400 text-emerald-900 text-sm font-medium mt-2 py-2 px-4 rounded inline-flex items-center" @click="cerrarModal">Terminar</button>
-          </div>
-        </div>
-      </div>
+      
     </div>
 
-    <h1 class="font-bold text-gray-800 mb-3">LISTADO DE CINTILLOS</h1>
-    <div class="flex items-center justify-center font-light text-2xl h-52 text-gray-500" v-if="datos.length === 0">
+    <h1 class="mb-3 font-bold text-gray-800">LISTADO DE CINTILLOS</h1>
+    <div class="flex items-center justify-center text-2xl font-light text-gray-500 h-52" v-if="datos.length === 0">
       <font-awesome-icon :icon="['fas', 'face-sad-cry']" /> Aun no has agregado datos..
     </div>
     <!-- component -->
@@ -99,14 +84,14 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
         <div class="w-full max-w-md">
           <div class="bg-white shadow-md">
             
-            <div class="text-sm border border-solid border-gray-200 border-b-0" v-for="item in datos.slice(inicio, fin)">
+            <div class="text-sm border border-b-0 border-gray-200 border-solid" v-for="item in datos.slice(inicio, fin)">
               <div
-                class="text-gray-700 hover:text-emerald-400 hover:bg-emerald-100">
+                class="text-gray-700">
                 
-                <div class="font-medium p-3 flex items-start justify-between">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="text-right font-medium w-[65px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
-                 <div class="p-2 flex items-center justify-between">
-                <div><b class="font-bold font-black">CANTIDAD:</b> {{ item.cantidad }}</div>
-                <div><b class="font-bold font-black">PRECIO:</b> ${{ item.precio }}</div>
+                <div class="flex items-start justify-between p-3 font-medium">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="text-right font-medium w-[65px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
+                 <div class="flex items-center justify-between p-2">
+                <div><b class="font-bold text-black">CANTIDAD:</b> {{ item.cantidad }}</div>
+                <div><b class="font-bold text-black">PRECIO:</b> ${{ item.precio }}</div>
               </div>
               </div>
               

@@ -18,11 +18,11 @@ const validarUsuario = computed(() => {
 </script>
 
 <template>
-  <header class="bg-gray-100 flex items-center justify-between p-4">
-    <h1 class="font-bold">MULTIMARCAS <span class="text-emerald-700">APP</span></h1>
+  <header class="sticky top-0 flex items-center justify-between p-4 bg-[#263238] text-[#ECF0F1]">
+    <h1 class="font-bold text-[#ECF0F1]">MULTIMARCAS <span class="text-[#00C300]">APP</span></h1>
       <nav v-if="validarUsuario">
-        <router-link to="/" class="mr-2" active-class="text-emerald-500">Inicio</router-link>
-        <router-link to="/cintillos" active-class="text-emerald-500">Cintillos <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ cantidadTotal }}</span></router-link>
+        <router-link to="/" class="mr-2" active-class="underline">Inicio</router-link>
+        <router-link to="/cintillos" active-class="underline">Cintillos <span class="inline-flex items-center justify-center bg-[#F44336] text-white text-xs font-medium  rounded-full no-underline w-[20px] h-[20px]">{{ cantidadTotal }}</span></router-link>
       </nav>
   </header>
 

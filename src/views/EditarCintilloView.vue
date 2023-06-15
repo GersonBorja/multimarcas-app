@@ -18,7 +18,7 @@ const autor = ref('')
 
 const traerDetallesCintillo = async() => {
   try {
-    const { data } = await axios.get(`http://localhost:80/api/cintillo/detalles/${route.params.uuid}`)
+    const { data } = await axios.get(`https://procter.work/api/cintillo/detalles/${route.params.uuid}`)
     console.log(data)
     agregarDetallesCintillo(data)
     barra.value = cintilloDetalles.value[0].barra
@@ -40,7 +40,7 @@ const guardarDatos = async() => {
       "autor": autor.value,
       "uuid": route.params.uuid
     }
-    const { data } = await axios.post('http://localhost:80/api/cintillo/editar', datosFrm)
+    const { data } = await axios.post('https://procter.work/api/cintillo/editar', datosFrm)
     alert(data.msg)
   }catch(error){
     console.log(error)

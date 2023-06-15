@@ -100,7 +100,7 @@ const abrirModalCorreos = () => {
             <font-awesome-icon :icon="['fas', 'face-smile-beam']" />Tu documento ha sido descargado...<br>Gracias por usar nuestra aplicación, si te ha gustado compártela!!
           </p>
           <div class="flex justify-end">
-            <button class="inline-flex items-center px-4 py-2 mt-2 text-sm font-medium rounded bg-emerald-400 hover:bg-emerald-400 text-emerald-900" @click="cerrarModal">Terminar</button>
+            <button class="inline-flex items-center px-4 py-2 mt-2 font-medium rounded bg-emerald-400 hover:bg-emerald-400 text-emerald-900" @click="cerrarModal">Terminar</button>
           </div>
         </div>
       </div>
@@ -108,9 +108,9 @@ const abrirModalCorreos = () => {
         <h1 class="pb-4 font-bold text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 1 (DESCARGAR ARCHIVO)</h1>
         <p class="py-4 pt-0 text-xs text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Esta opcion guarda en tu dispositivo un archivo excel con todos los cintillos que has creado. Este lo puedes compartir posteriormente.</p>
 
-        <div class="flex items-center justify-between px-4 py-3 text-xs font-bold border border-solid rounded-sm bg-emerald-100 border-emerald-200 text-emerald-800">
-            <span><font-awesome-icon :icon="['fas', 'file-excel']" /> {{ nombreCintillo() }}</span>
-            <a href="#" @click.prevent="generarDocumento"><font-awesome-icon :icon="['fas', 'download']" /></a>
+        <div class="flex items-center justify-between px-4 py-3 font-bold border border-solid rounded-sm bg-emerald-100 border-emerald-200 text-emerald-800">
+          <a href="#" @click.prevent="generarDocumento"><span><font-awesome-icon :icon="['fas', 'file-excel']" /> {{ nombreCintillo() }}</span>
+            <font-awesome-icon :icon="['fas', 'download']" /></a>
         </div>
     </div>
     <div class="p-4">

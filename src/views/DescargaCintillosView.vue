@@ -28,7 +28,7 @@ const modal = ref(false)
 const generarDocumento = async () => {
     try {
         modal.value = true
-        const { data } = await axios.get(`https://procter.work/api/cintillos/generar/${user}`)
+        const { data } = await axios.post(`https://procter.work/api/cintillos/generar/${user}`)
         if(data.status === 'OK') location.href = `https://procter.work${data.path}/${data.path_name}`
     }catch(error) {
         console.log(error)

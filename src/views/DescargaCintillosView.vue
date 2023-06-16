@@ -80,7 +80,7 @@ const enviar = async() => {
     let texto = document.getElementById('textoEnvio')
     texto.innerHTML = "CORREO ENVIADO"
     setTimeout(() => {
-      alert('INFORMAR AL OPERADOR LOS CINTILLOS PUEDE HAYAR EN CORREO NO DESEADO.')
+      alert('INFORMAR AL OPERADOR QUE LOS CINTILLOS LOS PUEDE ENCONTRAR EN CORREO NO DESEADO GRACIAS.')
       enviando.value = false
       router.push('/')
       resetCintillos()
@@ -124,7 +124,8 @@ const abrirModalCorreos = () => {
         <h1 class="flex items-center justify-between p-4 font-bold text-gray-800"><router-link to="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
         
         <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
-        Por el momento el envio de cintillos por correo a traves de la aplicacion no esta disponible para todas las salas.
+        Por el momento el envio de cintillos por correo a traves de la aplicacion no esta disponible para todas las salas.<br>
+        Usa esta funcion solo si vas a enviar cintillos validos.
       </div>
 <div class="p-4">
   <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" v-model="infoSala">

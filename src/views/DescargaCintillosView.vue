@@ -80,6 +80,7 @@ const enviar = async() => {
     let texto = document.getElementById('textoEnvio')
     texto.innerHTML = "CORREO ENVIADO"
     setTimeout(() => {
+      alert('INFORMAR AL OPERADOR LOS CINTILLOS PUEDE HAYAR EN CORREO NO DESEADO.')
       enviando.value = false
       router.push('/')
       resetCintillos()

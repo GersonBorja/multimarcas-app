@@ -179,7 +179,7 @@ function formatearDescription(description) {
         </div>
         
         <input type="submit"
-          class="w-full px-4 py-2 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md"
+          class="w-full px-4 py-2 font-bold text-white border rounded bg-[#2E3239] hover:bg-[#37474F] border-[#303E46] shadow-md"
           value="AGREGAR CINTILLO">
       </form>
     </div>

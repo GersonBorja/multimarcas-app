@@ -65,7 +65,7 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
       <div class="flex items-center justify-between mb-3">
         <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">252</span></div>
         <router-link :to="`/descargas/${user}`"
-        class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#455A64] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-md">
+        class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">
         <font-awesome-icon :icon="['fas', 'download']" />
         Generar cintillos
       </router-link>

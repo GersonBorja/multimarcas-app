@@ -18,7 +18,7 @@ const validarUsuario = computed(() => {
 </script>
 
 <template>
-  <header class="sticky top-0 flex items-center justify-between p-4 bg-[#26292B] text-[#ECF0F1]">
+  <header class="sticky top-0 flex items-center justify-between px-4 py-6 bg-[#26292B] text-[#ECF0F1]">
     <h1 class="font-bold text-[#ECF0F1]">MULTIMARCAS <span class="text-[#5F7ADB]">APP</span></h1>
       <nav v-if="validarUsuario">
         <router-link to="/" class="mr-2" active-class="underline">Inicio</router-link>

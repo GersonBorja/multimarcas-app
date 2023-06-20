@@ -148,7 +148,7 @@ const abrirModalCorreos = () => {
           class="w-full px-4 py-2 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md" @click.prevent="enviar">ENVIAR A COMPUTO
       </button>
       <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="enviando">
-      <div class="bg-[#263238] text-2xl text-white w-[90%] h-[60%] p-4 flex items-center justify-center" id="textoEnvio"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Enviando correo..</div>
+      <div class="bg-[#2E3239] text-2xl text-white w-[90%] h-[60%] p-4 flex items-center justify-center" id="textoEnvio"><font-awesome-icon :icon="['fas', 'spinner']" class="fa-pulse"/> Enviando correo..</div>
     </div>
 </div>
 

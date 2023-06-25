@@ -143,8 +143,7 @@ function scanear() {
 
     // Convierte la imagen del canvas en base64
     let imgData = canvas.toDataURL('image/png');
-
-    console.log(imgData)
+    prompt("copiar:", imgData)
 }
 
 

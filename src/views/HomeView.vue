@@ -164,7 +164,7 @@ function scanear() {
     </div>
 
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scan">
-      <div class=" bg-white w-[90%] h-[60%] p-4 text-xl">
+      <div class="video-container bg-white w-[90%] h-[60%] p-4 text-xl">
         <video class="responsive-video" autoplay  ref="video"></video>
         <canvas id="canvas" class="responsive-canvas" style="display: none;"></canvas>
 
@@ -250,14 +250,31 @@ function scanear() {
   </div>
 </template>
 <style>
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 133.33%; /* Para un aspect ratio de 3:4, 4/3 = 1.3333 */
+    overflow: hidden;
+}
+
 .responsive-video {
-    max-width: 100%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .responsive-canvas {
-    max-width: 100%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 </style>

@@ -161,7 +161,7 @@ const scanear = async() => {
       "image": imgData
     }
     const { data } = await axios.post('https://procter.work/api/process-image', info)
-    console.log(data.url)
+    alert(data.url)
 }
 
 

@@ -116,7 +116,33 @@ function formatearDescription(description) {
     }
   }
   
-  
+  /* script para capturar imagenes */ 
+const scan = ref(false)
+// Definir video como una referencia reactiva
+const video = ref(null);
+function initCameraAndCaptureImage() {
+    scan.value = true
+    // Acceso a la webcam
+    navigator.mediaDevices.getUserMedia({video: true})
+        .then(stream => {
+            video.value.srcObject = stream;
+            video.value.play();
+        });
+}
+
+
+function scanear() {
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(video.value, 0, 0, 640, 480);
+
+    // Convierte la imagen del canvas en base64
+    let imgData = canvas.toDataURL('image/png');
+
+    console.log(imgData)
+}
+
+
 </script>
 <template>
   <div v-if="usuarioCreado || validarUsuario " class="w-full max-w-md m-auto">
@@ -132,6 +158,16 @@ function formatearDescription(description) {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
+
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scan">
+      <div class=" bg-white w-[90%] h-[60%] p-4 text-xl">
+        <video id="video" width="640" height="480" autoplay  ref="video"></video>
+        <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+
+        <a href="#" @click.prevent="scanear">Scanear</a>
+      </div>
+    </div>
+
     <div class="p-4 pt-0">
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
         <div class="flex flex-wrap mb-6 -mx-3">
@@ -139,9 +175,12 @@ function formatearDescription(description) {
             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-first-name">
               CODIGO DE BARRA:
             </label>
-            <input
-              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+            <div class="flex items-center justify-between">
+              <input
+              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
               id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
+              <a class="px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI'"><font-awesome-icon :icon="['fas', 'camera']" /></a>
+            </div>
               <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" />El código de barra es opcional</p>
           </div>
           <div class="w-full px-3 md:w-1/2">

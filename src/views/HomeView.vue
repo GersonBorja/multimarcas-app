@@ -122,8 +122,14 @@ const scan = ref(false)
 const video = ref(null);
 function initCameraAndCaptureImage() {
     scan.value = true
+
+    const constraints = {
+  video: {
+    facingMode: 'user' // 'user' para la cámara frontal, 'environment' para la cámara trasera
+  }
+};
     // Acceso a la webcam
-    navigator.mediaDevices.getUserMedia({video: true})
+    navigator.mediaDevices.getUserMedia(constraints)
         .then(stream => {
             video.value.srcObject = stream;
             video.value.play();

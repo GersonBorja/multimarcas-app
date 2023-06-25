@@ -208,7 +208,7 @@ function cerrar() {
               <input
               class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
               id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
-              <a class="px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ'"><img src="../../public/barcode.png" class="w-[30px]"></a>
+              <a class="px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ'"><img src="../../public/barcode.png" class="w-[25px]"></a>
             </div>
               <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" />El código de barra es opcional</p>
           </div>

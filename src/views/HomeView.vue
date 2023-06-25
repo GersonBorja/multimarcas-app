@@ -163,14 +163,14 @@ function scanear() {
       </div>
     </div>
 
-    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scan">
-      <div class="bg-white video-container">
-        <video class="responsive-video" autoplay  ref="video"></video>
-        <canvas id="canvas" class="responsive-canvas" style="display: none;"></canvas>
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
+  <div class="bg-white w-9/10 h-3/5">
+    <video class="object-cover w-full h-full" autoplay  ref="video"></video>
+    <canvas id="canvas" class="object-cover w-full h-full" style="display: none;"></canvas>
+    <a href="#" @click.prevent="scanear">Scanear</a>
+  </div>
+</div>
 
-        <a href="#" @click.prevent="scanear">Scanear</a>
-      </div>
-    </div>
 
     <div class="p-4 pt-0">
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">

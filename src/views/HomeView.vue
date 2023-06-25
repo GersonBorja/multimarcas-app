@@ -187,11 +187,11 @@ function cerrar() {
     </div>
     <canvas id="canvas" class="hidden object-cover w-full h-full"></canvas>
     <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
-  <div class="bg-white w-9/10 h-3/5">
+  <div class="relative bg-white w-9/10 h-3/5">
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>
     
-    <a href="#" @click.prevent="scanear">Scanear</a>
-    <a href="#" @click.prevent="cerrar">cerrar</a>
+    <a href="#" class="absolute bottom-[2rem] left-[2rem] z-40 text-white" @click.prevent="scanear">Scanear</a>
+    <a href="#" class="absolute bottom-[2rem] right-[2rem] z-40 text-white" @click.prevent="cerrar">cerrar</a>
 
   </div>
 </div>

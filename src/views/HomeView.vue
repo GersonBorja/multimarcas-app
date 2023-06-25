@@ -200,19 +200,24 @@ function cerrar() {
     <div class="p-4 pt-0">
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
         <div class="flex flex-wrap mb-6 -mx-3">
-          <div class="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+          <div class="w-full px-3 mb-6">
             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-first-name">
               CODIGO DE BARRA:
             </label>
-            <div class="flex items-center justify-between">
-              <input
-              class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
-              id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
-              <a class="px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ'"><img src="../../public/barcode.png" class="w-[20px] inline-block"></a>
-            </div>
+ 
+            <div class="flex items-stretch justify-between">
+    <input
+        class="flex-grow px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
+        id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
+    <a class="flex items-center justify-center px-4 mb-3 leading-tight text-gray-700 bg-gray-300 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ'">
+        <img src="../../public/barcode.png" class="w-[25px] inline-block">
+    </a>
+</div>
+
+
               <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" />El código de barra es opcional</p>
           </div>
-          <div class="w-full px-3 md:w-1/2">
+          <div class="w-full px-3 ">
             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-last-name">
               DESCRIPCIÓN DEL PRODUCTO:
             </label>

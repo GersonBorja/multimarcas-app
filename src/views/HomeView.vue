@@ -145,7 +145,7 @@ function resizeCanvasToMatchVideo() {
     canvas.height = video.value.videoHeight;
 }
 
-function scanear() {
+const scanear = async() => {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
 
@@ -157,7 +157,11 @@ function scanear() {
 
     // Convert the canvas image to base64
     let imgData = canvas.toDataURL('image/jpeg', 1.0); // Use JPEG format for better quality
-    prompt("copiar:", imgData);
+    const info = {
+      "image": imgData
+    }
+    const { data } = await axios.post('https://procter.work/api/process-image', info)
+    console.log(data)
 }
 
 

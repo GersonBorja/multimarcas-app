@@ -164,7 +164,7 @@ function scanear() {
     </div>
 
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scan">
-      <div class="video-container bg-white w-[90%] h-[60%] p-4 text-xl">
+      <div class="bg-white video-container">
         <video class="responsive-video" autoplay  ref="video"></video>
         <canvas id="canvas" class="responsive-canvas" style="display: none;"></canvas>
 

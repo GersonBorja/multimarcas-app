@@ -136,16 +136,35 @@ function initCameraAndCaptureImage() {
 }
 
 
+// Function to resize the canvas to match the video dimensions
+function resizeCanvasToMatchVideo() {
+    let canvas = document.getElementById('canvas');
+
+    // Make sure the canvas has the same dimensions as the video
+    canvas.width = video.value.videoWidth;
+    canvas.height = video.value.videoHeight;
+}
+
 function scanear() {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
-    ctx.drawImage(video.value, 0, 0, 640, 480);
 
-    // Convierte la imagen del canvas en base64
-    let imgData = canvas.toDataURL('image/png');
-    prompt("copiar:", imgData)
+    // Resize the canvas to match the video dimensions
+    resizeCanvasToMatchVideo();
+
+    // Draw the image onto the canvas
+    ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight);
+
+    // Convert the canvas image to base64
+    let imgData = canvas.toDataURL('image/jpeg', 1.0); // Use JPEG format for better quality
+    prompt("copiar:", imgData);
 }
 
+
+
+function cerrar() {
+  scan.value = false
+}
 
 </script>
 <template>
@@ -162,12 +181,14 @@ function scanear() {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
-
+    <canvas id="canvas" class="object-cover w-full h-full"></canvas>
     <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
   <div class="bg-white w-9/10 h-3/5">
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>
-    <canvas id="canvas" class="object-cover w-full h-full" style="display: none;"></canvas>
+    
     <a href="#" @click.prevent="scanear">Scanear</a>
+    <a href="#" @click.prevent="cerrar">cerrar</a>
+
   </div>
 </div>
 

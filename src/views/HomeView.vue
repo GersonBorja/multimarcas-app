@@ -165,8 +165,8 @@ function scanear() {
 
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scan">
       <div class=" bg-white w-[90%] h-[60%] p-4 text-xl">
-        <video id="video" width="640" height="480" autoplay  ref="video"></video>
-        <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+        <video class="responsive-video" autoplay  ref="video"></video>
+        <canvas id="canvas" class="responsive-canvas" style="display: none;"></canvas>
 
         <a href="#" @click.prevent="scanear">Scanear</a>
       </div>
@@ -249,3 +249,15 @@ function scanear() {
     </form>
   </div>
 </template>
+<style>
+.responsive-video {
+    max-width: 100%;
+    height: auto;
+}
+
+.responsive-canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+</style>

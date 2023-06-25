@@ -181,7 +181,7 @@ function cerrar() {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
-    <canvas id="canvas" class="object-cover w-full h-full"></canvas>
+    <canvas id="canvas" class="hidden object-cover w-full h-full"></canvas>
     <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
   <div class="bg-white w-9/10 h-3/5">
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>

@@ -145,24 +145,28 @@ function resizeCanvasToMatchVideo() {
     canvas.height = video.value.videoHeight;
 }
 
+const proceso = ref(false)
 const scanear = async() => {
-    let canvas = document.getElementById('canvas');
-    let ctx = canvas.getContext('2d');
-
-    // Resize the canvas to match the video dimensions
-    resizeCanvasToMatchVideo();
-
-    // Draw the image onto the canvas
-    ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight);
-
-    // Convert the canvas image to base64
-    let imgData = canvas.toDataURL('image/jpeg', 1.0); // Use JPEG format for better quality
-    const info = {
-      "image": imgData
-    }
-    const { data } = await axios.post('https://procter.work/api/process-image', info)
-    alert(data.url)
-}
+    try {
+      proceso.value = true
+      let canvas = document.getElementById('canvas');
+      let ctx = canvas.getContext('2d')
+      
+      resizeCanvasToMatchVideo()
+      ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
+    
+      let imgData = canvas.toDataURL('image/jpeg', 1.0)
+      const info = {
+        "image": imgData
+      }
+      const { data } = await axios.post('https://procter.work/api/process-image', info)
+      alert(data.url)
+    }catch(error){
+    console.log(error)
+  } finally{
+    proceso.value = false
+  }
+  }
 
 
 
@@ -190,8 +194,9 @@ function cerrar() {
   <div class="relative bg-white w-9/10 h-3/5">
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>
     
-    <a href="#" class="absolute bottom-[2rem] left-[2rem] z-40 text-white" @click.prevent="scanear">Scanear</a>
-    <a href="#" class="absolute bottom-[2rem] right-[2rem] z-40 text-white" @click.prevent="cerrar">cerrar</a>
+    <div class="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-full text-white bg-black bg-opacity-90" v-if="proceso"><font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Procesando...</div>
+    <a href="#" class="absolute bottom-[2rem] left-[2rem] z-40 text-white" @click.prevent="scanear">Escanear</a>
+    <a href="#" class="absolute bottom-[2rem] right-[2rem] z-40 text-white" @click.prevent="cerrar">Cerrar</a>
 
   </div>
 </div>

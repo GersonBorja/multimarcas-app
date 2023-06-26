@@ -120,12 +120,12 @@ function formatearDescription(description) {
 const scan = ref(false)
 // Definir video como una referencia reactiva
 const video = ref(null);
-function initCameraAndCaptureImage() {
+const initCameraAndCaptureImage = () => {
     scan.value = true
     const constraints = {
         video: {
-            width: 1920, // ancho deseado
-            height: 1080, // altura deseada
+            width: 1280, // ancho deseado
+            height: 720, // altura deseada
             facingMode: 'environment' // 'environment' para la cámara trasera
         }
     }
@@ -163,8 +163,19 @@ const scanear = async() => {
       const info = {
         "image": imgData
       }
-      const { data } = await axios.post('https://procter.work/api/process-image', info)
-      alert(data.url)
+      const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
+      if(postData.url === "error"){
+        alert('No se detectaron códigos de barras en la imagen.')
+      }else{
+        try {
+          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.url}`)
+          barra.value = getData[0].barra
+          descripcion.value = getData[0].descripcion
+          cerrar()
+        }catch(err) {
+          console.log(err)
+        }
+      }
     }catch(error){
     console.log(error)
   } finally{
@@ -173,10 +184,14 @@ const scanear = async() => {
   }
 
 
-
-function cerrar() {
-  scan.value = false
+  function cerrar() {
+  if (video.value && video.value.srcObject) {
+    video.value.srcObject.getTracks().forEach(track => track.stop());
+    video.value.srcObject = null;
+  }
+  scan.value = false;
 }
+
 
 </script>
 <template>
@@ -218,7 +233,7 @@ function cerrar() {
     <input
         class="flex-grow px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
         id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
-    <a class="flex items-center justify-center px-4 mb-3 leading-tight text-gray-700 bg-gray-300 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ'">
+    <a class="flex items-center justify-center px-4 mb-3 leading-tight text-gray-700 bg-gray-300 border rounded-r" @click.prevent="initCameraAndCaptureImage" v-if="usuario == 'VLADI' || usuario === 'CARLOS' || usuario === 'SARAJUAREZ' || usuario === 'JUANY'">
         <img src="../../public/barcode.png" class="w-[25px] inline-block">
     </a>
 </div>

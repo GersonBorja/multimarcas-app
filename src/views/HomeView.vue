@@ -122,11 +122,14 @@ const scan = ref(false)
 const video = ref(null);
 function initCameraAndCaptureImage() {
     scan.value = true
-      const constraints = {
-  video: {
-    facingMode: 'environment' // 'environment' para la cámara trasera
-  }
-}
+    const constraints = {
+        video: {
+            width: 1920, // ancho deseado
+            height: 1080, // altura deseada
+            facingMode: 'environment' // 'environment' para la cámara trasera
+        }
+    }
+
     // Acceso a la webcam
     navigator.mediaDevices.getUserMedia(constraints)
         .then(stream => {
@@ -134,6 +137,7 @@ function initCameraAndCaptureImage() {
             video.value.play();
         });
 }
+
 
 
 // Function to resize the canvas to match the video dimensions
@@ -155,7 +159,7 @@ const scanear = async() => {
       resizeCanvasToMatchVideo()
       ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
     
-      let imgData = canvas.toDataURL('image/jpeg', 1.0)
+      let imgData = canvas.toDataURL('image/png')
       const info = {
         "image": imgData
       }

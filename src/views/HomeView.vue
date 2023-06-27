@@ -124,8 +124,8 @@ const initCameraAndCaptureImage = () => {
     scan.value = true
     const constraints = {
         video: {
-            width: 1280, // ancho deseado
-            height: 720, // altura deseada
+            width: 1920, // ancho deseado
+            height: 1080, // altura deseada
             facingMode: 'environment' // 'environment' para la cámara trasera
         }
     }
@@ -159,7 +159,7 @@ const scanear = async() => {
       resizeCanvasToMatchVideo()
       ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
     
-      let imgData = canvas.toDataURL('image/png')
+      let imgData = canvas.toDataURL('image/jpeg', 1.0);
       const info = {
         "image": imgData
       }

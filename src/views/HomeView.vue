@@ -170,9 +170,9 @@ const scanear = async() => {
         try {
           const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.url}`)
           prompt("error", getData)
-          //barra.value = getData[0].barra
-          //descripcion.value = getData[0].descripcion
-          //cerrar()
+          barra.value = postData.url
+          descripcion.value = getData[0].descripcion
+          cerrar()
         }catch(err) {
           console.log(err)
         }

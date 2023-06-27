@@ -164,8 +164,9 @@ const scanear = async() => {
         "image": imgData
       }
       const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
-      if(postData.url === "error"){
+      if(postData.url == "error"){
         alert('No se detectaron códigos de barras en la imagen.')
+        cerrar()
       }else{
         try {
           const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.url}`)

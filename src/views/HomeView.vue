@@ -166,12 +166,26 @@ const scanear = async() => {
       const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
       if(postData.result == "error"){
         alert('No se detectaron códigos de barras en la imagen.')
+
+        const notificacionData = {
+      'autor': usuario.value,
+      'msg': 'fallo al escanear'
+    }
+    const { data: msgUno } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+    console.log(msgUno)
         cerrar()
       }else{
         try {
           const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
           if(getData.length === 0){
             barra.value = postData.result
+
+            const notificacionData = {
+      'autor': usuario.value,
+      'msg': 'el escaneo fue un exito'
+    }
+    const { data: msgDos } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+    console.log(msgDos)
             cerrar()
           }else{
             barra.value = postData.result

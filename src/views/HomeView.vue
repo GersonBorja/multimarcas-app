@@ -182,12 +182,18 @@ const scanear = async() => {
 
             const notificacionData = {
       'autor': usuario.value,
-      'msg': 'el escaneo fue un exito'
+      'msg': 'solo escaneo la barra'
     }
     const { data: msgDos } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
     console.log(msgDos)
             cerrar()
           }else{
+            const notificacionData = {
+      'autor': usuario.value,
+      'msg': 'el escaneo fue un exito y encrotro coincidencias en la db'
+    }
+    const { data: msgTres } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+    console.log(msgTres)
             barra.value = postData.result
             if(getData.length === 1) descripcion.value = formatearDescription(getData[0].descripcion)            
             cerrar()

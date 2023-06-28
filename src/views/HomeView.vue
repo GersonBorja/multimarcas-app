@@ -164,16 +164,17 @@ const scanear = async() => {
         "image": imgData
       }
       const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
-      if(postData.url == "false" || postData.url == false || postData.url == "error"){
+      if(postData.result == "error"){
         alert('No se detectaron códigos de barras en la imagen.')
         cerrar()
       }else{
         try {
-          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.url}`)
+          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
           if(getData.length === 0){
-            barra.value = postData.url
+            barra.value = postData.result
+            cerrar()
           }else{
-            barra.value = postData.url
+            barra.value = postData.result
             descripcion.value = getData[0].descripcion
             cerrar()
           }

@@ -228,7 +228,7 @@ const cerrarModalFunction = () => {
 <template>
   <div v-if="usuarioCreado || validarUsuario " class="w-full max-w-md m-auto">
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="newfunction === null">
-      <div class="bg-[#0099FF] w-[95%] h-[60%] p-4 text-xl"><img src="../../public/papel.png" class="block w-[100px] m-auto">
+      <div class="bg-[#0099FF] w-[95%] p-4 text-xl"><img src="../../public/papel.png" class="block w-[100px] m-auto">
       <h2 class="py-4 font-medium text-center text-white">NUEVA FUNCION AGREGADA</h2>
       <p class="p-4 text-sm text-white">
         Hemos agregado la funcion de escanner de barras, para autocompletar las descripciones, contamos con 46 mil codigos a disposicion, si al escanear no te sale la descripcion es posible que sea un codigo asociado, recuerda que la eficiencia del escaner depende la calidad de tu camara y de que tan bien logres escanear el producto, procura que la barra sea visible, sin reflejos y este en una buena luz.

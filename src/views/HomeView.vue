@@ -124,11 +124,12 @@ const initCameraAndCaptureImage = () => {
     scan.value = true
     const constraints = {
         video: {
-            width: 1920, // ancho deseado
-            height: 1080, // altura deseada
+            width: { ideal: 1920 }, // ancho deseado
+            height: { ideal: 1080 }, // altura deseada
             facingMode: 'environment' // 'environment' para la cámara trasera
         }
     }
+    
 
     // Acceso a la webcam
     navigator.mediaDevices.getUserMedia(constraints)
@@ -145,8 +146,8 @@ function resizeCanvasToMatchVideo() {
     let canvas = document.getElementById('canvas');
 
     // Make sure the canvas has the same dimensions as the video
-    canvas.width = video.value.videoWidth;
-    canvas.height = video.value.videoHeight;
+    canvas.width = video.value.videoWidth
+    canvas.height = video.value.videoHeight
 }
 
 const proceso = ref(false)
@@ -249,8 +250,13 @@ const cerrarModalFunction = () => {
       </div>
     </div>
     <canvas id="canvas" class="hidden object-cover w-full h-full"></canvas>
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
-  <div class="relative bg-white w-9/10 h-3/5">
+    <div class="fixed w-full h-full inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
+  <div class="flex items-center justify-center relative bg-white w-full h-full">
+    <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 left-0 h-full z-30"></div>
+    <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 right-0 h-full z-30"></div>
+    <div class="absolute w-[70%] left-[15%] bg-black bg-opacity-20 top-0 h-[25%] z-30"></div>
+    <div class="absolute w-[70%] left-[15%] bg-black bg-opacity-20 bottom-0 h-[25%] z-30"></div>
+    <div class="w-full bg-red-500 bg-opacity-70 absolute h-[2px] t-[100%] b-[100%]"></div>
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>
     
     <div class="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-full text-white bg-black bg-opacity-90" v-if="proceso"><font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Procesando...</div>

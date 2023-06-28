@@ -175,7 +175,7 @@ const scanear = async() => {
             cerrar()
           }else{
             barra.value = postData.result
-            descripcion.value = getData[0].descripcion
+            if(getData.length === 1) descripcion.value = formatearDescription(getData[0].descripcion)            
             cerrar()
           }
           

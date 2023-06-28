@@ -179,7 +179,7 @@ const scanear = async() => {
           const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
           if(getData.length === 0){
             barra.value = postData.result
-
+            descripcion.value = ''
             const notificacionData = {
       'autor': usuario.value,
       'msg': 'solo escaneo la barra'

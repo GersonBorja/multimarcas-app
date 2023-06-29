@@ -126,6 +126,7 @@ const initCameraAndCaptureImage = () => {
         video: {
             width: { ideal: 1920 }, // ancho deseado
             height: { ideal: 1080 }, // altura deseada
+            focusMode: 'continuous',
             facingMode: 'environment' // 'environment' para la cámara trasera
         }
     }

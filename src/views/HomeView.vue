@@ -252,8 +252,8 @@ const cerrarModalFunction = () => {
       </div>
     </div>
     <canvas id="canvas" class="hidden object-cover w-full h-full"></canvas>
-    <div class="fixed w-full h-full inset-0 flex items-center justify-center bg-black bg-opacity-50" v-if="scan">
-  <div class="flex items-center justify-center relative bg-white w-full h-full">
+    <div class="fixed inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
+  <div class="relative flex items-center justify-center w-full h-full bg-white">
     <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 left-0 h-full z-30"></div>
     <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 right-0 h-full z-30"></div>
     <div class="absolute w-[70%] left-[15%] bg-black bg-opacity-20 top-0 h-[25%] z-30"></div>
@@ -262,6 +262,7 @@ const cerrarModalFunction = () => {
     <video class="object-cover w-full h-full" autoplay  ref="video"></video>
     
     <div class="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-full text-white bg-black bg-opacity-90" v-if="proceso"><font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Procesando...</div>
+    <div class="flex justify-start items-center absolute top-[2rem] left-[2rem] z-40 text-white"><div class="p-[5px] text-xs font-light bg-red-500 rounded-lg shadow-lg">BETA</div><span class="text-xs pl-2 pr-[2rem]">Funcion experimental, puede no escanaear o funcionar en todos los dispositivos.</span></div>
     <a href="#" class="absolute bottom-[2rem] left-[2rem] z-40 text-white" @click.prevent="scanear">Escanear</a>
     <a href="#" class="absolute bottom-[2rem] right-[2rem] z-40 text-white" @click.prevent="cerrar">Cerrar</a>
 

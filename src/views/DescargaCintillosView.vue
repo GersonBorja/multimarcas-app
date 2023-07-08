@@ -115,7 +115,7 @@ const abrirModalCorreos = () => {
     </div>
     <div class="p-4">
         <h1 class="font-bold text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 2 (ENVIAR POR CORREO)</h1>
-        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para pocas salas.</p>
+        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para  <b class="text-black font-extrabold">32 SALAS</b>.</p>
         <a class="px-4 py-2 text-sm text-white border border-solid rounded-md shadow-md bg-emerald-500 border-emerald-600" @click.prevent="abrirModalCorreos"><font-awesome-icon :icon="['fas', 'envelope']" /> ENVIAR POR CORREO</a>
     </div>
     <div class="fixed top-0 left-0 z-30 w-full h-full bg-white" v-if="show">

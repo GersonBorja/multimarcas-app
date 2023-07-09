@@ -1,13 +1,13 @@
 <template>
-    <div>
-      <video ref="video" width="300" height="200"></video>
-      <button @click="stopScanning">Detener escaneo</button>
+    <div class="z-40 flex flex-col items-center justify-center fullscreen">
+      <video ref="video" class="w-full h-full"></video>
+      <button @click="stopScanning" class="mt-4">Detener escaneo</button>
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue';
-  import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType, NotFoundException } from '@zxing/library';
+  import { BarcodeFormat, BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
   
   const video = ref(null);
   let scanning = ref(false);
@@ -22,11 +22,7 @@
     BarcodeFormat.UPC_E
   ];
   
-  let hints = new Map();
-  hints.set(DecodeHintType.TRY_HARDER, true);
-  
   let codeReader = new BrowserMultiFormatReader(null, formats);
-  codeReader.setHints(hints);
   
   onMounted(() => {
     startScanning();
@@ -41,9 +37,9 @@
     codeReader
       .decodeFromVideoDevice(undefined, video.value, (result, err) => {
         if (result) {
-          console.log('Resultado obtenido: ', result.getText());
+          alert('Resultado obtenido: ' + result.getText());
           // Detener el escaneo después de obtener el resultado
-          stopScanning();
+          //stopScanning();
         }
         if (err && !(err instanceof NotFoundException)) {
           console.error(err);

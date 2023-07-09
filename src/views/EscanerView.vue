@@ -7,7 +7,7 @@
   
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue';
-  import { BarcodeFormat, BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
+  import { BarcodeFormat, DecodeHintType, BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
   
   const video = ref(null);
   let scanning = ref(false);
@@ -22,7 +22,18 @@
     BarcodeFormat.UPC_E
   ];
   
-  let codeReader = new BrowserMultiFormatReader(null, formats);
+  let hints = new Map();
+  
+  // Intentar con más esfuerzo
+  hints.set(DecodeHintType.TRY_HARDER, true);
+  
+  // Suponer que la imagen es solo un código de barras
+  hints.set(DecodeHintType.PURE_BARCODE, true);
+  
+  // Especificar posibles formatos
+  hints.set(DecodeHintType.POSSIBLE_FORMATS, formats);
+  
+  let codeReader = new BrowserMultiFormatReader(hints);
   
   onMounted(() => {
     startScanning();
@@ -37,9 +48,9 @@
     codeReader
       .decodeFromVideoDevice(undefined, video.value, (result, err) => {
         if (result) {
-          alert('Resultado obtenido: ' + result.getText());
+          console.log('Resultado obtenido: ', result.getText());
           // Detener el escaneo después de obtener el resultado
-          //stopScanning();
+          stopScanning();
         }
         if (err && !(err instanceof NotFoundException)) {
           console.error(err);

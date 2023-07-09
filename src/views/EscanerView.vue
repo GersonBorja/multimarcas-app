@@ -37,7 +37,7 @@
     codeReader
       .decodeFromVideoDevice(undefined, video.value, (result, err) => {
         if (result) {
-          alert('Resultado obtenido: ', result.getText());
+          alert('Resultado obtenido: ' + result.getText());
           // Detener el escaneo después de obtener el resultado
           stopScanning();
         }

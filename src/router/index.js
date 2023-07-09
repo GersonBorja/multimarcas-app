@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/descargas/:user',
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue')
+    },
+    {
+      path: '/scanner',
+      name: 'escaner',
+      component: () => import('../views/EscanerView.vue')
     }
   ]
 })

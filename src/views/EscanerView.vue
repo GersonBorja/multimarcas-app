@@ -5,47 +5,54 @@
     </div>
   </template>
   
-  <script>
-  import { BrowserMultiFormatReader } from '@zxing/library';
+  <script setup>
+  import { ref, onMounted, onUnmounted } from 'vue';
+  import { BarcodeFormat, BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
   
-  export default {
-    data() {
-      return {
-        video: null,
-        codeReader: new BrowserMultiFormatReader(),
-        scanning: false,
-      };
-    },
-    mounted() {
-      this.video = this.$refs.video;
-      this.startScanning();
-    },
-    beforeUnmount() {
-      this.stopScanning();
-    },
-    methods: {
-      startScanning() {
-        this.scanning = true;
-        this.codeReader
-          .decodeFromVideoDevice(undefined, this.video, (result, err) => {
-            if (result) {
-              console.log('Resultado obtenido: ', result.getText());
-              // Detener el escaneo después de obtener el resultado
-              this.stopScanning();
-            }
-            if (err && !(err instanceof NotFoundException)) {
-              console.error(err);
-              // Detener el escaneo si se produce un error
-              this.stopScanning();
-            }
-          })
-          .catch(err => console.error(err));
-      },
-      stopScanning() {
-        this.codeReader.reset();
-        this.scanning = false;
-      },
-    },
+  const video = ref(null);
+  let scanning = ref(false);
+  
+  // Especifica los formatos de códigos de barras que deseas soportar
+  const formats = [
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.CODE_39,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.EAN_8,
+    BarcodeFormat.UPC_A,
+    BarcodeFormat.UPC_E
+  ];
+  
+  let codeReader = new BrowserMultiFormatReader(null, formats);
+  
+  onMounted(() => {
+    startScanning();
+  });
+  
+  onUnmounted(() => {
+    stopScanning();
+  });
+  
+  const startScanning = () => {
+    scanning.value = true;
+    codeReader
+      .decodeFromVideoDevice(undefined, video.value, (result, err) => {
+        if (result) {
+          alert('Resultado obtenido: ', result.getText());
+          // Detener el escaneo después de obtener el resultado
+          stopScanning();
+        }
+        if (err && !(err instanceof NotFoundException)) {
+          console.error(err);
+          // Detener el escaneo si se produce un error
+          stopScanning();
+        }
+      })
+      .catch(err => console.error(err));
+  };
+  
+  const stopScanning = () => {
+    codeReader.reset();
+    scanning.value = false;
   };
   </script>
   

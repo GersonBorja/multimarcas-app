@@ -39,7 +39,7 @@
         if (result) {
           alert('Resultado obtenido: ' + result.getText());
           // Detener el escaneo después de obtener el resultado
-          stopScanning();
+          //stopScanning();
         }
         if (err && !(err instanceof NotFoundException)) {
           console.error(err);

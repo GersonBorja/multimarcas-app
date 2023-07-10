@@ -6,8 +6,12 @@
   </template>
   
  <script setup>
+ import 'core-js';
+ import 'webrtc-adapter';
+ 
 import { ref, onMounted, onUnmounted } from 'vue';
 import { BarcodeFormat, BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
+
 
 const video = ref(null);
 let scanning = ref(false);
@@ -57,7 +61,7 @@ const startScanning = () => {
         stopScanning();
       }
     }, constraints)
-    .catch(err => console.alert(err));
+    .catch(err => alert(err));
 };
 
 const stopScanning = () => {

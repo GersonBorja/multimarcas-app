@@ -30,7 +30,8 @@ let codeReader = new BrowserMultiFormatReader(null, formats);
 
 const constraints = {
   video: {
-    
+    width: { ideal: 1920 }, // ancho desead
+    height: { ideal: 1080 },
     frameRate: { ideal: 60 },
     sharpness: { ideal: 1.0 },
     focusMode: 'continuous',

@@ -57,7 +57,7 @@ const startScanning = () => {
         stopScanning();
       }
     }, constraints)
-    .catch(err => console.error(err));
+    .catch(err => console.alert(err));
 };
 
 const stopScanning = () => {

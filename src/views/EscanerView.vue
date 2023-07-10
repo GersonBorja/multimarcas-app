@@ -1,7 +1,7 @@
 <template>
     <div class="z-40 flex flex-col items-center justify-center fullscreen">
       <video ref="video" class="w-full h-full"></video>
-      <button @click="stopScanning" class="mt-4">Detener escaneo</button>
+      <button @click="stopScanning" class="mt-4">Detener escaneo!</button>
     </div>
   </template>
   
@@ -30,8 +30,7 @@ let codeReader = new BrowserMultiFormatReader(null, formats);
 
 const constraints = {
   video: {
-    width: { ideal: 1920 }, // ancho deseado
-    height: { ideal: 1080 },
+    
     frameRate: { ideal: 30 },
     sharpness: { ideal: 1.0 },
     focusMode: 'continuous',

@@ -26,8 +26,6 @@ let codeReader = new BrowserMultiFormatReader(null, formats);
 
 const constraints = {
   video: {
-    width: { ideal: 1920 }, // ancho deseado
-    height: { ideal: 1080 }, // altura deseada
     sharpness: { ideal: 1.0 },
     focusMode: 'continuous',
     facingMode: 'environment' // 'environment' para la cámara trasera

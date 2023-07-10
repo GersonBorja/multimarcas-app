@@ -31,7 +31,7 @@ let codeReader = new BrowserMultiFormatReader(null, formats);
 const constraints = {
   video: {
     
-    frameRate: { ideal: 30 },
+    frameRate: { ideal: 60 },
     sharpness: { ideal: 1.0 },
     focusMode: 'continuous',
     facingMode: 'environment' // 'environment' para la cámara trasera

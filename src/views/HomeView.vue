@@ -227,6 +227,10 @@ const cerrarModalFunction = () => {
   newfunction.value = localStorage.setItem('newfunction', false)
 }
 
+const modalActualizacion= ref(localStorage.getItem('v2'))
+const cerrarModalV2 = () => {
+  modalActualizacion.value = localStorage.setItem('v2', false)
+}
 </script>
 <template>
   <div v-if="usuarioCreado || validarUsuario " class="w-full max-w-md m-auto">
@@ -239,6 +243,21 @@ const cerrarModalFunction = () => {
       <button @click.prevent="cerrarModalFunction" class="bg-white text-[#0099ff] block py-2 text-[15px] w-[90%] m-auto text-center shadow-lg rounded-md">Continuar</button>
     </div>
     </div>
+    
+    
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="modalActualizacion === null">
+      <div class="bg-[#2ecc71] w-[95%] px-4 py-6 text-xl"><img src="../../public/friend.png" class="block w-[100px] m-auto">
+      <h2 class="py-4 font-medium text-center text-white">Gracias por seguir usando nuestra aplicación!</h2>
+      <p class="p-4 text-sm text-white">
+        El próximo lunes 17, estaremos mejorando nuestra aplicación con emocionantes novedades. Ahora podrás crear rótulos directamente desde la app y disfrutar de una mayor cantidad de creación de cintillos. Además, hemos añadido perfiles de usuario y un práctico historial de archivos creados. ¡No te lo pierdas!
+
+¡Gracias por ser parte de nuestra comunidad y por tu paciencia! 🚀
+      </p>
+      <button @click.prevent="cerrarModalV2" class="bg-white text-[#2ecc71] block mt-2 py-2 text-[15px] w-[90%] m-auto text-center shadow-lg rounded-md">Continuar</button>
+    </div>
+    </div>
+    
+    
     <div class="p-4 m-auto">
       <h1 class="flex items-center justify-between pb-4 font-medium text-gray-800"><span><font-awesome-icon
             :icon="['fas', 'house']" class="mr-1" />Inicio</span>

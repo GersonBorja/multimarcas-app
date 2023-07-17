@@ -6,12 +6,50 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomeView.vue')
+      component: () => import('../views/HomeView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/crear-cintillos',
+      name: 'crearcintillos',
+      component: () => import('../views/CrearCintillosView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/cintillos',
       name: 'cintillos',
-      component: () => import('../views/ListaCintillosView.vue')
+      component: () => import('../views/ListaCintillosView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/crear-afiches',
+      name: 'crearafiches',
+      component: () => import('../views/CrearAfichesView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/afiches',
+      name: 'afiches',
+      component: () => import('../views/ListaAfichesView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/enviar-afiches',
+      name: 'enviarafiches',
+      component: () => import('../views/EnviarAfichesView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/editar/:uuid',
@@ -27,8 +65,38 @@ const router = createRouter({
       path: '/scanner',
       name: 'escaner',
       component: () => import('../views/EscanerView.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/register',
+      name: 'registro',
+      component: () => import('../views/RegisterView.vue')
     }
   ]
+})
+
+// proteger las rutas
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('token')) {
+      next({
+        path: '/register',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    if (to.path === '/' && localStorage.getItem('token')) {
+      next('/')
+    } else {
+      next()
+    }
+  }
 })
 
 export default router

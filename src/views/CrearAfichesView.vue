@@ -57,7 +57,7 @@ const agregarAfiches = async () => {
         'Content-Type': 'application/json'
 }
 
-    let { data } = await axios.post('http://localhost:80/api/crear/rotulos', dataCintillo, { headers })
+    let { data } = await axios.post('https://procter.work/api/crear/rotulos', dataCintillo, { headers })
     alert(data.message)
     reestablecerFormulario()
     }catch(error){

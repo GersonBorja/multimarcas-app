@@ -40,7 +40,7 @@ const headers = {
         'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
 }
-      const { data } = await axios.post(`http://localhost:80/api/generar/rotulos`, datos, { headers })
+      const { data } = await axios.post(`https://procter.work/api/generar/rotulos`, datos, { headers })
     }
   }catch(error){
     console.log(error)

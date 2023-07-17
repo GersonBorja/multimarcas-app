@@ -61,7 +61,7 @@ const registerWithPass = async () => {
                 'pass': clave.value
             }
         }
-        const { data } = await axios.post('http://localhost:80/api/register', credenciales)
+        const { data } = await axios.post('https://procter.work/api/register', credenciales)
         if(data.status === 'OK'){
             loginDirect()
         }else{

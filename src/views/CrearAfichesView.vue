@@ -136,7 +136,7 @@ const agregarAfiches = async () => {
               class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password" type="text" placeholder="10/06/1998" autocomplete="off" v-model="f_fin" required>
             <p class="text-xs font-light text-gray-600"><font-awesome-icon :icon="['fas', 'info-circle']" /> Ingresá la
-                Ingresa una fecha de inicio veridica. usa este formato 10/06/1998</p>
+                Ingresa una fecha de fin veridica. usa este formato 10/06/1998</p>
           </div>
         </div>
         <div class="flex flex-wrap mb-6 -mx-3">
@@ -154,7 +154,7 @@ const agregarAfiches = async () => {
         
         <input type="submit"
           class="w-full px-4 py-2 font-bold text-white border rounded bg-[#2E3239] hover:bg-[#37474F] border-[#303E46] shadow-md"
-          value="AGREGAR CINTILLO">
+          value="AGREGAR ROTULO">
       </form>
     </div>
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center"  v-if="enviando">

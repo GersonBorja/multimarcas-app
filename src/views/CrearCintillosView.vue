@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
 import  { useCintillosCreados } from '@/stores/cintillosCreados'

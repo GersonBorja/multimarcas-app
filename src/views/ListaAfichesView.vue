@@ -13,7 +13,7 @@ import { storeToRefs } from 'pinia';
   const user_uuid = localStorage.getItem('user_uuid')
   const getData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:80/api/afiches/${user_uuid}`)
+      const { data } = await axios.get(`https://procter.work/api/afiches/${user_uuid}`)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData

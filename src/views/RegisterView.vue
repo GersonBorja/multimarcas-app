@@ -41,8 +41,8 @@ const loginDirect = async() => {
     } catch (error) {
         console.log(error)
     } finally {
-        enviando.value = false
         router.push('/')
+        enviando.value = fa-pulse
     }
 }
 

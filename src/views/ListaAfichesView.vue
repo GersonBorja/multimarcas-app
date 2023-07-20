@@ -14,7 +14,7 @@ import { storeToRefs } from 'pinia';
   const getData = async () => {
     try {
       const body = {
-        'user_uuid': user_uuid.value
+        "user_uuid": user_uuid.value
 }
       const { data } = await axios.post('https://procter.work/api/rotulos', body)
       total.value = data.length

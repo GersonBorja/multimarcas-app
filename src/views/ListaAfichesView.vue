@@ -10,11 +10,11 @@ import { storeToRefs } from 'pinia';
   const total = ref(null)
   
   
-  const token = localStorage.getItem('token')
+  const token = ref(localStorage.getItem('token'))
   const getData = async () => {
     try {
       const headers = {
-        'Authorization': 'Bearer ' + token,
+        'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
 }
       const { data } = await axios.post('https://procter.work/api/afiches', { headers })

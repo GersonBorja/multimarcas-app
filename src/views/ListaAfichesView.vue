@@ -10,13 +10,14 @@ import { storeToRefs } from 'pinia';
   const total = ref(null)
   
   
-  const user_uuid = ref(localStorage.getItem('user_uuid'))
+  const token = ref(localStorage.getItem('token'))
   const getData = async () => {
     try {
-      const dataLista = {
-        "user_uuid": user_uuid.value
+      const headers = {
+        'Authorization': 'Bearer ' + token.value,
+        'Content-Type': 'application/json'
 }
-      const { data } = await axios.post('https://procter.work/api/rotulos', dataLista)
+      const { data } = await axios.post('https://procter.work/api/rotulos', { headers })
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData

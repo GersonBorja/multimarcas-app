@@ -40,7 +40,6 @@ const loginDirect = async() => {
         
     } catch (error) {
         console.log(error)
-    } 
     }
 }
 

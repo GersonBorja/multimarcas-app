@@ -17,7 +17,7 @@ import { storeToRefs } from 'pinia';
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
 }
-      const { data } = await axios.post(`https://procter.work/api/afiches/`, { headers })
+      const { data } = await axios.post('https://procter.work/api/afiches', { headers })
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData

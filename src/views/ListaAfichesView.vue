@@ -5,7 +5,7 @@ import PaginateCintillos from '@/components/PaginateCintillos.vue'
  import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
 
-  const user = localStorage.getItem('usuario')
+  const user = localStorage.getItem('user_uuid')
   const datos = ref([])
   const total = ref(null)
   
@@ -13,11 +13,10 @@ import { storeToRefs } from 'pinia';
   const token = ref(localStorage.getItem('token'))
   const getData = async () => {
     try {
-      const headers = {
-        'Authorization': 'Bearer ' + token.value,
-        'Content-Type': 'application/json'
+      const body = {
+        'user_uuid': user_uuid.value
 }
-      const { data } = await axios.post('https://procter.work/api/rotulos', { headers })
+      const { data } = await axios.post('https://procter.work/api/rotulos', body)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
       datos.value = uniqueData

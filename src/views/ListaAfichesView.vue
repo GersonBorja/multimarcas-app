@@ -10,7 +10,7 @@ import { storeToRefs } from 'pinia';
   const total = ref(null)
   
   
-  const token = ref(localStorage.getItem('user_uuid'))
+  const user_uuid = ref(localStorage.getItem('user_uuid'))
   const getData = async () => {
     try {
       const dataLista = {

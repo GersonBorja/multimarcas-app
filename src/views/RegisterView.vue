@@ -40,12 +40,7 @@ const loginDirect = async() => {
         
     } catch (error) {
         console.log(error)
-    } finally {
-        
-        router.push('/')
-        setTimeout(() => {
-          enviando.value = false
-        },1500)
+    } 
     }
 }
 
@@ -74,7 +69,10 @@ const registerWithPass = async () => {
     } catch (error) {
         console.log(error)
     } finally {
-        enviando.value = false
+      router.push('/')
+      setTimeout(() => {
+          enviando.value = false
+        },1500)
     }
 }
 </script>

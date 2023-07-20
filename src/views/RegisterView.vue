@@ -37,11 +37,12 @@ const loginDirect = async() => {
         if(localStorage.getItem('usuario') === null){
             localStorage.setItem('usuario', data.username)
         }
-        router.push('/')
+        
     } catch (error) {
         console.log(error)
     } finally {
         enviando.value = false
+        router.push('/')
     }
 }
 

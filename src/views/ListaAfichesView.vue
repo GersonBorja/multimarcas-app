@@ -14,7 +14,7 @@ import { storeToRefs } from 'pinia';
   const getData = async () => {
     try {
       const headers = {
-        'Authorization': 'Bearer ' + token.value,
+        'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
 }
       const { data } = await axios.post(`https://procter.work/api/afiches/`, { headers })

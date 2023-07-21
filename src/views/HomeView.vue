@@ -46,7 +46,7 @@ const username = ref(localStorage.getItem('usuario'))
 
 <div class="flex items-stretch justify-between border-b border-black border-solid">
   <div class="relative bg-black">
-    <img src="../../public/market.jpg" class="w-[100px] h-[125px] object-cover">
+    <img src="../../public/afiches.jpg" class="w-[100px] h-[125px] object-cover">
     <div class="absolute top-0 left-0 w-full h-full b"></div>
   </div>
 

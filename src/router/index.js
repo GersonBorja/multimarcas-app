@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    if (to.path === '/' && localStorage.getItem('token')) {
+    if (to.path === '/register' && localStorage.getItem('token')) {
       next('/')
     } else {
       next()

@@ -31,11 +31,14 @@ const loginDirect = async() => {
         
         const { data } = await axios.post('https://procter.work/api/login', credenciales)
         
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user_uuid', data.user_uuid)
-
-        if(localStorage.getItem('usuario') === null){
+        if(data.status === 'OK'){
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user_uuid', data.user_uuid)
+          
+          if(localStorage.getItem('usuario') === null){
             localStorage.setItem('usuario', data.username)
+          }
+          router.push('/')
         }
         
     } catch (error) {

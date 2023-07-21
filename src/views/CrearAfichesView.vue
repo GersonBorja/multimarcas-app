@@ -30,6 +30,21 @@ function formatearDescription(description) {
 
     return description;
 }
+const totalRotulos = ref('')
+  const obtenerTotalRotulos = async () => {
+    try {
+      const headers = {
+        'Authorization': 'Bearer ' + token.value,
+        'Content-Type': 'application/json'
+}
+      const { data } = await axios.post('https://procter.work/api/rotulos',{}, { headers })
+      totalRotulos.value =  data.length
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  obtenerTotalRotulos()
 
 const reestablecerFormulario = () => {
     barra.value = ''
@@ -60,17 +75,22 @@ const agregarAfiches = async () => {
     let { data } = await axios.post('https://procter.work/api/crear/rotulos', dataCintillo, { headers })
     alert(data.message)
     reestablecerFormulario()
+    obtenerTotalRotulos()
+    document.documentElement.scrollTop = 0; // Para navegadores diferentes a Firefox
+    document.body.scrollTop = 0;
     }catch(error){
       console.log(error)
     }finally{
       enviando.value = false
     }
   }
+
+  
 </script>
 <template>
     <div>
       <h1 class="flex items-center justify-between p-4 pb-4 font-medium text-gray-900"><span>Crear Afiches</span>
-        <div><router-link to="/afiches" active-class="underline">Afiches <span class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium  rounded-full no-underline w-[20px] h-[20px]">?</span></router-link></div>
+        <div><router-link to="/afiches" active-class="underline">Afiches <span class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium  rounded-full no-underline w-[20px] h-[20px]">{{ totalRotulos }}</span></router-link></div>
       </h1>
 
     <div class="p-4 pt-0">

@@ -57,7 +57,7 @@ const headers = {
 <template>
     <div class="bg-white ">
       
-      <h1 class="flex items-center justify-between p-4 font-bold text-gray-800"><router-link to="/rotulos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
+      <h1 class="flex items-center justify-between p-4 font-bold text-gray-800"><router-link to="/afiches"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
       
       <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
       Por el momento el envio de afiches por correo a traves de la aplicacion no esta disponible para todas las salas.<br>

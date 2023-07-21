@@ -24,23 +24,43 @@ const username = ref(localStorage.getItem('usuario'))
     <h1 class="flex items-center justify-between pb-4 font-medium text-gray-900"><span><font-awesome-icon :icon="['fas', 'house']" class="mr-1" />Inicio</span>
       <div><font-awesome-icon :icon="['fas', 'user']" /> Bienvenido {{ username }}</div>
     </h1>
-    
-    <h2 class="font-medium text-gray-900">Servicios</h2>
 
-    <router-link to="/crear-cintillos"
-  type="button"
-  class="mt-4 inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
-  CREAR CINTILLOS
-  </router-link>
+
 </div>
 
-<div class="w-full mt-4 border-b border-solid border-[#ddd]"></div>
 
-<div class="p-4 m-auto">
-    <router-link to="/crear-afiches"
-  type="button"
-  class="inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
-  CREAR AFICHES
-  </router-link>
+
+
+<div class="flex items-stretch justify-between border-b border-black border-solid">
+  <div class="relative bg-black">
+    <img src="../../public/market.jpg" class="w-[100px] h-[125px] object-cover">
+    <div class="absolute top-0 left-0 w-full h-full b"></div>
+  </div>
+
+  <div class="relative flex-1 p-4 text-white bg-neutral-800">
+    <h2>Crear Cintillos</h2>
+    <p class="pt-2 text-xs">La posibilidad de crear hasta 256 etiquetas.</p>
+    <router-link to="/crear-cintillos" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
+  </div>
+</div>
+
+<div class="flex items-stretch justify-between border-b border-black border-solid">
+  <div class="relative bg-black">
+    <img src="../../public/market.jpg" class="w-[100px] h-[125px] object-cover">
+    <div class="absolute top-0 left-0 w-full h-full b"></div>
+  </div>
+
+  <div class="relative flex-1 p-4 text-white bg-neutral-800">
+    <h2>Crear Rotulos</h2>
+    <p class="pt-2 text-xs">La posibilidad de crear hasta 200 rotulos.</p>
+    <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
+  </div>
 </div>
   </template>
+
+  <style>
+  .b {
+    background: rgb(38,38,38);
+    background: linear-gradient(90deg, rgba(38,38,38,0.5) 0%, rgba(38,38,38,1) 100%);
+  }
+</style>

@@ -2,8 +2,8 @@
   <div>
     <h1>Scan 1D/2D Code from Video Camera</h1>
     <div>
-        <a class="p-4 bg-[steelblue] text-white" @click="startScanner">Encender escanner</a>
-        <a class="p-4 bg-[steelblue] text-white" @click="resetScanner">Apagar</a>
+        <a class="block m-2 p-4 bg-[steelblue] text-white" @click="startScanner">Encender escanner</a>
+        <a class="block m-2 p-4 bg-[steelblue] text-white" @click="resetScanner">Apagar</a>
     </div>
     <video id="video" width="300" height="200"></video>
     <label>Resultado:</label>

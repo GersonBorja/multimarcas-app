@@ -2,11 +2,11 @@
   <div>
     <h1>Scan 1D/2D Code from Video Camera</h1>
     <div>
-        <a @click="startScanner">Start</a>
-        <a @click="resetScanner">Reset</a>
+        <a class="p-4 bg-[steelblue] text-white" @click="startScanner">Encender escanner</a>
+        <a class="p-4 bg-[steelblue] text-white" @click="resetScanner">Apagar</a>
     </div>
     <video id="video" width="300" height="200"></video>
-    <label>Result:</label>
+    <label>Resultado:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </template>

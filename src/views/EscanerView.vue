@@ -1,60 +1,66 @@
-<script setup>
-import 'core-js';
- import 'webrtc-adapter';
-import { ref, onMounted } from 'vue';
-import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
-
-let selectedDeviceId = null;
-const codeReader = new BrowserMultiFormatReader();
-const videoRef = ref(null);
-const result = ref('');
-
-const startDecoding = () => {
-  codeReader.decodeFromVideoDevice(selectedDeviceId, videoRef.value, (decodedResult, err) => {
-    if (decodedResult) {
-      console.log(decodedResult);
-      result.value = decodedResult.text;
-    }
-    if (err && !(err instanceof NotFoundException)) {
-      console.error(err);
-      result.value = err;
-    }
-  });
-  console.log(`Started continuous decoding from camera with id ${selectedDeviceId}`);
-};
-
-const resetDecoding = () => {
-  codeReader.reset();
-  result.value = '';
-  console.log('Reset.');
-};
-
-onMounted(async () => {
-  try {
-    const videoInputDevices = await codeReader.listVideoInputDevices();
-
-    // Try to select the default back camera
-    const backCamera = videoInputDevices.find(
-      (device) =>
-        device.label.toLowerCase().includes('back') ||
-        device.label.toLowerCase().includes('environment')
-    );
-    selectedDeviceId = backCamera ? backCamera.deviceId : videoInputDevices[1].deviceId;
-  } catch (error) {
-    console.error(error);
-  }
-});
-</script>
-
-
 <template>
   <div>
-    <button @click="startDecoding">Start</button>
-    <button @click="resetDecoding">Reset</button>
+    <div>
+      <button @click="startScan">Escanear</button>
+    </div>
 
-    <video ref="video" width="400" height="300" style="border: 1px solid gray"></video>
+    <div>
+      <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
+    </div>
 
-    <label>Result:</label>
+    <label>Resultado:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
+
+const result = ref('');
+
+let selectedDeviceId;
+const codeReader = new BrowserMultiFormatReader();
+
+const startScan = () => {
+  console.log("startScan llamado");
+  
+  const constraints = {
+    video: {
+      facingMode: "environment",
+      width: { ideal: 1280 },
+      height: { ideal: 720 }
+    }
+  };
+
+  codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (scanResult, err) => {
+    if (scanResult) {
+      console.log(scanResult);
+      result.value = scanResult.text;
+    }
+    if (err && !(err instanceof NotFoundException)) {
+      console.error(err);
+      result.value = err.toString();
+    }
+  }, constraints);
+};
+
+onMounted(() => {
+  codeReader.listVideoInputDevices()
+    .then((videoInputDevices) => {
+      const rearCamera = videoInputDevices.find(device => device.label.toLowerCase().includes('back'));
+      selectedDeviceId = rearCamera ? rearCamera.deviceId : videoInputDevices[0].deviceId;
+      console.log("Dispositivo seleccionado:", selectedDeviceId);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+</script>
+
+<script>
+export default {
+  name: 'BarcodeScanner',
+};
+</script>

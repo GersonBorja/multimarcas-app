@@ -1,14 +1,12 @@
 <template>
   <div>
+    <h1>Scan 1D/2D Code from Video Camera</h1>
     <div>
-      <button @click="startScan">Escanear</button>
+        <a @click="startScanner">Start</a>
+        <a @click="resetScanner">Reset</a>
     </div>
-
-    <div>
-      <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
-    </div>
-
-    <label>Resultado:</label>
+    <video id="video" width="300" height="200"></video>
+    <label>Result:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </template>
@@ -17,48 +15,32 @@
 import { ref, onMounted } from 'vue';
 import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
 
-const result = ref('');
-
-let selectedDeviceId;
 const codeReader = new BrowserMultiFormatReader();
-
-const startScan = () => {
-  console.log("startScan llamado");
-  
-  const constraints = {
-    video: {
-      facingMode: "environment"
-    }
-  };
-
-  codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (scanResult, err) => {
-    if (scanResult) {
-      console.log(scanResult);
-      result.value = scanResult.text;
-    }
-    if (err && !(err instanceof NotFoundException)) {
-      console.error(err);
-      result.value = err.toString();
-    }
-  }, constraints);
-};
+const result = ref('');
+let selectedDeviceId;
 
 onMounted(() => {
-  codeReader.listVideoInputDevices()
-    .then((videoInputDevices) => {
-      const rearCamera = videoInputDevices.find(device => device.label.toLowerCase().includes('back'));
-      selectedDeviceId = rearCamera ? rearCamera.deviceId : videoInputDevices[0].deviceId;
-      console.log("Dispositivo seleccionado:", selectedDeviceId);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    codeReader.listVideoInputDevices()
+      .then((videoInputDevices) => {
+        selectedDeviceId = videoInputDevices[videoInputDevices.length - 1].deviceId;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 });
 
-</script>
+const startScanner = () => {
+    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
+        if (res) {
+            result.value = res.text;
+        } else if (err && !(err instanceof NotFoundException)) {
+            result.value = err;
+        }
+    });
+};
 
-<script>
-export default {
-  name: 'BarcodeScanner',
+const resetScanner = () => {
+    codeReader.reset();
+    result.value = '';
 };
 </script>

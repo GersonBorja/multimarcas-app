@@ -27,9 +27,7 @@ const startScan = () => {
   
   const constraints = {
     video: {
-      facingMode: "environment",
-      width: { ideal: 1280 },
-      height: { ideal: 720 }
+      facingMode: "environment"
     }
   };
 

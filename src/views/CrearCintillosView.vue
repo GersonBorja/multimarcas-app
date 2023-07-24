@@ -60,6 +60,7 @@ const startScanner = () => {
   scan.value = true;
     codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
         if (res) {
+          scan.value = false;
             barra.value = res.text;
         } else if (err && !(err instanceof NotFoundException)) {
             console.log(err);

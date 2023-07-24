@@ -61,26 +61,30 @@ onMounted(() => {
 
 const startScanner = () => {
   scan.value = true;
-    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
-        if (res) {
-          try{
-            const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
-            audioPlayer.play()
-            barra.value = res.text
-            if(data.length === 0){
-              descripcion.value = ''
-            }else{
-              descripcion.value = formatearDescription(data[0].descripcion)
-            }
-            resetScanner()
-          } catch(error){
-            console.log(error)
-          }
-            barra.value = res.text;
-        } else if (err && !(err instanceof NotFoundException)) {
-            console.log(err);
+  codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
+    if (res) {
+      try{
+        const { data: dbInfo } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
+        audioPlayer.play()
+        barra.value = res.text
+        const notificacionData = {
+          'autor': usuario.value,
+          'msg': ' encrotro coincidencias en la db'
         }
-    });
+        const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+        if(dbInfo.length === 0){
+          descripcion.value = ''
+        }else{
+          descripcion.value = formatearDescription(dbInfo[0].descripcion)
+        }
+        resetScanner()
+      } catch(error){
+        console.log(error)
+      }
+    } else if (err && !(err instanceof NotFoundException)) {
+      console.log(err);
+    }
+  });
 };
 
 const resetScanner = () => {

@@ -56,10 +56,22 @@ onMounted(() => {
       });
 });
 
-const startScanner = () => {
+const startScanner = async() => {
   scan.value = true;
     codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
         if (res) {
+          try{
+            const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
+            barra.value = res.text
+            if(data.length === 0){
+              descripcion.value = ''
+            }else{
+              descripcion.value = data[0].descripcion
+            }
+            resetScanner()
+          } catch(error){
+            console.log(error)
+          }
           scan.value = false;
             barra.value = res.text;
         } else if (err && !(err instanceof NotFoundException)) {

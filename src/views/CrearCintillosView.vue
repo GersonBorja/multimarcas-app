@@ -37,6 +37,7 @@ function formatearDescription(description) {
   // variables reactivas del formulario
   const codeReader = new BrowserMultiFormatReader();
   let selectedDeviceId;
+  const scan = ref(false)
   const barra = ref('')
   const descripcion = ref('')
   const cantidad = ref('')
@@ -56,6 +57,7 @@ onMounted(() => {
 });
 
 const startScanner = () => {
+  scan.value = true;
     codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
         if (res) {
             barra.value = res.text;
@@ -246,7 +248,7 @@ const cerrarModalFunction = () => {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
-    <div class="fixed inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
+    <div class="fixed flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
   <div class="relative flex items-center justify-center p-4 bg-white">
     <video id="video" width="300" height="200"></video>
   </div>

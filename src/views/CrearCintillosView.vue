@@ -157,7 +157,7 @@ const cerrarModalFunction = () => {
       
       <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
-        <audio class="block" id="audioPlayer" volume="0.5">
+        <audio class="block" id="audioPlayer">
         <source src="../../public/beep.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>

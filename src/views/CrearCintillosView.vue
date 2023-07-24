@@ -164,8 +164,8 @@ const cerrarModalFunction = () => {
     </div>
     <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
   <div class="relative p-4 bg-white">
-    <div class="flex items-center justify-between">
-      <h2 class="pb-4 text-xl">Escanear Producto</h2>
+    <div class="flex items-center justify-between pb-4">
+      <h2 class="text-xl">Escanear Producto</h2>
       <button @click.prevent="resetScanner"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
     </div>
     <video id="video" width="300" height="200"></video>

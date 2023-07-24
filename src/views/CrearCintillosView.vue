@@ -63,12 +63,13 @@ const startScanner = () => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
+            audioPlayer.volume = "0.5"
             audioPlayer.play()
             barra.value = res.text
             if(data.length === 0){
               descripcion.value = ''
             }else{
-              descripcion.value = data[0].descripcion
+              descripcion.value = formatearDescription(data[0].descripcion)
             }
             resetScanner()
           } catch(error){

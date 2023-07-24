@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
 import  { useCintillosCreados } from '@/stores/cintillosCreados'
 import { v4 as uuidv4 } from 'uuid';
+import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
 
 let useCantidad = useCintillosCreados()
 let { cantidadTotal } = storeToRefs(useCantidad)
@@ -34,6 +35,8 @@ function formatearDescription(description) {
   const frmCintillo = ref(null)
   
   // variables reactivas del formulario
+  const codeReader = new BrowserMultiFormatReader();
+  let selectedDeviceId;
   const barra = ref('')
   const descripcion = ref('')
   const cantidad = ref('')
@@ -42,7 +45,30 @@ function formatearDescription(description) {
     descripcion.value = formatearDescription(event.target.value)
 }
 
-  
+onMounted(() => {
+    codeReader.listVideoInputDevices()
+      .then((videoInputDevices) => {
+        selectedDeviceId = videoInputDevices[videoInputDevices.length - 1].deviceId;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+});
+
+const startScanner = () => {
+    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
+        if (res) {
+            barra.value = res.text;
+        } else if (err && !(err instanceof NotFoundException)) {
+            console.log(err);
+        }
+    });
+};
+
+const resetScanner = () => {
+    codeReader.reset();
+};
+
   const reestablecerFormulario = () => {
     frmCintillo.value.reset()
     barra.value = ''
@@ -85,110 +111,110 @@ function formatearDescription(description) {
   }
   
   /* script para capturar imagenes */ 
-const scan = ref(false)
-// Definir video como una referencia reactiva
-const video = ref(null);
-const initCameraAndCaptureImage = () => {
-    scan.value = true
-    const constraints = {
-        video: {
-            width: { ideal: 1920 }, // ancho deseado
-            height: { ideal: 1080 }, // altura deseada
-            sharpness: { ideal: 1.0 },
-            focusMode: 'continuous',
-            facingMode: 'environment' // 'environment' para la cámara trasera
-        }
-    }
-    
+//const scan = ref(false)
+//// Definir video como una referencia reactiva
+//const video = ref(null);
+//const initCameraAndCaptureImage = () => {
+//    scan.value = true
+//    const constraints = {
+//        video: {
+//            width: { ideal: 1920 }, // ancho deseado
+//            height: { ideal: 1080 }, // altura deseada
+//            sharpness: { ideal: 1.0 },
+//            focusMode: 'continuous',
+//            facingMode: 'environment' // 'environment' para la cámara trasera
+//        }
+//    }
+//    
+//
+//    // Acceso a la webcam
+//    navigator.mediaDevices.getUserMedia(constraints)
+//        .then(stream => {
+//            video.value.srcObject = stream;
+//            video.value.play();
+//        });
+//}
+//
+//
+//
+//// Function to resize the canvas to match the video dimensions
+//function resizeCanvasToMatchVideo() {
+//    let canvas = document.getElementById('canvas');
+//
+//    // Make sure the canvas has the same dimensions as the video
+//    canvas.width = video.value.videoWidth
+//    canvas.height = video.value.videoHeight
+//}
 
-    // Acceso a la webcam
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then(stream => {
-            video.value.srcObject = stream;
-            video.value.play();
-        });
-}
+//const proceso = ref(false)
+//const scanear = async() => {
+//    try {
+//      proceso.value = true
+//      let canvas = document.getElementById('canvas');
+//      let ctx = canvas.getContext('2d')
+//      
+//      resizeCanvasToMatchVideo()
+//      ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
+//    
+//      let imgData = canvas.toDataURL('image/jpeg', 1.0);
+//      const info = {
+//        "image": imgData
+//      }
+//      const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
+//      if(postData.result == ""){
+//        alert('No se detectaron códigos de barras, intenta que la barra no tenga reflejos ni la captura de imágen sea borrosa.')
+//
+//        const notificacionData = {
+//      'autor': usuario.value,
+//      'msg': 'fallo al escanear'
+//    }
+//    const { data: msgUno } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+//    console.log(msgUno)
+//        cerrar()
+//      }else{
+//        try {
+//          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
+//          if(getData.length === 0){
+//            barra.value = postData.result
+//            descripcion.value = ''
+//            const notificacionData = {
+//      'autor': usuario.value,
+//      'msg': 'solo escaneo la barra'
+//    }
+//    const { data: msgDos } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+//    console.log(msgDos)
+//            cerrar()
+//          }else{
+//            const notificacionData = {
+//      'autor': usuario.value,
+//      'msg': 'el escaneo fue un exito y encrotro coincidencias en la db'
+//    }
+//    const { data: msgTres } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+//    console.log(msgTres)
+//            barra.value = postData.result
+//            if(getData.length === 1) descripcion.value = formatearDescription(getData[0].descripcion)            
+//            cerrar()
+//          }
+//          
+//        }catch(err) {
+//          console.log(err)
+//        }
+//      }
+//    }catch(error){
+//    console.log(error)
+//  } finally{
+//    proceso.value = false
+//  }
+//  }
 
 
-
-// Function to resize the canvas to match the video dimensions
-function resizeCanvasToMatchVideo() {
-    let canvas = document.getElementById('canvas');
-
-    // Make sure the canvas has the same dimensions as the video
-    canvas.width = video.value.videoWidth
-    canvas.height = video.value.videoHeight
-}
-
-const proceso = ref(false)
-const scanear = async() => {
-    try {
-      proceso.value = true
-      let canvas = document.getElementById('canvas');
-      let ctx = canvas.getContext('2d')
-      
-      resizeCanvasToMatchVideo()
-      ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
-    
-      let imgData = canvas.toDataURL('image/jpeg', 1.0);
-      const info = {
-        "image": imgData
-      }
-      const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
-      if(postData.result == ""){
-        alert('No se detectaron códigos de barras, intenta que la barra no tenga reflejos ni la captura de imágen sea borrosa.')
-
-        const notificacionData = {
-      'autor': usuario.value,
-      'msg': 'fallo al escanear'
-    }
-    const { data: msgUno } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-    console.log(msgUno)
-        cerrar()
-      }else{
-        try {
-          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
-          if(getData.length === 0){
-            barra.value = postData.result
-            descripcion.value = ''
-            const notificacionData = {
-      'autor': usuario.value,
-      'msg': 'solo escaneo la barra'
-    }
-    const { data: msgDos } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-    console.log(msgDos)
-            cerrar()
-          }else{
-            const notificacionData = {
-      'autor': usuario.value,
-      'msg': 'el escaneo fue un exito y encrotro coincidencias en la db'
-    }
-    const { data: msgTres } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-    console.log(msgTres)
-            barra.value = postData.result
-            if(getData.length === 1) descripcion.value = formatearDescription(getData[0].descripcion)            
-            cerrar()
-          }
-          
-        }catch(err) {
-          console.log(err)
-        }
-      }
-    }catch(error){
-    console.log(error)
-  } finally{
-    proceso.value = false
-  }
-  }
-
-
-  function cerrar() {
-  if (video.value && video.value.srcObject) {
-    video.value.srcObject.getTracks().forEach(track => track.stop());
-    video.value.srcObject = null;
-  }
-  scan.value = false;
-}
+//  function cerrar() {
+//  if (video.value && video.value.srcObject) {
+//    video.value.srcObject.getTracks().forEach(track => track.stop());
+//    video.value.srcObject = null;
+//  }
+//  scan.value = false;
+//}
 
 const newfunction = ref(localStorage.getItem('newfunction'))
 
@@ -220,21 +246,9 @@ const cerrarModalFunction = () => {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
-    <canvas id="canvas" class="hidden object-cover w-full h-full"></canvas>
     <div class="fixed inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
-  <div class="relative flex items-center justify-center w-full h-full bg-white">
-    <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 left-0 h-full z-30"></div>
-    <div class="absolute w-[15%] bg-black bg-opacity-20 top-0 right-0 h-full z-30"></div>
-    <div class="absolute w-[70%] left-[15%] bg-black bg-opacity-20 top-0 h-[25%] z-30"></div>
-    <div class="absolute w-[70%] left-[15%] bg-black bg-opacity-20 bottom-0 h-[25%] z-30"></div>
-    <div class="w-full bg-red-500 bg-opacity-70 absolute h-[2px] t-[100%] b-[100%]"></div>
-    <video class="object-cover w-full h-full" autoplay  ref="video"></video>
-    
-    <div class="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-full text-white bg-black bg-opacity-90" v-if="proceso"><font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Procesando...</div>
-    <div class="flex justify-start items-center absolute top-[2rem] left-[2rem] z-40 text-white"><div class="p-[5px] text-xs font-light bg-red-500 rounded-lg shadow-lg">BETA</div><span class="text-xs pl-2 pr-[2rem]">Funcion experimental, puede no escanaear o funcionar en todos los dispositivos.</span></div>
-    <a href="#" class="absolute bottom-[2rem] left-[2rem] z-40 text-white" @click.prevent="scanear">Escanear</a>
-    <a href="#" class="absolute bottom-[2rem] right-[2rem] z-40 text-white" @click.prevent="cerrar">Cerrar</a>
-
+  <div class="relative flex items-center justify-center p-4 bg-white">
+    <video id="video" width="300" height="200"></video>
   </div>
 </div>
 
@@ -251,7 +265,7 @@ const cerrarModalFunction = () => {
     <input
         class="flex-grow px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded-l appearance-none focus:outline-none focus:bg-white"
         id="grid-first-name" type="text" placeholder="Ej. 1234567890123" autocomplete="off" v-model="barra">
-    <a class="flex items-center justify-center px-4 mb-3 leading-tight text-gray-700 bg-gray-300 border rounded-r" @click.prevent="initCameraAndCaptureImage">
+    <a class="flex items-center justify-center px-4 mb-3 leading-tight text-gray-700 bg-gray-300 border rounded-r" @click.prevent="startScanner">
         <img src="../../public/barcode.png" class="w-[25px] inline-block">
     </a>
 </div>

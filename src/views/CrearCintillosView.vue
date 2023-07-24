@@ -56,9 +56,9 @@ onMounted(() => {
       });
 });
 
-const startScanner = async() => {
+const startScanner = () => {
   scan.value = true;
-    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (res, err) => {
+    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)

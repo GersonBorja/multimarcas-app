@@ -56,12 +56,20 @@ onMounted(() => {
       });
 });
 
+const soundScanner = () {
+  const audio = new Audio('../../public/beep.ogg')
+  audio.volume = 0.8
+  return audio
+}
+
 const startScanner = () => {
   scan.value = true;
+  const beep = soundScanner()
     codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
+            beep.play()
             barra.value = res.text
             if(data.length === 0){
               descripcion.value = ''

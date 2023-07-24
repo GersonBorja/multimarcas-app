@@ -63,7 +63,7 @@ const startScanner = () => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
-            const audio = new Audio('../../public/beep.ogg');
+            const audio = new Audio('../../public/beep.mp3');
             audio.volume = 0.8;
             audio.play()
             barra.value = res.text

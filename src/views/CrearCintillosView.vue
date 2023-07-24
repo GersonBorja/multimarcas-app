@@ -63,9 +63,7 @@ const startScanner = () => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
-            const audio = new Audio('../../public/beep.mp3');
-            audio.volume = 0.8;
-            audio.play()
+            audioPlayer.play()
             barra.value = res.text
             if(data.length === 0){
               descripcion.value = ''
@@ -129,112 +127,6 @@ const resetScanner = () => {
     }
   }
   
-  /* script para capturar imagenes */ 
-//const scan = ref(false)
-//// Definir video como una referencia reactiva
-//const video = ref(null);
-//const initCameraAndCaptureImage = () => {
-//    scan.value = true
-//    const constraints = {
-//        video: {
-//            width: { ideal: 1920 }, // ancho deseado
-//            height: { ideal: 1080 }, // altura deseada
-//            sharpness: { ideal: 1.0 },
-//            focusMode: 'continuous',
-//            facingMode: 'environment' // 'environment' para la cámara trasera
-//        }
-//    }
-//    
-//
-//    // Acceso a la webcam
-//    navigator.mediaDevices.getUserMedia(constraints)
-//        .then(stream => {
-//            video.value.srcObject = stream;
-//            video.value.play();
-//        });
-//}
-//
-//
-//
-//// Function to resize the canvas to match the video dimensions
-//function resizeCanvasToMatchVideo() {
-//    let canvas = document.getElementById('canvas');
-//
-//    // Make sure the canvas has the same dimensions as the video
-//    canvas.width = video.value.videoWidth
-//    canvas.height = video.value.videoHeight
-//}
-
-//const proceso = ref(false)
-//const scanear = async() => {
-//    try {
-//      proceso.value = true
-//      let canvas = document.getElementById('canvas');
-//      let ctx = canvas.getContext('2d')
-//      
-//      resizeCanvasToMatchVideo()
-//      ctx.drawImage(video.value, 0, 0, video.value.videoWidth, video.value.videoHeight)
-//    
-//      let imgData = canvas.toDataURL('image/jpeg', 1.0);
-//      const info = {
-//        "image": imgData
-//      }
-//      const { data: postData } = await axios.post('https://procter.work/api/process-image', info)
-//      if(postData.result == ""){
-//        alert('No se detectaron códigos de barras, intenta que la barra no tenga reflejos ni la captura de imágen sea borrosa.')
-//
-//        const notificacionData = {
-//      'autor': usuario.value,
-//      'msg': 'fallo al escanear'
-//    }
-//    const { data: msgUno } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-//    console.log(msgUno)
-//        cerrar()
-//      }else{
-//        try {
-//          const { data: getData } = await axios.get(`https://procter.work/api/buscador/${postData.result}`)
-//          if(getData.length === 0){
-//            barra.value = postData.result
-//            descripcion.value = ''
-//            const notificacionData = {
-//      'autor': usuario.value,
-//      'msg': 'solo escaneo la barra'
-//    }
-//    const { data: msgDos } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-//    console.log(msgDos)
-//            cerrar()
-//          }else{
-//            const notificacionData = {
-//      'autor': usuario.value,
-//      'msg': 'el escaneo fue un exito y encrotro coincidencias en la db'
-//    }
-//    const { data: msgTres } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-//    console.log(msgTres)
-//            barra.value = postData.result
-//            if(getData.length === 1) descripcion.value = formatearDescription(getData[0].descripcion)            
-//            cerrar()
-//          }
-//          
-//        }catch(err) {
-//          console.log(err)
-//        }
-//      }
-//    }catch(error){
-//    console.log(error)
-//  } finally{
-//    proceso.value = false
-//  }
-//  }
-
-
-//  function cerrar() {
-//  if (video.value && video.value.srcObject) {
-//    video.value.srcObject.getTracks().forEach(track => track.stop());
-//    video.value.srcObject = null;
-//  }
-//  scan.value = false;
-//}
-
 const newfunction = ref(localStorage.getItem('newfunction'))
 
 const cerrarModalFunction = () => {
@@ -255,7 +147,10 @@ const cerrarModalFunction = () => {
     </div>
     
     
-    
+    <audio class="hidden" id="audioPlayer">
+        <source src="../../public/beep.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
     <div class="p-4 m-auto">
       <h1 class="flex items-center justify-between pb-4 font-medium text-gray-900"><span>Agregar Cintillos</span>
         <div><router-link to="/cintillos" active-class="underline">Cintillos <span class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium  rounded-full no-underline w-[20px] h-[20px]">{{ cantidadTotal }}</span></router-link></div>

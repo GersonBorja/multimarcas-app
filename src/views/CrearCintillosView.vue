@@ -63,7 +63,6 @@ const startScanner = () => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
-            audioPlayer.volume = 0.7
             audioPlayer.play()
             barra.value = res.text
             if(data.length === 0){
@@ -148,7 +147,7 @@ const cerrarModalFunction = () => {
     </div>
     
     
-    <audio class="hidden" id="audioPlayer">
+    <audio class="hidden" id="audioPlayer" volume="0.5">
         <source src="../../public/beep.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>

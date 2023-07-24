@@ -67,17 +67,17 @@ const startScanner = () => {
         const { data: dbInfo } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
         audioPlayer.play()
         barra.value = res.text
-        const notificacionData = {
-          'autor': usuario.value,
-          'msg': ' encrotro coincidencias en la db'
-        }
-        const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         if(dbInfo.length === 0){
           descripcion.value = ''
         }else{
           descripcion.value = formatearDescription(dbInfo[0].descripcion)
         }
         resetScanner()
+        const notificacionData = {
+          'autor': usuario.value,
+          'msg': ' encrotro coincidencias en la db'
+        }
+        const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
       } catch(error){
         console.log(error)
       }

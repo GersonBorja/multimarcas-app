@@ -47,6 +47,8 @@ function formatearDescription(description) {
 }
 
 onMounted(() => {
+  
+  audioPlayer.volume = 0.5
     codeReader.listVideoInputDevices()
       .then((videoInputDevices) => {
         selectedDeviceId = videoInputDevices[videoInputDevices.length - 1].deviceId;
@@ -63,7 +65,6 @@ const startScanner = () => {
         if (res) {
           try{
             const { data } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
-            audioPlayer.volume = 0.5
             audioPlayer.play()
             barra.value = res.text
             if(data.length === 0){

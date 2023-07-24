@@ -248,7 +248,7 @@ const cerrarModalFunction = () => {
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
     </div>
-    <div class="fixed flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
+    <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
   <div class="relative flex items-center justify-center p-4 bg-white">
     <video id="video" width="300" height="200"></video>
   </div>

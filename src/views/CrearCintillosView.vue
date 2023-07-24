@@ -151,7 +151,7 @@ const cerrarModalFunction = () => {
 <template>
   <div class="w-full max-w-md m-auto">
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="scannerAviso === null">
-      <div class="bg-[#0099FF] w-[95%] p-4 text-xl">
+      <div class="bg-[#9b59b6] w-[95%] p-4 text-xl">
       <h2 class="py-4 font-medium text-center text-white">ESCANER EN TIEMPO REAL</h2>
       <p class="p-4 text-sm text-white">
         Hemos incorporado un nuevo escáner en tiempo real, mucho más rápido y eficiente que el anterior. Para utilizarlo, simplemente enfoca el código de barras con la cámara. Recuerda evitar reflejos para una lectura óptima. ¡Prueba ahora y experimenta la diferencia! 🔍

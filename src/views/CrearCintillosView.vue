@@ -76,7 +76,6 @@ const startScanner = () => {
           } catch(error){
             console.log(error)
           }
-          scan.value = false;
             barra.value = res.text;
         } else if (err && !(err instanceof NotFoundException)) {
             console.log(err);
@@ -85,7 +84,8 @@ const startScanner = () => {
 };
 
 const resetScanner = () => {
-    codeReader.reset();
+  scan.value = false;
+  codeReader.reset();
 };
 
   const reestablecerFormulario = () => {
@@ -149,7 +149,10 @@ const cerrarModalFunction = () => {
     </div>
     
     
-    
+    <audio class="hidden" id="audioPlayer">
+        <source src="../../public/beep.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
     <div class="p-4 m-auto">
       <h1 class="flex items-center justify-between pb-4 font-medium text-gray-900"><span>Agregar Cintillos</span>
         <div><router-link to="/cintillos" active-class="underline">Cintillos <span class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium  rounded-full no-underline w-[20px] h-[20px]">{{ cantidadTotal }}</span></router-link></div>
@@ -157,14 +160,14 @@ const cerrarModalFunction = () => {
       
       <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
-        <audio class="block" id="audioPlayer">
-        <source src="../../public/beep.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
       </div>
     </div>
     <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
   <div class="relative flex items-center justify-center p-4 bg-white">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl">Escanear Producto</h2>
+      <button @click.prevent="resetScanner"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+    </div>
     <video id="video" width="300" height="200"></video>
   </div>
 </div>

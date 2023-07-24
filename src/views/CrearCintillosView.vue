@@ -149,7 +149,7 @@ const cerrarModalFunction = () => {
     </div>
     
     
-    <audio class="hidden" id="audioPlayer" volume="0.5">
+    <audio class="block" id="audioPlayer" volume="0.5">
         <source src="../../public/beep.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>

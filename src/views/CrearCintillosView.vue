@@ -69,23 +69,20 @@ const startScanner = () => {
         barra.value = res.text
         if(dbInfo.length === 0){
           descripcion.value = ''
-        }else{
-          descripcion.value = formatearDescription(dbInfo[0].descripcion)
-        }
-        resetScanner()
-        if(dbInfo.length > 0){
-          const notificacionData = {
-            'autor': usuario.value,
-            'msg': ' encrotro coincidencias en la db'
-          }
-          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-        }else{
           const notificacionData = {
             'autor': usuario.value,
             'msg': ' solo escaneo la barra'
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+        }else{
+          descripcion.value = formatearDescription(dbInfo[0].descripcion)
+          const notificacionData = {
+            'autor': usuario.value,
+            'msg': ' 🔎 encontro coincidencias en la base de datos'
+          }
+          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }
+        resetScanner()
       } catch(error){
         console.log(error)
       }

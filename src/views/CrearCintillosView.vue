@@ -59,40 +59,23 @@ onMounted(() => {
 });
 
 
-let notificationSent = false;
-let resetDebounce;
-
-const startScanner = () => {
+const startScanner = async () => {
   scan.value = true;
+  let dbSearch = ref(false)
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
-    if (res && !notificationSent) {
-      
-      clearTimeout(resetDebounce); // Limpiar el debounce anterior, si existe
-
+    if (res) {
+      resetScanner()
       try{
         const { data: dbInfo } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
         audioPlayer.play()
         barra.value = res.text
         if(dbInfo.length === 0){
+          dbSearch.value = false
           descripcion.value = ''
-          const notificacionData = {
-            'autor': usuario.value,
-            'msg': ' solo escaneo la barra'
-          }
-          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }else{
+          dbSearch.value = true
           descripcion.value = formatearDescription(dbInfo[0].descripcion)
-          const notificacionData = {
-            'autor': usuario.value,
-            'msg': ' 🔎 encontro coincidencias en la base de datos'
-          }
-          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }
-        notificationSent = true;
-
-        // Usar debounce para resetear el escáner después de un retraso (e.g., 500ms)
-        resetDebounce = setTimeout(resetScanner, 500);
-        
       } catch(error){
         console.log(error)
       }
@@ -100,14 +83,25 @@ const startScanner = () => {
       console.log(err);
     }
   });
+  if(dbSearch){
+    const notificacionData = {
+      'autor': usuario.value,
+      'msg': ' 🔎 encontro coincidencias en la base de datos'
+    }
+    const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+  }else{
+    const notificacionData = {
+      'autor': usuario.value,
+      'msg': ' solo escaneo la barra'
+    }
+    const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+  }
 };
 
 const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
-  notificationSent = false;
 };
-
 
   const reestablecerFormulario = () => {
     frmCintillo.value.reset()

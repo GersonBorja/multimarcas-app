@@ -59,10 +59,12 @@ onMounted(() => {
 });
 
 
+let notificationSent = false;
+
 const startScanner = () => {
   scan.value = true;
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
-    if (res) {
+    if (res && !notificationSent) {
       
       resetScanner()
       try{
@@ -84,6 +86,7 @@ const startScanner = () => {
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }
+        notificationSent = true; // Se indica que ya se ha enviado una notificación
       } catch(error){
         console.log(error)
       }
@@ -96,7 +99,9 @@ const startScanner = () => {
 const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
+  notificationSent = false; // Se reinicia la bandera para poder enviar notificaciones nuevamente
 };
+
 
   const reestablecerFormulario = () => {
     frmCintillo.value.reset()

@@ -60,13 +60,15 @@ onMounted(() => {
 
 
 let notificationSent = false;
+let resetDebounce;
 
 const startScanner = () => {
   scan.value = true;
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
     if (res && !notificationSent) {
       
-      resetScanner()
+      clearTimeout(resetDebounce); // Limpiar el debounce anterior, si existe
+
       try{
         const { data: dbInfo } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
         audioPlayer.play()
@@ -86,7 +88,11 @@ const startScanner = () => {
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }
-        notificationSent = true; // Se indica que ya se ha enviado una notificación
+        notificationSent = true;
+
+        // Usar debounce para resetear el escáner después de un retraso (e.g., 500ms)
+        resetDebounce = setTimeout(resetScanner, 500);
+        
       } catch(error){
         console.log(error)
       }
@@ -99,7 +105,7 @@ const startScanner = () => {
 const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
-  notificationSent = false; // Se reinicia la bandera para poder enviar notificaciones nuevamente
+  notificationSent = false;
 };
 
 

@@ -63,6 +63,8 @@ const startScanner = () => {
   scan.value = true;
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async (res, err) => {
     if (res) {
+      
+      resetScanner()
       try{
         const { data: dbInfo } = await axios.get(`https://procter.work/api/buscador/${res.text}`)
         audioPlayer.play()
@@ -82,7 +84,6 @@ const startScanner = () => {
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
         }
-        resetScanner()
       } catch(error){
         console.log(error)
       }

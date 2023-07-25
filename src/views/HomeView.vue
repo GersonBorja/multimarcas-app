@@ -9,11 +9,20 @@ const beamsClient = new Client({
   instanceId: '90b80143-5f43-4ed9-a447-8ad08e3ca889',
 });
 
-// Inicializa Pusher Beams cuando el componente se monte
 onMounted(() => {
+  // Verificar si ya está suscrito
+  if (localStorage.getItem('subscribedToEventosApp') === 'true') {
+    console.log('El dispositivo ya está suscrito a eventosapp. No se intentará suscribir de nuevo.');
+    return;
+  }
+  
   beamsClient.start()
     .then(() => beamsClient.addDeviceInterest('eventosapp'))
-    .then(() => console.log('¡Registro y suscripción exitosos!'))
+    .then(() => {
+      // Marcar el dispositivo como suscrito
+      localStorage.setItem('subscribedToEventosApp', 'true');
+      console.log('¡Registro y suscripción exitosos!');
+    })
     .catch(console.error);
 });
 

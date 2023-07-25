@@ -83,7 +83,7 @@ const startScanner = async () => {
       console.log(err);
     }
   });
-  if(dbSearch){
+  if(dbSearch.value){
     const notificacionData = {
       'autor': usuario.value,
       'msg': ' 🔎 encontro coincidencias en la base de datos'

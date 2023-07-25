@@ -70,33 +70,28 @@ const startScanner = async () => {
         audioPlayer.play()
         barra.value = res.text
         if(dbInfo.length === 0){
-          dbSearch.value = false
+          const notificacionData = {
+            'autor': usuario.value,
+            'msg': ' solo escaneo la barra'
+          }
+          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
           descripcion.value = ''
         }else{
-          dbSearch.value = true
+          const notificacionData = {
+            'autor': usuario.value,
+            'msg': ' 🔎 encontro coincidencias en la base de datos'
+          }
+          const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
           descripcion.value = formatearDescription(dbInfo[0].descripcion)
         }
       } catch(error){
         console.log(error)
       }
     } else if (err && !(err instanceof NotFoundException)) {
-      console.log(err);
+      console.log(err)
     }
-  });
-  if(dbSearch.value){
-    const notificacionData = {
-      'autor': usuario.value,
-      'msg': ' 🔎 encontro coincidencias en la base de datos'
-    }
-    const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-  }else{
-    const notificacionData = {
-      'autor': usuario.value,
-      'msg': ' solo escaneo la barra'
-    }
-    const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
-  }
-};
+  })
+}
 
 const resetScanner = () => {
   scan.value = false;

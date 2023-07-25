@@ -14,6 +14,21 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
+import { Client } from '@pusher/push-notifications-web';
+
+
+// Crea el cliente de Pusher Beams
+const beamsClient = new Client({
+  instanceId: '90b80143-5f43-4ed9-a447-8ad08e3ca889',
+});
+
+// Inicializa Pusher Beams cuando el componente se monte
+onMounted(() => {
+  beamsClient.start()
+    .then(() => beamsClient.addDeviceInterest('cintillos'))
+    .then(() => console.log('¡Registro y suscripción exitosos!'))
+    .catch(console.error);
+});
 
 const codeReader = new BrowserMultiFormatReader();
 const result = ref('');

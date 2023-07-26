@@ -38,6 +38,7 @@ function formatearDescription(description) {
   const codeReader = new BrowserMultiFormatReader();
   let selectedDeviceId;
   const scan = ref(false)
+  const encontrado = ref(false)
   const barra = ref('')
   const descripcion = ref('')
   const cantidad = ref('')
@@ -75,6 +76,7 @@ const startScanner = async () => {
             'msg': ' solo escaneo la barra'
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+          encontrado.value = true
           descripcion.value = ''
         }else{
           const notificacionData = {
@@ -82,6 +84,7 @@ const startScanner = async () => {
             'msg': ' 🔎 encontro coincidencias en la base de datos'
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
+          encontrado.value = false
           descripcion.value = formatearDescription(dbInfo[0].descripcion)
         }
       } catch(error){
@@ -171,6 +174,7 @@ const cerrarModalFunction = () => {
       <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
         Recuerda que solo puedes sacar 252 cintillos (9paginas) por vez.
       </div>
+      <div class="my-2 p-2 bg-red-100 text-sm" v-if="encontrado">El producto no se encuentra en nuestra base de datos, pero te escaneamos el codigo </div>
     </div>
     <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50" v-if="scan">
   <div class="relative p-4 bg-white">

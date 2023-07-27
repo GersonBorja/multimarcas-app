@@ -113,7 +113,6 @@ const resetScanner = () => {
     try{
       enviando.value = true
       const dataCintillo = {
-      'interno': '',
       'barra': barra.value,
       'descripcion': formatearDescription(descripcion.value),
       'cantidad': cantidad.value,

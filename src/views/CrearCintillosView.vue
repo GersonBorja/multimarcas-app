@@ -175,7 +175,7 @@ const cerrarModalFunction = () => {
       </h1>
       
       <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
-        Recuerda que solo puedes sacar 448 cintillos (9paginas) por vez.
+        Recuerda que solo puedes sacar 448 cintillos (16paginas) por vez.
       </div>
       <div class="p-2 my-2 text-sm bg-red-100" v-if="encontrado">El producto no se encuentra en nuestra base de datos, pero te escaneamos el codigo </div>
     </div>

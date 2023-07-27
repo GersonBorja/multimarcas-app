@@ -11,6 +11,7 @@ let { cantidadTotal } = storeToRefs(useCantidad)
 let { obtenerTotalCintillos } = useCantidad
 
   const usuario = ref(localStorage.getItem('usuario'))
+  const token = ref(localStorage.getItem('token'))
   
   
 

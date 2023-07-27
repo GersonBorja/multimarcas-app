@@ -8,6 +8,7 @@ const router = useRouter()
 let useCantidad = useCintillosCreados()
 let { resetCintillos } = useCantidad
 const user = localStorage.getItem('usuario')
+const token = ref(localStorage.getItem('token'))
 
 const nombreCintillo = () => {
     const objDate = new Date()
@@ -28,8 +29,13 @@ const modal = ref(false)
 const generarDocumento = async () => {
     try {
         modal.value = true
-        const { data } = await axios.post(`https://procter.work/api/cintillos/generar/${user}`)
+        const headers = {
+        'Authorization': 'Bearer ' + token.value,
+        'Content-Type': 'application/json'
+}
+        const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, {}, { headers })
         if(data.status === 'OK') location.href = `https://procter.work${data.path}/${data.path_name}`
+        console.log(`https://procter.work${data.path}/${data.path_name}`)
     }catch(error) {
         console.log(error)
     }
@@ -69,8 +75,12 @@ const enviar = async() => {
     "receptor": infoSala.value.correo,
     "nombreReceptor": infoSala.value.sala,
     "asuntoEmisor": `CINTILLOS DE ${asunto.value.toUpperCase()} #${uuidNumerico()}`
+  }
+  const headers = {
+        'Authorization': 'Bearer ' + token.value,
+        'Content-Type': 'application/json'
 }
-      const { data } = await axios.post(`https://procter.work/api/cintillos/generar/${user}`, datos)
+      const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, datos. { headers })
       console.log(datos)
       console.log(data)
     }
@@ -115,7 +125,7 @@ const abrirModalCorreos = () => {
     </div>
     <div class="p-4">
         <h1 class="font-bold text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 2 (ENVIAR POR CORREO)</h1>
-        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para  <b class="text-black font-extrabold">32 SALAS</b>.</p>
+        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para  <b class="font-extrabold text-black">32 SALAS</b>.</p>
         <a class="px-4 py-2 text-sm text-white border border-solid rounded-md shadow-md bg-emerald-500 border-emerald-600" @click.prevent="abrirModalCorreos"><font-awesome-icon :icon="['fas', 'envelope']" /> ENVIAR POR CORREO</a>
     </div>
     <div class="fixed top-0 left-0 z-30 w-full h-full bg-white" v-if="show">

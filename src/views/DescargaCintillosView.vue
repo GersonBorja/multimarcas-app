@@ -80,7 +80,7 @@ const enviar = async() => {
         'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
 }
-      const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, datos. { headers })
+      const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, datos, { headers })
       console.log(datos)
       console.log(data)
     }

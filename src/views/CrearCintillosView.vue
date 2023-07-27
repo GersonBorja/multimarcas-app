@@ -164,6 +164,22 @@ const cerrarModalFunction = () => {
     </div>
     </div>
     
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="true">
+      <div class="bg-red-500 w-[95%] p-4 text-xl">
+      <h2 class="py-4 font-medium text-center text-white">Mantenimiento Programado</h2>
+      <p class="p-4 text-sm text-white">
+        Estimados usuarios,<br>
+
+Les informamos que, debido a trabajos de mantenimiento, nuestra aplicación estará fuera de servicio durante las próximas 24 horas. Lamentamos los inconvenientes que esto pueda causar y agradecemos su comprensión.<br><br>
+
+Trabajamos para ofrecerles un mejor servicio. Gracias por su paciencia.
+<br>
+Atentamente<br>
+Gerson Borja
+      </p>
+      
+    </div>
+    </div>
     
     <audio class="hidden" id="audioPlayer">
         <source src="../../public/beep.mp3" type="audio/mp3">

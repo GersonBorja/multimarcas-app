@@ -164,7 +164,7 @@ const cerrarModalFunction = () => {
     </div>
     </div>
     
-    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="true && usuario != 'Elpitudo'">
+    <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center" v-if="true && usuario != 'VLADI'">
       <div class="bg-red-500 w-[95%] p-4 text-xl">
       <h2 class="py-4 font-medium text-center text-white">Mantenimiento Programado</h2>
       <p class="p-4 text-sm text-white">

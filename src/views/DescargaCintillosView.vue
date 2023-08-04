@@ -33,7 +33,7 @@ const generarDocumento = async () => {
         'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
 }
-        const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, {}, { headers })
+        const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, { headers })
         if(data.status === 'OK') location.href = `https://procter.work/${data.path_tmp_full}`
         console.log(`https://procter.work/${data.path_tmp_full}`)
     }catch(error) {

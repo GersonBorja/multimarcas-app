@@ -24,11 +24,13 @@ const nombreCintillo = () => {
     const filename = `CINTILLOS-${year}-${month}-${day}-${hour}${minute}${second}.xlsx`
     return filename 
 }
-
+const windowOne = ref(false)
+const windowTwo = ref(false)
 const modal = ref(false)
 const generarDocumento = async () => {
     try {
         modal.value = true
+        windowOne.value  = true
         const headers = {
         'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
@@ -38,10 +40,15 @@ const generarDocumento = async () => {
         console.log(`https://procter.work/${data.path_tmp_full}`)
     }catch(error) {
         console.log(error)
+    }finally{
+      windowOne.value = false
+      windowTwo.value = true
     }
 }
 const cerrarModal = () => {
     modal.value = false
+    windowOne.value = false
+    windowTwo.value = false
     router.push('/')
     resetCintillos()
   }
@@ -104,7 +111,7 @@ const abrirModalCorreos = () => {
 
 <template>
     <div class="bg-black/[.5] fixed top-0 left-0 w-full h-full z-30 flex items-center justify-center" v-if="modal">
-        <div class="bg-white w-[90%] p-4">
+        <div class="bg-white w-[90%] p-4" v-if="windowTwo">
           <h1 class="mb-4 text-sm font-bold text-gray-700">ARCHIVO GENERADO EXITOSAMENTE</h1>
           <p class="text-gray-700">
             <font-awesome-icon :icon="['fas', 'face-smile-beam']" />Tu documento ha sido descargado...<br>Gracias por usar nuestra aplicación, si te ha gustado compártela!!
@@ -112,6 +119,12 @@ const abrirModalCorreos = () => {
           <div class="flex justify-end">
             <button class="inline-flex items-center px-4 py-2 mt-2 font-medium rounded bg-emerald-400 hover:bg-emerald-400 text-emerald-900" @click="cerrarModal">Terminar</button>
           </div>
+        </div>
+        <div class="bg-white w-[90%] p-4" v-if="windowOne">
+          <h1 class="mb-4 text-sm font-bold text-gray-700">GENERANDO DOCUMENTO</h1>
+          <p class="text-gray-700">
+            <font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Espera unos segundos, estamos creando tus cintillos..
+          </p>
         </div>
       </div>
     <div class="p-4 border-b border-gray-200 border-dashed">

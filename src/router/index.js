@@ -54,12 +54,18 @@ const router = createRouter({
     {
       path: '/editar/:uuid',
       name: 'editarcintillo',
-      component: () => import('../views/EditarCintilloView.vue')
+      component: () => import('../views/EditarCintilloView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/descargas/:user',
       name: 'generar',
-      component: () => import('../views/DescargaCintillosView.vue')
+      component: () => import('../views/DescargaCintillosView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/scanner',

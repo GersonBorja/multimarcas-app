@@ -60,6 +60,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/correo-personalizado',
+      name: 'correoPersonal',
+      component: () => import('../views/CorreoPersonalizadoView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/descargas',
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue'),

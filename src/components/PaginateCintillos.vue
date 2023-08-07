@@ -2,12 +2,12 @@
   defineProps(['inicio', 'fin', 'maxLength'])
 </script>
 <template>
-  <div class="flex justify-end bg-gray-200">
-    <button class="hover:text-gray-600 text-gray-500 font-bold py-2 px-4 didsabled:cursor-not-allowed disabled:opacity-50" @click="$emit('anterior')"
+  <div class="flex justify-end mt-4">
+    <button class="px-4 py-2 font-medium text-gray-700 hover:text-gray-600 didsabled:cursor-not-allowed disabled:opacity-80" @click="$emit('anterior')"
       :disabled="inicio <= 0">
       Anterior
     </button>
-    <button class="hover:text-gray-600 text-gray-500 font-bold py-2 px-4 didsabled:cursor-not-allowed disabled:opacity-50" @click="$emit('siguiente')"
+    <button class="px-4 py-2 font-medium text-gray-700 hover:text-gray-600 didsabled:cursor-not-allowed disabled:opacity-80" @click="$emit('siguiente')"
       :disabled="fin >= maxLength">
       Siguiente
     </button>

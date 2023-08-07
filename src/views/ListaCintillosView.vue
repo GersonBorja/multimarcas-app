@@ -62,52 +62,41 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
   
 </script>
 <template>
-  <div class="p-4">
-    
-    <div v-if="listaCintillos.length > 0">
-      <h1 class="flex items-center justify-between pb-4 font-bold text-gray-800"><router-link to="/crear-cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>GENERAR DOCUMENTO</span></h1>
-      <div class="flex items-center justify-between mb-3">
-        <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-black">448</span></div>
-        <router-link :to="`/descargas`"
+<div>
+  <div class="bg-gray-100" v-if="listaCintillos.length > 0">
+    <h1 class="flex items-center justify-between p-4 font-medium text-gray-800"><router-link to="/crear-cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>GENERAR DOCUMENTO</span></h1>
+    <div class="flex items-center justify-between p-4 pt-0">
+      <div><font-awesome-icon :icon="['fas', 'gear']" class="mr-1 fa-spin"/>Llevas {{ total }}/<span class="text-black">448</span></div>
+      <router-link :to="`/descargas`"
         class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">
-        <font-awesome-icon :icon="['fas', 'download']" />
-        Generar cintillos
+        <font-awesome-icon :icon="['fas', 'download']" class="mr-2"/>
+        Descargas
       </router-link>
 
       </div>
       
     </div>
 
-    <h1 class="mb-3 font-bold text-gray-800">LISTADO DE CINTILLOS</h1>
-    <div class="flex items-center justify-center text-2xl font-light text-gray-500 h-52" v-if="datos.length === 0">
+    <h1 class="p-4 font-medium text-gray-800">LISTADO DE CINTILLOS</h1>
+    <div class="flex items-center justify-center text-xl font-light text-gray-500 h-52" v-if="datos.length === 0">
       <font-awesome-icon :icon="['fas', 'face-sad-cry']" /> Aun no has agregado datos..
     </div>
     <!-- component -->
-    <div class="w-full">
-      <div class="flex justify-center">
-        <div class="w-full max-w-md">
-          <div class="bg-white shadow-md">
+      <div class="border border-[#dddddd] border-solid">
             
-            <div class="text-sm border border-b-0 border-gray-200 border-solid" v-for="item in datos.slice(inicio, fin)">
-              <div
-                class="text-gray-700">
-                
-                <div class="flex items-start justify-between p-3 font-medium">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="text-right font-medium w-[65px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
-                 <div class="flex items-center justify-between p-2">
-                <div><b class="font-bold text-black">CANTIDAD:</b> {{ item.cantidad }}</div>
-                <div><b class="font-bold text-black">PRECIO:</b> ${{ item.precio }}</div>
-              </div>
+            <div v-for="item in datos.slice(inicio, fin)">
+                <div class="flex items-start justify-between p-4 pb-1">{{ item.descripcion }} <router-link :to="`/editar/${item.uuid}`" v-if="item.uuid" class="text-right w-[65px]"><font-awesome-icon :icon="['fas', 'pen-to-square']" /> Editar</router-link></div>
+                <div class="flex items-center justify-between p-4 pt-1">
+                <div><b class="font-normal">Cantidad:</b> {{ item.cantidad }}</div>
+                <div><b class="font-normal">Precio:</b> ${{ item.precio }}</div>
               </div>
               
             </div>
-            <!-- aqui btn -->
-            <PaginateCintillos :inicio="inicio" :fin="fin" :maxLength="datos.length" @siguiente="siguiente"
-              @anterior="anterior"></PaginateCintillos>
             
-          </div>
         </div>
-      </div>
-    </div>
+        <!-- aqui btn -->
+        <PaginateCintillos :inicio="inicio" :fin="fin" :maxLength="datos.length" @siguiente="siguiente"
+              @anterior="anterior"></PaginateCintillos>
   </div>
   
  

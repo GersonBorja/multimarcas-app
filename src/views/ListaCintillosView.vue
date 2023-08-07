@@ -26,7 +26,7 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
         'Authorization': 'Bearer ' + token.value,
         'Content-Type': 'application/json'
       }
-      let { data } = await axios.get(`https://procter.work/api/cintillo`, null, { headers })
+      let { data } = await axios.post(`https://procter.work/api/cintillo`, null, { headers })
       agregarCintillos(data)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);

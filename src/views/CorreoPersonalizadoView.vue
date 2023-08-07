@@ -48,8 +48,6 @@ const enviar = async() => {
     <div class="bg-white">
       
       <h1 class="flex items-center justify-between p-4 text-base font-medium text-gray-800"><router-link to="/descargas"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
-      {{ correo }} - {{ destino }}
-      
 <form class="p-4 pt-0" @submit.prevent="enviar">
         <div class="w-full pt-0">
           <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">

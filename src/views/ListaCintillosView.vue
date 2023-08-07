@@ -65,8 +65,7 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
   <div class="p-4">
     
     <div v-if="listaCintillos.length > 0">
-      <h1 class="mb-3 font-bold text-gray-800">GENERAR DOCUMENTO</h1>
-      <h1 class="flex items-center justify-between px-4 font-bold text-gray-800"><router-link to="/crear-cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>GENERAR DOCUMENTO</span></h1>
+      <h1 class="flex items-center justify-between py-4 font-bold text-gray-800"><router-link to="/crear-cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>GENERAR DOCUMENTO</span></h1>
       <div class="flex items-center justify-between mb-3">
         <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-black">448</span></div>
         <router-link :to="`/descargas`"

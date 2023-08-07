@@ -65,15 +65,6 @@ const username = ref(localStorage.getItem('usuario'))
     <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
   </div>
 </div>
-<div class="p-4 bg-yellow-100">
-  <h1 class="text-lg font-semibold">Comunicado a Nuestros Usuarios</h1>
- <p class="text-sm">Estimado/a {{ username }}<br>
-Lamentamos informar que nuestra aplicación enfrentó interrupciones recientes debido a problemas con el proveedor de servidor, resultando en casi 48 horas de inactividad. Pedimos disculpas por las molestias ocasionadas.
-
-Nos complace anunciar que la aplicación ya se encuentra operativa y en pleno funcionamiento. Recordamos que una sola persona gestiona y mejora la aplicación, y se han realizado esfuerzos intensivos para solucionar el inconveniente. Además, hemos recuperado los cintillos de los usuarios que nos contactaron durante la interrupción.
-<br>
-Agradecemos su paciencia y comprensión.</p> 
-</div>
   </template>
 
   <style>

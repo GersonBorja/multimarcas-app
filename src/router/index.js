@@ -60,7 +60,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/descargas/:user',
+      path: '/descargas',
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue'),
       meta: {

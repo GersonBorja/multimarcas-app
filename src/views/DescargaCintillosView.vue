@@ -127,6 +127,7 @@ const abrirModalCorreos = () => {
           </p>
         </div>
       </div>
+      <h1 class="flex items-center justify-between p-4 pb-0 font-bold text-gray-800"><router-link to="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>DESCARGAS</span></h1>
     <div class="p-4 border-b border-gray-200 border-dashed">
         <h1 class="pb-4 font-bold text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 1 (DESCARGAR ARCHIVO)</h1>
         <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Esta opcion guarda en tu dispositivo un archivo excel con todos los cintillos que has creado. Este lo puedes compartir posteriormente.</p>
@@ -138,7 +139,7 @@ const abrirModalCorreos = () => {
     </div>
     <div class="p-4">
         <h1 class="font-bold text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 2 (ENVIAR POR CORREO)</h1>
-        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para  <b class="font-extrabold text-black">32 SALAS</b>.</p>
+        <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion podras enviar tus cintillos directamente al operador(computo), por el momento el envio por correo esta disponible para  <b class="font-extrabold text-black">41 SALAS</b>.</p>
         <a class="px-4 py-2 text-sm text-white border border-solid rounded-md shadow-md bg-emerald-500 border-emerald-600" @click.prevent="abrirModalCorreos"><font-awesome-icon :icon="['fas', 'envelope']" /> ENVIAR POR CORREO</a>
     </div>
     <div class="fixed top-0 left-0 z-30 w-full h-full bg-white" v-if="show">

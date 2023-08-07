@@ -14,6 +14,7 @@ const { listaCintillos } = storeToRefs(useProductos)
 const { agregarCintillos, agregarDetallesCintillo } = useProductos
 
   const user = localStorage.getItem('usuario')
+  const token = ref(localStorage.getItem('token'))
   const datos = ref([])
   const total = ref(null)
   
@@ -21,7 +22,11 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
   
   const getData = async () => {
     try {
-      let { data } = await axios.get(`https://procter.work/api/cintillos/listado/${user}`)
+      const headers = {
+        'Authorization': 'Bearer ' + token.value,
+        'Content-Type': 'application/json'
+      }
+      let { data } = await axios.get(`https://procter.work/api/cintillo`, null, { headers })
       agregarCintillos(data)
       total.value = data.length
       let uniqueData = data.filter((v,i,a)=>a.findIndex(t=>(t.descripcion === v.descripcion))===i);
@@ -64,7 +69,7 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
       
       <div class="flex items-center justify-between mb-3">
         <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">252</span></div>
-        <router-link :to="`/descargas/${user}`"
+        <router-link :to="`/descargas`"
         class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">
         <font-awesome-icon :icon="['fas', 'download']" />
         Generar cintillos

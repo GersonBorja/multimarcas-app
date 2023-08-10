@@ -65,6 +65,13 @@ const username = ref(localStorage.getItem('usuario'))
     <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
   </div>
 </div>
+
+<div class="p-4 bg-green-200">
+  Si deseas que el correo de tu sala sea agregado a la aplicación, puedes compartirlo a nuestro correo para que lo agregamos.<br>
+  Comparte el correo y el nombre de la sala de ventas.<br>
+  <a href="mailto: multimarcasapp@outlook.com?subject=COMPARTO CORREO" class="mt-4 inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"><font-awesome-icon :icon="['fas', 'paper-plane']" class="mr-2"/> Enviarnos mensaje</a>
+  
+</div>
   </template>
 
   <style>

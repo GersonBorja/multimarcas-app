@@ -50,13 +50,13 @@ const loginDirect = async() => {
 const registerWithPass = async () => {
     try {
         enviando.value = true
-        const { dir } = await axios.get('https://api.ipify.org?format=json')
+        const { data: ip } = await axios.get('https://api.ipify.org?format=json')
         let credenciales;
         if(localStorage.getItem('usuario') === null){
             credenciales = {
                 'username': username.value,
                 'pass': pass.value,
-                'ip': dir.ip
+                'ip': ip.ip
             }
         }else {
             credenciales = {
@@ -65,8 +65,8 @@ const registerWithPass = async () => {
                 'ip': dir.ip
             }
         }
-        const { data } = await axios.post('https://procter.work/api/register', credenciales)
-        if(data.status === 'OK'){
+        const { data: req } = await axios.post('https://procter.work/api/register', credenciales)
+        if(req.status === 'OK'){
             loginDirect()
         }else{
         alert(data.message)

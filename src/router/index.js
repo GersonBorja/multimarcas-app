@@ -68,6 +68,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/enviar-cintillos',
+      name: 'enviar-cintillos',
+      component: () => import('../views/DescargaCintillosView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/descargas',
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue'),

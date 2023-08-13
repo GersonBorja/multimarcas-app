@@ -2,18 +2,13 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import PaginateCintillos from '@/components/PaginateCintillos.vue'
- import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useCintillosStore } from '@/stores/cintillos'
-import  { useCintillosCreados } from '@/stores/cintillosCreados'
-let useCantidad = useCintillosCreados()
-let { resetCintillos } = useCantidad
 
 const useProductos = useCintillosStore()
 const { listaCintillos } = storeToRefs(useProductos)
-const { agregarCintillos, agregarDetallesCintillo } = useProductos
+const { agregarCintillos } = useProductos
 
-  const user = localStorage.getItem('usuario')
   const token = ref(localStorage.getItem('token'))
   const datos = ref([])
   const total = ref(null)
@@ -51,14 +46,6 @@ const { agregarCintillos, agregarDetallesCintillo } = useProductos
     fin.value -= postXpagina
   }
   
-  
-  /* generar archivos */
-  const modal = ref(false)
-  const router = useRouter()
-  const generarButton = () => {
-    modal.value = true
-    location.href= `https://procter.work/api/cintillos/generar/${user}`
-  }
   
 </script>
 <template>

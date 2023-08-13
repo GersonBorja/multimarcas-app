@@ -46,20 +46,23 @@ const loginDirect = async() => {
     }
 }
 
+
 const registerWithPass = async () => {
     try {
         enviando.value = true
-        
+        const { dir } = await axios.get('https://api.ipify.org?format=json')
         let credenciales;
         if(localStorage.getItem('usuario') === null){
             credenciales = {
                 'username': username.value,
-                'pass': pass.value
+                'pass': pass.value,
+                'ip': dir.ip
             }
         }else {
             credenciales = {
                 'username': user_tmp.value,
-                'pass': clave.value
+                'pass': clave.value,
+                'ip': dir.ip
             }
         }
         const { data } = await axios.post('https://procter.work/api/register', credenciales)

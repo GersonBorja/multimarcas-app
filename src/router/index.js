@@ -84,9 +84,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/scanner',
-      name: 'escaner',
-      component: () => import('../views/EscanerView.vue')
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
     },
     {
       path: '/register',
@@ -101,8 +101,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!localStorage.getItem('token')) {
       next({
-        path: '/register',
-        query: { redirect: to.fullPath }
+        path: '/login'
       })
     } else {
       next()

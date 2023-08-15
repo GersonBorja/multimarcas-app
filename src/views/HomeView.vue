@@ -77,21 +77,8 @@ const cerrar = () => {
   
 </div>
 <div class="fixed top-0 left-0 bg-white z-50 p-6 overflow-scroll h-full" v-if="comunicado === null">
-  <h1 class="font-medium text-xl flex items-center justify-between">COMUNICADO IMPORTANTE <button @click.prevent="cerrar"><font-awesome-icon :icon="['fas', 'xmark']" class="text-xl"/></button></h1><br>
-  Estimados usuarios de Multimarcas App,<br><br>
-Soy Gerson Borja, un joven programador de 25 años creador de esta aplicación. Quiero comunicarles sobre la situación actual de nuestra aplicación en relación con la privacidad de la información.<br><br>
-Es importante aclarar que la preocupación no proviene de nuestra aplicación si no de la empresa empleadora con la preocupación que información de precios pueda llegar a manos de competidores, cabe resaltar que la información de precios  es pública en los establecimientos.<br><br>
-Sin embargo, quiero enfatizar que Multimarcas App no comparte ni tolera este tipo de conductas. Ningun tercero tiene acceso a los datos generados. Así mismo  el escáner de códigos de barras es una función común agregada y no implica riesgos adicionales.<br><br>
-Mi intención es mantener la aplicación en funcionamiento sin interrupciones, a menos que su empresa considere necesario el cierre de la misma y sea absolutamente necesario para proteger mi posición laboral. De ser así deberán notificar formalmente al correo electrónico <b>multimarcasapp@outlook.com</b> a través de un correo institucional. Hago un llamado a las entidades y jefes pertinentes en esta área para que analicen minuciosamente el funcionamiento y la seguridad de nuestra aplicación.<br><br> Estaríamos dispuestos a considerar y analizar  términos y condiciones adicionales  que propongan para asegurar la continuidad del proyecto.<br><br>
-Es importante resaltar que Multimarcas App está siendo 100% financiada con mi dinero personal. Esta aplicación ha sido diseñada como una plataforma cerrada y segura.<br><br>
-Es posible que en el futuro se nos impongan términos y condiciones para continuar con este proyecto que, hasta ahora, ha sido desarrollado sin fines de lucro. La aplicación seguirá siendo gratuita, pero es importante informarles que este proyecto es un pasatiempo personal y seguirá siéndolo hasta que no represente una carga financiera insostenible.<br><br>
-Agradezco profundamente el apoyo que nos han brindado hasta ahora, ya que hemos recibido más de 111.000 cintillos en menos de un mes. Esto demuestra el apoyo y alcance de nuestra aplicación, que no sería posible con el trabajo actual de los operadores. Además, es importante mencionar que nuestra aplicación contribuye significativamente a mantener los estándares de etiquetado, tanto para las auditorías internas como para las auditorías de Defensoría del Consumidor.<br><br>
-So fuese necesario el cierre de la aplicación,  con el fin de mantener los estándares de etiquetado  haré público  público el código fuente de mi proyecto,  esto permitirá replicar mi aplicación<br><br>
-Espero que juntos podamos superar este desafío y mantener nuestro servicio en beneficio de todos.<br><br>
-Atentamente,<br>
-Gerson Borja. <br>
-<button @click.prevent="cerrar" class="block mt-6 w-full px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">Continuar</button>
-</div>
+  <h1 class="font-medium text-xl flex items-center justify-between">sitio web cerrado</h1><br>
+ </div>
   </template>
 
   <style>

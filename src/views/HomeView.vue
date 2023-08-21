@@ -33,18 +33,8 @@ const cerrar = () => {
 }
 </script>
 <template>
-  <div class="p-4 pb-0 m-auto">
-    <h1 class="flex items-center justify-between pb-4 font-medium text-gray-900"><span><font-awesome-icon :icon="['fas', 'house']" class="mr-1" />Inicio</span>
-      <div><font-awesome-icon :icon="['fas', 'user']" /> Bienvenido {{ username }}</div>
-    </h1>
-
-
-</div>
-
-
-
-
-<div class="flex items-stretch justify-between border-b border-black border-solid">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="flex items-stretch justify-between border-b border-black border-solid">
   <div class="relative bg-black">
     <img src="../../public/market.jpg" class="w-[100px] h-[125px] object-cover">
     <div class="absolute top-0 left-0 w-full h-full b"></div>
@@ -69,6 +59,14 @@ const cerrar = () => {
     <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
   </div>
 </div>
+  </div>
+
+
+
+
+
+
+
 
 <div class="p-4 bg-green-200">
   Si deseas que el correo de tu sala sea agregado a la aplicación, puedes compartirlo a nuestro correo para que lo agregamos.<br>

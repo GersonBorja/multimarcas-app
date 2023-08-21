@@ -33,7 +33,7 @@ const cerrar = () => {
 }
 </script>
 <template>
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <div class="grid grid-cols-1 sm:grid-cols-2">
     <div class="flex items-stretch justify-between border-b border-black border-solid">
   <div class="relative bg-black">
     <img src="../../public/market.jpg" class="w-[100px] h-[125px] object-cover">

@@ -74,9 +74,6 @@ const cerrar = () => {
   <a href="mailto: multimarcasapp@outlook.com?subject=COMPARTO CORREO" class="mt-4 inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"><font-awesome-icon :icon="['fas', 'paper-plane']" class="mr-2"/> Enviarnos mensaje</a>
   
 </div>
-<div class="fixed top-0 left-0 bg-white z-50 p-6 overflow-scroll h-full" v-if="comunicado === null">
-  <h1 class="font-medium text-xl flex items-center justify-between">sitio web cerrado</h1><br>
- </div>
   </template>
 
   <style>

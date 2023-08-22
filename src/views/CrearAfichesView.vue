@@ -285,7 +285,7 @@ const cambiarFormatoInicio = () => {
       </div>
     </form>
 
-    <div class="items-start justify-center hidden pb-8 bg-black lg:flex">
+    <div class="flex items-start justify-center pb-8 bg-black">
       <div class="w-[70%]">
         <div class="bg-[#c49f51] flex items-center justify-center pb-4">
           <div class="w-[75%]">

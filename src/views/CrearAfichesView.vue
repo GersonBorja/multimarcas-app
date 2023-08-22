@@ -12,8 +12,8 @@ const cantidad = ref("");
 const precio = ref("");
 const f_inicio = ref("");
 const f_fin = ref("");
-const f_fin_n = ref('')
-const f_inicio_n = ref('')
+const f_fin_n = ref("");
+const f_inicio_n = ref("");
 const handleInput = (event) => {
   descripcion.value = formatearDescription(event.target.value);
 };
@@ -101,25 +101,33 @@ const agregarAfiches = async () => {
   } finally {
     enviando.value = false;
   }
-}
+};
 
 const cambiarFormatoFin = () => {
-    const fechaArray = f_fin.value.split('-');
+  const fechaArray = f_fin.value.split("-");
 
-    if (fechaArray.length === 3) {
-        f_fin_n.value = `${fechaArray[2]}/${fechaArray[1]}/${fechaArray[0]}`;
-    }
-    return ""; // Devuelve una cadena vacía si el formato no es correcto
-}
+  if (fechaArray.length === 3) {
+    f_fin_n.value = `${fechaArray[2]}/${fechaArray[1]}/${fechaArray[0]}`;
+  }
+  return ""; // Devuelve una cadena vacía si el formato no es correcto
+};
 const cambiarFormatoInicio = () => {
-    const fechaArray = f_inicio.value.split('-');
+  const fechaArray = f_inicio.value.split("-");
 
-    if (fechaArray.length === 3) {
-        f_inicio_n.value = `${fechaArray[2]}/${fechaArray[1]}/${fechaArray[0]}`;
-    }
-    return ""; // Devuelve una cadena vacía si el formato no es correcto
-}
+  if (fechaArray.length === 3) {
+    f_inicio_n.value = `${fechaArray[2]}/${fechaArray[1]}/${fechaArray[0]}`;
+  }
+  return ""; // Devuelve una cadena vacía si el formato no es correcto
+};
 
+const afichePreview = ref('hidden');
+
+const abrirPreview = () => {
+  afichePreview.value = 'block';
+};
+const cerrarPreview = () => {
+  afichePreview.value = 'hidden';
+};
 </script>
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -276,19 +284,35 @@ const cambiarFormatoInicio = () => {
         </p>
       </div>
 
-      <div class="p-4">
+      <div class="flex items-center justify-between gap-1 px-2 py-4 sm:block">
+        <a
+          href="#"
+          class="sm:hidden text-sm sm:text-base w-full px-4 py-2 font-bold text-white border rounded bg-[#2E3239] hover:bg-[#37474F] border-[#303E46] shadow-md text-center"
+          @click.prevent="abrirPreview"
+          >Previsualizar</a
+        >
         <input
           type="submit"
-          class="w-full px-4 py-2 font-bold text-white border rounded bg-[#2E3239] hover:bg-[#37474F] border-[#303E46] shadow-md"
+          class="text-sm sm:text-base lowercase sm:uppercase w-full px-4 py-2 font-bold text-white border rounded bg-[#2E3239] hover:bg-[#37474F] border-[#303E46] shadow-md"
           value="AGREGAR ROTULO"
         />
       </div>
     </form>
 
-    <div class="flex items-start justify-center pb-8 bg-black">
-      <div class="w-[70%]">
+    <div
+      class="fixed justify-center w-full h-full pb-4 bg-black sm:items-start sm:static sm:hidden md:flex lg:pb-8"
+      :class="afichePreview"
+    >
+      <a
+        href="#"
+        class="block p-4 font-medium text-white sm:hidden"
+        @click.prevent="cerrarPreview"
+        ><font-awesome-icon :icon="['fas', 'arrow-left']" class="mr-1" /> VOLVER
+        A EDITAR</a
+      >
+      <div class="w-[90%] lg:w-[70%] mx-auto">
         <div class="bg-[#c49f51] flex items-center justify-center pb-4">
-          <div class="w-[75%]">
+          <div class="w-[85%] sm:w-[75%]">
             <div class="flex items-start justify-center w-full bg-[#9c564c]">
               <img
                 src="../../public/logos.png"
@@ -297,21 +321,46 @@ const cambiarFormatoInicio = () => {
               />
             </div>
             <div class="relative w-full bg-[#9c564c] pt-2 pb-7">
-              <h2 class="block w-full text-3xl font-black text-center text-white">SÚPER</h2>
-              <div class="absolute px-10 py-2 bottom-[-35px] inline logo bg-[#c08256] text-5xl  text-[#9c564c] tracking-widest">OFERTA</div>
+              <h2
+                class="block w-full text-3xl font-black text-center text-white"
+              >
+                SÚPER
+              </h2>
+              <div
+                class="absolute px-10 py-2 bottom-[-35px] inline logo bg-[#c08256] text-5xl text-[#9c564c] tracking-widest"
+              >
+                OFERTA
+              </div>
             </div>
           </div>
-          
         </div>
         <div class="border-8 border-solid border-[#98524a] border-t-0">
-            <div class="flex items-center justify-center text-7xl font-medium bg-white pt-[100px] pb-[40px]">{{ precio }}</div>
-            <div class="flex items-center justify-center px-8 pb-10 text-3xl font-normal text-center bg-white">{{ descripcion }}</div>
-            <div class="flex items-center justify-between px-8 py-4 bg-white">
-              <div class="font-medium">INICIO: {{ f_inicio_n }}</div>
-              <div class="font-medium">HASTA: {{ f_fin_n }}</div>
-            </div>
-            <div class="flex items-center justify-center pb-6 bg-white">{{ barra }}</div>
+          <div
+            class="flex items-center justify-center text-5xl lg:text-7xl font-medium bg-white pt-[60px] lg:pt-[100px] pb-[30px] lg:pb-[40px]"
+          >
+            {{ precio }}
           </div>
+          <div
+            class="flex items-center justify-center px-8 pb-4 text-xl font-normal text-center bg-white lg:pb-10 lg:text-3xl"
+          >
+            {{ descripcion }}
+          </div>
+          <div
+            class="flex items-center justify-between px-8 py-2 bg-white lg:py-4"
+          >
+            <div class="text-xs font-medium lg:text-base">
+              INICIO: {{ f_inicio_n }}
+            </div>
+            <div class="text-xs font-medium lg:text-base">
+              HASTA: {{ f_fin_n }}
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-center pb-6 text-xs bg-white lg:text-base"
+          >
+            {{ barra }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -329,11 +378,11 @@ const cambiarFormatoInicio = () => {
   </div>
 </template>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");
 .logo {
-  font-family: 'Caveat Brush', cursive;
-  
+  font-family: "Caveat Brush", cursive;
+
   left: 50%;
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 </style>

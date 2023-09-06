@@ -194,7 +194,8 @@ const cerrarModalFunction = () => {
 
 
     <div class="p-4 pt-0">
-      <b>INTERNO: </b> {{ interno}}
+      <div class="pb-4 border-b border-solid border-[#ddd] mb-4"><font-awesome-icon :icon="['fas', 'tag']" /> <b>INTERNO: </b> {{ interno}}</div>
+      
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
         <div class="flex flex-wrap mb-6 -mx-3">
           <div class="w-full px-3 mb-6">

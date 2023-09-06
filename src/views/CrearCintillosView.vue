@@ -44,6 +44,7 @@ function formatearDescription(description) {
   const descripcion = ref('')
   const cantidad = ref('')
   const precio = ref('')
+  const interno = ref('')
   const handleInput = (event) => {
     descripcion.value = formatearDescription(event.target.value)
 }
@@ -87,6 +88,7 @@ const startScanner = async () => {
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
           encontrado.value = false
           descripcion.value = formatearDescription(dbInfo[0].descripcion)
+          interno.value = dbInfo[0].interno
         }
       } catch(error){
         console.log(error)
@@ -192,6 +194,7 @@ const cerrarModalFunction = () => {
 
 
     <div class="p-4 pt-0">
+      <b>INTERNO: </b> {{ interno}}
       <form class="w-full max-w-lg" @submit.prevent="agregarCintillos" ref="frmCintillo">
         <div class="flex flex-wrap mb-6 -mx-3">
           <div class="w-full px-3 mb-6">

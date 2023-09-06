@@ -79,6 +79,7 @@ const startScanner = async () => {
           }
           const { data: notification } = await axios.post('https://procter.work/api/notificacionScan', notificacionData)
           encontrado.value = true
+          interno.value = 'No se encontraron coincidencias 🥺'
           descripcion.value = ''
         }else{
           const notificacionData = {

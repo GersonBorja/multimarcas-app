@@ -92,6 +92,14 @@ const router = createRouter({
       path: '/register',
       name: 'registro',
       component: () => import('../views/RegisterView.vue')
+    },
+    {
+      path: '/buscador',
+      name: 'buscador',
+      component: () => import('../views/BuscadorView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

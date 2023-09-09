@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useBusquedas = defineStore('buscador', () => {
+export const useBusquedasStore = defineStore('buscador', () => {
   
   const resultados = ref([])
   
   const busquedasEncontradas= (data) => {
-    resulados.value = data
+    resultados.value = data
   }
   
   return {

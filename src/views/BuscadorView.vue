@@ -174,10 +174,8 @@ const resetScanner = () => {
           <b>#{{ index + 1 }}</b> {{ item.descripcion }}
         </div>
         <div class="flex items-center justify-between px-4 py-2 bg-gray-100">
-          <div>Interno: {{ item.interno }}</div>
-          <button class="px-6 py-1 font-medium text-[#2E3239]">
-            Mas detalles
-          </button>
+          <div class="text-sm">Interno: {{ item.interno }}</div>
+          <div class="text-sm">Barra: {{ item.barra }}</div>
           <div></div>
         </div>
       </div>

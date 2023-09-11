@@ -71,7 +71,19 @@ const startScanner = async () => {
     async (res, err) => {
       if (res) {
         resetScanner();
-        busqueda.value = res.text;
+        try {
+          busqueda.value = res.text;
+          const notificacionData = {
+            autor: usuario.value,
+            msg: "🔔 ha usadoo el buscador de internos",
+          };
+          const { data } = await axios.post(
+            "https://procter.work/api/notificacionScan",
+            notificacionData
+          );
+        } catch (error) {
+          console.log(error);
+        }
       } else if (err && !(err instanceof NotFoundException)) {
         console.log(err);
       }

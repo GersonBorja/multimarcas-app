@@ -26,11 +26,6 @@ onMounted(() => {
     .catch(console.error);
 });
 
-const username = ref(localStorage.getItem('usuario'))
-const comunicado = ref(localStorage.getItem("comunicado"))
-const cerrar = () => {
-  comunicado.value = localStorage.setItem('comunicado', true)
-}
 </script>
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2">
@@ -57,6 +52,20 @@ const cerrar = () => {
     <h2>Crear Rotulos</h2>
     <p class="pt-2 text-xs">La posibilidad de crear hasta 200 rotulos.</p>
     <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
+  </div>
+</div>
+
+
+<div class="flex items-stretch justify-between border-b border-black border-solid">
+  <div class="relative bg-black">
+    <img src="../../public/buscador.jpg" class="w-[100px] h-[125px] object-cover">
+    <div class="absolute top-0 left-0 w-full h-full b"></div>
+  </div>
+
+  <div class="relative flex-1 p-4 text-white bg-neutral-800">
+    <h2>Buscar Internos</h2>
+    <p class="pt-2 text-xs">Escanea o digita la descripcion, ideal para sacar el correlativo.</p>
+    <router-link to="/buscador" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
   </div>
 </div>
   </div>

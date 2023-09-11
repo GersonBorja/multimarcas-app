@@ -106,7 +106,7 @@ const resetScanner = () => {
   </div>
 
   <h1 class="flex items-center justify-between p-4 font-medium text-gray-800">
-    <router-link to="/crear-cintillos"
+    <router-link to="/"
       ><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link
     >
     <span>BUSCADOR</span>

@@ -65,8 +65,8 @@ const reestablecerFormulario = () => {
   f_fin.value = "";
   cantidad.value = "";
   precio.value = "";
-  f_inicio_n = "";
-  f_fin_n = "";
+  f_inicio_n.value = "";
+  f_fin_n.value = "";
 };
 const agregarAfiches = async () => {
   try {

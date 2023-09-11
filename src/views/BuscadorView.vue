@@ -8,7 +8,6 @@ import { BrowserMultiFormatReader, NotFoundException } from "@zxing/library";
 const busqueda = ref("");
 const ultimaBusqueda = ref("");
 const ultimaBusquedaVal = ref(false);
-const barra = ref("");
 const scan = ref(false);
 const codeReader = new BrowserMultiFormatReader();
 let selectedDeviceId;
@@ -71,11 +70,8 @@ const startScanner = async () => {
     "video",
     async (res, err) => {
       if (res) {
-        try {
-          barra.value = res.text;
-        } catch (error) {
-          console.log(error);
-        }
+        resetScanner();
+        busqueda.value = res.text;
       } else if (err && !(err instanceof NotFoundException)) {
         console.log(err);
       }
@@ -87,7 +83,6 @@ const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
 };
-
 </script>
 <template>
   <div

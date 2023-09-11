@@ -11,6 +11,7 @@ const ultimaBusquedaVal = ref(false);
 const scan = ref(false);
 const codeReader = new BrowserMultiFormatReader();
 let selectedDeviceId;
+const usuario = ref(localStorage.getItem("usuario"));
 const token = ref(localStorage.getItem("token"));
 
 // variables de estado

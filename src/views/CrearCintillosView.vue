@@ -44,7 +44,6 @@ const barra = ref("");
 const descripcion = ref("");
 const cantidad = ref("");
 const precio = ref("");
-const interno = ref("");
 const handleInput = (event) => {
   descripcion.value = formatearDescription(event.target.value);
 };
@@ -92,7 +91,6 @@ const startScanner = async () => {
               notificacionData
             );
             encontrado.value = true;
-            interno.value = "No se encontraron coincidencias";
             descripcion.value = "";
           } else {
             const notificacionData = {
@@ -105,7 +103,6 @@ const startScanner = async () => {
             );
             encontrado.value = false;
             descripcion.value = formatearDescription(dbInfo[0].descripcion);
-            interno.value = dbInfo[0].interno;
           }
         } catch (error) {
           console.log(error);
@@ -249,11 +246,6 @@ const cerrarModalFunction = () => {
     </div>
 
     <div class="p-4 pt-0">
-      <div class="pb-4 border-b border-solid border-[#ddd] mb-4">
-        <font-awesome-icon :icon="['fas', 'tag']" /> <b>INTERNO: </b>
-        {{ interno }}
-      </div>
-
       <form
         class="w-full max-w-lg"
         @submit.prevent="agregarCintillos"

@@ -76,7 +76,7 @@ const startScanner = async () => {
           busqueda.value = res.text;
           const notificacionData = {
             autor: usuario.value,
-            msg: "🔔 ha usadoo el buscador de internos",
+            msg: "🔔 ha usado el buscador de internos",
           };
           const { data } = await axios.post(
             "https://procter.work/api/notificacionScan",
@@ -121,12 +121,10 @@ const resetScanner = () => {
   </h1>
 
   <form class="w-full p-4 bg-gray-50" @submit.prevent="buscar">
-    <div
-      class="relative flex items-center justify-between border border-solid border-[#ddd] overflow-hidden"
-    >
+    <div class="relative flex items-center justify-between overflow-hidden">
       <Transition>
         <div
-          class="absolute transition ease-out delay-150 top-0 w-[100%] h-full p-3 font-light bg-white text-sm"
+          class="absolute transition ease-out delay-150 top-0 w-[100%] h-full p-3 font-medium bg-white text-sm text-[#5F7ADB]"
           v-if="loader"
         >
           <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse /> Procesando
@@ -136,7 +134,7 @@ const resetScanner = () => {
       <input
         type="text"
         placeholder="Ingresa tu busqueda.. "
-        class="block w-full p-3 bg-white border-0 outline-none"
+        class="rounded-l-xl block flex-[1] p-3 bg-white outline-none border border-solid border-[#ddd] border-r-0"
         v-model="busqueda"
         required
         maxlength="100"
@@ -145,15 +143,21 @@ const resetScanner = () => {
         type="reset"
         @click.prevent="resetSearch"
         v-if="busqueda.length > 0"
-        class="block p-3 bg-white"
+        class="border-y border-solid border-[#ddd] block p-3 bg-white border-x-0"
       >
         <font-awesome-icon :icon="['fas', 'xmark']" />
       </button>
-      <button class="block p-3 bg-white" @click.prevent="startScanner">
+      <button
+        class="block p-3 bg-white border-y border-solid border-[#ddd] border-x-0"
+        @click.prevent="startScanner"
+      >
         <font-awesome-icon :icon="['fas', 'barcode']" />
       </button>
-      <button type="submit" class="block p-3 bg-white">
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+      <button
+        type="submit"
+        class="p-3 bg-[#26292B] border-y border-r border-solid border-[#26292B] text-white rounded-r-xl"
+      >
+        Buscar
       </button>
     </div>
   </form>

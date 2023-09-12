@@ -134,7 +134,7 @@ const resetScanner = () => {
       <input
         type="text"
         placeholder="Ingresa tu busqueda.. "
-        class="rounded-l-xl block flex-[1] p-3 bg-white outline-none border border-solid border-[#ddd] border-r-0"
+        class="rounded-l-xl block w-full p-3 bg-white outline-none border border-solid border-[#ddd] border-r-0"
         v-model="busqueda"
         required
         maxlength="100"

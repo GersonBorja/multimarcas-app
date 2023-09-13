@@ -343,7 +343,7 @@ const cerrarModalFunction = () => {
             </label>
             <div
               class="pb-3 text-xs font-light text-gray-600"
-              v-if="fecha.length > 0 || !fechas"
+              v-if="fecha.length > 0"
             >
               <font-awesome-icon :icon="['fas', 'bell']" beat /> Precio usado
               ultima vez el

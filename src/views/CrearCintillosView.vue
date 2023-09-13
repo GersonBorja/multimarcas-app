@@ -169,27 +169,28 @@ const agregarCintillos = async () => {
   }
 };
 
-const scannerAviso = ref(localStorage.getItem("scannerNuevo"));
+const scannerAviso = ref(localStorage.getItem("baseDeDatos"));
 
 const cerrarModalFunction = () => {
-  scannerAviso.value = localStorage.setItem("scannerNuevo", false);
+  scannerAviso.value = localStorage.setItem("baseDeDatos", false);
 };
 </script>
 <template>
   <div class="w-full max-w-md m-auto">
     <div
-      class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center"
+      class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center z-50"
       v-if="scannerAviso === null"
     >
-      <div class="bg-[#9b59b6] w-[95%] p-4 text-xl">
-        <h2 class="py-4 font-medium text-center text-white">
-          ESCANER EN TIEMPO REAL
+      <div class="w-[95%] p-4 bg-green-600">
+        <h2 class="py-2 font-medium text-center text-white uppercase">
+          Base de datos actualizada
         </h2>
         <p class="p-4 text-sm text-white">
-          Hemos incorporado un nuevo escáner en tiempo real, mucho más rápido y
-          eficiente que el anterior. Para utilizarlo, simplemente enfoca el
-          código de barras con la cámara. Recuerda evitar reflejos para una
-          lectura óptima. ¡Prueba ahora y experimenta la diferencia! 🔍
+          ¡Estamos encantados de anunciarte una actualización significativa en
+          nuestro servicio!<br />
+
+          🎉 Hemos añadido 25,000 nuevos códigos a nuestro escáner, mejorando
+          significativamente su precisión y rapidez. 🎉<br />
         </p>
         <button
           @click.prevent="cerrarModalFunction"

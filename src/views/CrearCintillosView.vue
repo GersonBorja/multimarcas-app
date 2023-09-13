@@ -5,6 +5,11 @@ import { storeToRefs } from "pinia";
 import { useCintillosCreados } from "@/stores/cintillosCreados";
 import { v4 as uuidv4 } from "uuid";
 import { BrowserMultiFormatReader, NotFoundException } from "@zxing/library";
+import dayjs from 'dayjs'
+import 'dayjs/locale/es'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.locale('es')
+dayjs.extend(relativeTime)
 
 let useCantidad = useCintillosCreados();
 let { cantidadTotal } = storeToRefs(useCantidad);
@@ -44,6 +49,7 @@ const barra = ref("");
 const descripcion = ref("");
 const cantidad = ref("");
 const precio = ref("");
+const fecha = ref('')
 const handleInput = (event) => {
   descripcion.value = formatearDescription(event.target.value);
 };
@@ -93,6 +99,7 @@ const startScanner = async () => {
             encontrado.value = true;
             descripcion.value = "";
             precio.value = ""
+            fecha.value = ''
           } else {
             const notificacionData = {
               autor: usuario.value,
@@ -105,6 +112,7 @@ const startScanner = async () => {
             encontrado.value = false;
             descripcion.value = formatearDescription(dbInfo[0].descripcion);
             precio.value = dbInfo[0].precio
+            fecha.value = dbInfo[0].fecha
           }
         } catch (error) {
           console.log(error);
@@ -338,6 +346,7 @@ const cerrarModalFunction = () => {
             >
               PRECIO DEL PRODUCTO:
             </label>
+            <div class="p-2 text-sm text-orange-500">Precio usado ultima vez el {{ dayjs(fecha).format('dddd, D [de] MMMM [de] YYYY, h:mm:ss A') }}</div>
             <input
               class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password"

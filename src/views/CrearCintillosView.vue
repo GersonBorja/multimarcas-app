@@ -111,8 +111,8 @@ const startScanner = async () => {
             );
             encontrado.value = false;
             descripcion.value = formatearDescription(dbInfo[0].descripcion);
-            precio.value = dbInfo[0].precio;
-            fecha.value = dbInfo[0].fecha;
+            precio.value = dbInfo[0].precio == null ? "" : dbInfo[0].precio;
+            fecha.value = dbInfo[0].fecha == null ? "" : dbInfo[0].fecha
           }
         } catch (error) {
           console.log(error);

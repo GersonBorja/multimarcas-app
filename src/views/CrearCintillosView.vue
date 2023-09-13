@@ -346,7 +346,7 @@ const cerrarModalFunction = () => {
             >
               PRECIO DEL PRODUCTO:
             </label>
-            <div class="pb-2 text-sm text-gray-500" v-if="fecha.length > 0"><font-awesome-icon :icon="['fas', 'bell']" beat /> Precio usado ultima vez el {{ dayjs(fecha).format('dddd, D [de] MMMM [de] YYYY') }}</div>
+            <div class="pb-3 text-xs font-light text-gray-600" v-if="fecha.length > 0"><font-awesome-icon :icon="['fas', 'bell']" beat /> Precio usado ultima vez el {{ dayjs(fecha).format('dddd, D [de] MMMM [de] YYYY') }}</div>
             <input
               class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password"

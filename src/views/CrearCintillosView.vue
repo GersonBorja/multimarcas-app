@@ -92,6 +92,7 @@ const startScanner = async () => {
             );
             encontrado.value = true;
             descripcion.value = "";
+            precio.value = ""
           } else {
             const notificacionData = {
               autor: usuario.value,
@@ -103,6 +104,7 @@ const startScanner = async () => {
             );
             encontrado.value = false;
             descripcion.value = formatearDescription(dbInfo[0].descripcion);
+            precio.value = dbInfo[0].precio
           }
         } catch (error) {
           console.log(error);

@@ -100,6 +100,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+        {
+      path: '/pago-exitoso',
+      name: 'pago',
+      component: () => import('../views/PagoExitoso.vue'),
     }
   ]
 })

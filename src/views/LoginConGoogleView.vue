@@ -5,6 +5,8 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
+provider.addScope('email');
+
 const foto = ref("");
 const nombre = ref('')
 const firebaseConfig = {

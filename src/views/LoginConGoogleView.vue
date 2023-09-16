@@ -4,6 +4,9 @@ import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const provider = new GoogleAuthProvider();
 provider.addScope("email");

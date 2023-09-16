@@ -1,14 +1,15 @@
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
-provider.addScope('email');
+provider.addScope("email");
 const foto = ref("");
-const nombre = ref('')
-const email = ref('')
+const nombre = ref("");
+const email = ref("");
 const firebaseConfig = {
   apiKey: "AIzaSyB0z01S4THMA_8x6jKtV1OodLHXs0J9kZ8",
   authDomain: "multimarcasapp-2fa97.firebaseapp.com",
@@ -26,15 +27,34 @@ const auth = getAuth();
 
 const login = () => {
   signInWithPopup(auth, provider)
-    .then((result) => {
+    .then(async (result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
       foto.value = user.photoURL;
-      nombre.value = user.displayName
-      email.value = user.providerData[0].email
+      nombre.value = user.displayName;
+      email.value = user.providerData[0].email;
+      try {
+        const param = {
+          username: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        };
+        const { data } = await axios.post(
+          "https://procter.work/api/register-google",
+          param
+        );
+        if (data.status == "OK") {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user_uuid", data.user_uuid);
+          localStorage.setItem("usuario", data.username);
+          router.push("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
       console.log(user);
       // IdP data available using getAdditionalUserInfo(result)
       // ...
@@ -55,13 +75,20 @@ const login = () => {
 <template>
   <div v-if="foto" class="flex items-center">
     <img :src="foto" />
-  <h3>{{ nombre }}</h3>
-  {{ email }}
+    <h3>{{ nombre }}</h3>
+    {{ email }}
   </div>
 
   <button
-    class="flex gap-2 px-4 py-2 m-4 transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow" @click.prevent="login">
-    <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+    class="flex gap-2 px-4 py-2 m-4 transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow"
+    @click.prevent="login"
+  >
+    <img
+      class="w-6 h-6"
+      src="https://www.svgrepo.com/show/475656/google-color.svg"
+      loading="lazy"
+      alt="google logo"
+    />
     <span>Iniciar sesion con Google</span>
-</button>
+  </button>
 </template>

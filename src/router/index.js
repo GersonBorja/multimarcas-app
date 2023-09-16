@@ -100,6 +100,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/login-with-google',
+      name: 'google',
+      component: () => import('../views/LoginConGoogleView.vue')
     }
   ]
 })

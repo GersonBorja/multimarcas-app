@@ -29,20 +29,6 @@ onMounted(() => {
 </script>
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2">
-       <div class="flex items-stretch justify-between border-b border-black border-solid relative">
-         
-         <div class="px-3 text-xs text-white bg-[tomato] absolute top-1 left-1 h-[20px] rounded-3xl shadow-2xl shadow-red-500 z-20">nuevo</div>
-  <div class="relative bg-black">
-    <img src="../../public/agricola.png" class="w-[100px] h-[150px] object-cover">
-    <div class="absolute top-0 left-0 w-full h-full b"></div>
-  </div>
-
-  <div class="relative flex-1 p-4 text-white bg-neutral-800">
-    <h2>Canal de donaciones</h2>
-    <p class="pt-2 text-xs">Puedes hacer tus donaciones, para que la aplicación se mantenga en linea y siga siendo gratis para todos.</p>
-    <div class="absolute bottom-0 right-0 p-4"><a href="https://lk.wompi.sv/rpU7" class="border border-solid border-[#5F7ADB] text-white px-3 py-2 rounded font-medium">Hacer donación</a></div>
-  </div>
-</div>
     
     
     

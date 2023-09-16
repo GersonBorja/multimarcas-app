@@ -6,7 +6,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 provider.addScope('email');
-
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 const foto = ref("");
 const nombre = ref('')
 const firebaseConfig = {

@@ -55,5 +55,9 @@ const login = () => {
   <h3>{{ nombre }}</h3> 
   </div>
 
-  <button @click.prevent="login">Login con Google</button>
+  <button
+    class="flex gap-2 px-4 py-2 transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow" @click.prevent="login">
+    <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+    <span>Iniciar sesion con Google</span>
+</button>
 </template>

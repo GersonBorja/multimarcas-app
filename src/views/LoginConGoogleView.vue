@@ -8,6 +8,7 @@ const provider = new GoogleAuthProvider();
 provider.addScope('email');
 const foto = ref("");
 const nombre = ref('')
+const email = ref('')
 const firebaseConfig = {
   apiKey: "AIzaSyB0z01S4THMA_8x6jKtV1OodLHXs0J9kZ8",
   authDomain: "multimarcasapp-2fa97.firebaseapp.com",
@@ -33,6 +34,7 @@ const login = () => {
       const user = result.user;
       foto.value = user.photoURL;
       nombre.value = user.displayName
+      email.value = user.providerData[0].email
       console.log(user);
       // IdP data available using getAdditionalUserInfo(result)
       // ...
@@ -53,7 +55,8 @@ const login = () => {
 <template>
   <div v-if="foto" class="flex items-center">
     <img :src="foto" />
-  <h3>{{ nombre }}</h3> 
+  <h3>{{ nombre }}</h3>
+  {{ email }}
   </div>
 
   <button

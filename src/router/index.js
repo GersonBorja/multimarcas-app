@@ -101,10 +101,17 @@ const router = createRouter({
         requiresAuth: true
       }
     },
+<<<<<<< HEAD
     {
       path: '/login-with-google',
       name: 'google',
       component: () => import('../views/LoginConGoogleView.vue')
+=======
+        {
+      path: '/pago-exitoso',
+      name: 'pago',
+      component: () => import('../views/PagoExitoso.vue'),
+>>>>>>> ec9891c1f2a69ecb1b905ca6412bc81c2d48fb04
     }
   ]
 })

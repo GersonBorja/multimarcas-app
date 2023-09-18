@@ -50,7 +50,7 @@ import { storeToRefs } from 'pinia';
       <h1 class="mb-3 font-bold text-gray-800">GENERAR DOCUMENTO</h1>
       
       <div class="flex items-center justify-between mb-3">
-        <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">200</span></div>
+        <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">90</span></div>
         <router-link to="/enviar-afiches-mini"
         class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">
         <font-awesome-icon :icon="['fas', 'download']" />

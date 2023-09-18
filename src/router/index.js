@@ -36,6 +36,22 @@ const router = createRouter({
       }
     },
     {
+      path: '/crear-afiches-mini',
+      name: 'crearafichesmini',
+      component: () => import('../views/CrearAfichesMiniView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/afiches-seleccion',
+      name: 'afiches-seleccion',
+      component: () => import('../views/AfichesSeleccionView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/afiches',
       name: 'afiches',
       component: () => import('../views/ListaAfichesView.vue'),
@@ -44,8 +60,24 @@ const router = createRouter({
       }
     },
     {
+      path: '/afiches-mini',
+      name: 'afichesmini',
+      component: () => import('../views/ListaAfichesMiniView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/enviar-afiches',
       name: 'enviarafiches',
+      component: () => import('../views/EnviarAfichesView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/enviar-afiches-mini',
+      name: 'enviarafichesmini',
       component: () => import('../views/EnviarAfichesView.vue'),
       meta: {
         requiresAuth: true

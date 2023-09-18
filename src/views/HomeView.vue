@@ -55,7 +55,7 @@ onMounted(() => {
   <div class="relative flex-1 p-4 text-white bg-neutral-800">
     <h2>Crear Rotulos</h2>
     <p class="pt-2 text-xs">La posibilidad de crear hasta 200 rotulos.</p>
-    <router-link to="/crear-afiches" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
+    <router-link to="/afiches-seleccion" class="absolute bottom-0 right-0 p-4">Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" /></router-link>
   </div>
 </div>
 

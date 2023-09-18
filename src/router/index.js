@@ -78,7 +78,7 @@ const router = createRouter({
     {
       path: '/enviar-afiches-mini',
       name: 'enviarafichesmini',
-      component: () => import('../views/EnviarAfichesView.vue'),
+      component: () => import('../views/EnviarAfichesMiniView.vue'),
       meta: {
         requiresAuth: true
       }

@@ -80,7 +80,7 @@ const login = async () => {
     };
 
     const { data } = await axios.post(
-      "https://procter.work/api/register-google",
+      "https://procter.work/api/login-with-google",
       param
     );
 

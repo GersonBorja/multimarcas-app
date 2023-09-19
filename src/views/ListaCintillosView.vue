@@ -40,6 +40,29 @@ const getData = async () => {
 };
 getData();
 
+const eliminar = async (uuid) => {
+  try {
+    const headers = {
+      Authorization: "Bearer " + token.value,
+      "Content-Type": "application/json",
+    };
+    const info = {
+      uuid: uuid
+    }
+    let { data } = await axios.post(
+      "https://procter.work/api/cintillo/eliminar",
+      info,
+      {
+        headers,
+      }
+    );
+    getData();
+    alert(data.message);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 let postXpagina = 6;
 const inicio = ref(0);
 const fin = ref(6);
@@ -100,15 +123,16 @@ const anterior = () => {
       :key="item.id"
       class="border-b border-[#dddddd] border-solid"
     >
-      <div class="flex items-start p-4">
-        {{ item.descripcion }}
+      <div class="flex items-start justify-between p-4">
+        <span class="flex-[1]">{{ item.descripcion }}</span>
+        <button class="text-gray-900" @click.prevent="eliminar(item.uuid)"><font-awesome-icon :icon="['fas', 'trash-can']" /></button>
       </div>
       <div class="flex p-4 pt-0">
         <router-link
           :to="`/editar/${item.uuid}`"
           v-if="item.uuid"
           class="flex items-center mr-2 text-sm font-medium text-blue-600 underline uppercase"
-          >
+        >
           Editar</router-link
         >
         <div class="flex items-center mr-2 text-sm">${{ item.precio }}</div>
@@ -121,7 +145,6 @@ const anterior = () => {
         <div class="text-sm text-gray-500">
           {{ dayjs(item.fecha).fromNow() }}
         </div>
-        
       </div>
     </div>
     <!-- aqui btn -->

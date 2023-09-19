@@ -2,7 +2,11 @@
 
 import { ref } from 'vue'
 import axios from 'axios'
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const enviando = ref(false)
 
 // PARA USUARIOS DE LA BETA
@@ -45,31 +49,81 @@ const registerWithPass = async () => {
         enviando.value = false
     }
 }
+
+const provider = new GoogleAuthProvider();
+provider.addScope("email");
+const foto = ref("");
+const nombre = ref("");
+const email = ref("");
+const firebaseConfig = {
+  apiKey: "AIzaSyB0z01S4THMA_8x6jKtV1OodLHXs0J9kZ8",
+  authDomain: "multimarcasapp-2fa97.firebaseapp.com",
+  projectId: "multimarcasapp-2fa97",
+  storageBucket: "multimarcasapp-2fa97.appspot.com",
+  messagingSenderId: "732835844626",
+  appId: "1:732835844626:web:d5fd4d29dd760b66bd7ecb",
+  measurementId: "G-0SQH2EVZX3",
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+const auth = getAuth();
+
+const login = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+
+    // The signed-in user info.
+    const user = result.user;
+    foto.value = user.photoURL;
+    nombre.value = user.displayName;
+    email.value = user.providerData[0].email;
+
+    const param = {
+      username: user.displayName,
+      email: user.providerData[0].email,
+      photo: user.photoURL,
+    };
+
+    const { data } = await axios.post(
+      "https://procter.work/api/login-with-google",
+      param
+    );
+
+    if (data.status == "OK") {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user_uuid", data.user_uuid);
+      localStorage.setItem("usuario", data.username);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("photo", data.photo);
+      router.push("/");
+    }
+  } catch (error) {
+    console.log(error);
+
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    // The email of the user's account used.
+    const emailError = error.email; // Note: modified variable name to avoid conflict
+
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+  }
+};
 </script>
 <template>
 
 <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center"  v-if="enviando">
     <div class="flex items-center justify-center text-white bg-[#263238] w-[90%] h-[60%] p-4 text-xl"><font-awesome-icon :icon="['fas', 'spinner']" class="mr-2 fa-pulse"/> Procesando datos...</div>
 </div>
-<div v-if="user_tmp !== null">
-    <div>
-        <h1 class="p-4 text-xl font-medium">Estimado {{ user_tmp.toLocaleLowerCase() }}</h1>
-        <p class="p-4 text-sm bg-[#b8e994] rounded-md">Nos complace anunciar que nuestra aplicación ahora permite <b class="font-medium">crear rotulos</b> de oferta. Además, debido al registro masivo de nuevos usuarios, hemos actualizado nuestros mecanismos de acceso, por lo que ahora se requiere una contraseña segura para utilizar nuestros servicios. Su seguridad es nuestra prioridad.</p>
-    </div>
-    
-    <div class="p-4">
-        <label class="block mb-2 text-xs font-bold tracking-wide text-black uppercase" for="grid-last-name">
-          CREA UNA CONTRASEÑA:
-    </label>
-    <input class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="INGRESA UNA CONTRASEÑA" autocomplete="off" v-model="clave" required>
 
-    <p class="pt-2 text-xs font-light text-gray-400"><font-awesome-icon :icon="['fas', 'info-circle']" /> No debes olvidar esta contraseña.</p>
-    <input type="submit"
-        class="w-full px-4 py-2 mt-4 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md" @click="registerWithPass"
-        value="GUARDAR">
-    </div>
-</div>
-<div v-else>
+<div>
     <div>
         <div class="p-5 bg-gray-100 rounded-md shadow-md">
     <h2 class="mb-3 text-lg font-semibold">Instrucciones para el registro:</h2>
@@ -116,7 +170,25 @@ const registerWithPass = async () => {
         </div>
     </div>
 </div>
-
+<div class="w-full flex items-center justify-between py-5">
+            <hr class="w-full bg-gray-400" />
+            <p class="text-base font-medium leading-4 px-2.5 text-gray-400">
+              O
+            </p>
+            <hr class="w-full bg-gray-400" />
+          </div>
+<button
+    class="flex gap-2 px-4 py-2 mb-8 mx-auto transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow"
+    @click.prevent="login"
+  >
+    <img
+      class="w-6 h-6"
+      src="https://www.svgrepo.com/show/475656/google-color.svg"
+      loading="lazy"
+      alt="google logo"
+    />
+    <span>Registrarme con Google</span>
+  </button>
 <div class="bg-black/[.5] fixed top-0 left-0 w-full h-full z-30 flex items-center justify-center" v-if="register">
         <div class="bg-white w-[90%]">
           <h1 class="p-4 text-sm font-bold text-gray-700 border-b border-solid border-[#ddd]">CREAR CUENTA</h1>

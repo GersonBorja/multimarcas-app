@@ -120,6 +120,25 @@ const login = async () => {
         </div>
     </div>
     <h2 class="p-4 font-medium text-gray-800">INICIAR SESION</h2>
+    <button
+    class="flex gap-2 px-4 py-2 mx-auto transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow"
+    @click.prevent="login"
+  >
+    <img
+      class="w-6 h-6"
+      src="https://www.svgrepo.com/show/475656/google-color.svg"
+      loading="lazy"
+      alt="google logo"
+    />
+    <span>Iniciar sesion con Google</span>
+  </button>
+  <div class="w-full flex items-center justify-between py-5">
+            <hr class="w-full bg-gray-400" />
+            <p class="text-base font-medium leading-4 px-2.5 text-gray-400">
+              O
+            </p>
+            <hr class="w-full bg-gray-400" />
+          </div>
     <form class="p-4 border-t border-solid border-[#ddd]" @submit.prevent="loginDirect">
             <label class="block mb-2 text-xs font-bold tracking-wide text-black uppercase" for="grid-last-name" id="login">
                 USUARIO:
@@ -133,18 +152,7 @@ const login = async () => {
         <input type="submit"
             class="block mt-6 w-full px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg" value="ENTRAR">
     </form>
-    <button
-    class="flex gap-2 px-4 py-2 m-4 mx-auto transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow"
-    @click.prevent="login"
-  >
-    <img
-      class="w-6 h-6"
-      src="https://www.svgrepo.com/show/475656/google-color.svg"
-      loading="lazy"
-      alt="google logo"
-    />
-    <span>Iniciar sesion con Google</span>
-  </button>
+    
     <footer class="p-4 border-t border-solid border-[#ddd]">
         Multimarcas app || {{  year }}
     </footer>

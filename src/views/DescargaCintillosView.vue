@@ -107,7 +107,6 @@ const show = ref(false)
 const abrirModalCorreos = () => {
   show.value = true
 }
-window.location = window.location
 </script>
 
 <template>

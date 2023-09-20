@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeUnmount, onUpdated, nextTick } from "vue";
+import { onMounted } from "vue";
 import { Client } from "@pusher/push-notifications-web";
 import { ref } from "vue";
 import axios from "axios";
@@ -36,12 +36,8 @@ const beamsClient = new Client({
   instanceId: "90b80143-5f43-4ed9-a447-8ad08e3ca889",
 });
 
-onUpdated(() => {
-  cargarAnuncios();
-});
 
 onMounted(() => {
-  cargarAnuncios()
   // Verificar si ya está suscrito
   if (localStorage.getItem("subscribedToEventosApp") === "true") {
     console.log(
@@ -61,43 +57,9 @@ onMounted(() => {
     .catch(console.error);
 });
 
-onBeforeUnmount(() => {
-  const script = document.querySelector('script[src="//pl20673390.highcpmrevenuegate.com/1ac063648180197409e096574f95a0cf/invoke.js"]');
-  if (script) {
-    script.remove();
-  }
-});
-
-const cargarAnuncios = () => {
-  nextTick().then(() => {
-    const script = document.createElement("script");
-    script.async = "async";
-    script.dataset.cfasync = "false";
-    script.src =
-      "//pl20673390.highcpmrevenuegate.com/1ac063648180197409e096574f95a0cf/invoke.js";
-    document.body.appendChild(script);
-  });
-};
-
-const ads = ref("hidden");
-
-const enterCintillos = () => {
-  ads.value = "block";
-};
-window.location = window.location
 </script>
 <template>
-  <div class="fixed top-0 left-0 z-50 w-full h-full bg-white" :class="ads">
-    <h1 class="flex items-center justify-between p-4 font-bold text-gray-800">
-      <span
-        ><font-awesome-icon :icon="['fas', 'bell']" /> SISTEMA DE ANUNCIOS</span
-      >
-      <router-link to="/crear-cintillos" class="text-[steelblue] underline">
-        CERRAR ANUNCIO</router-link
-      >
-    </h1>
-    <div id="container-1ac063648180197409e096574f95a0cf"></div>
-  </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div
       class="flex items-stretch justify-between border-b border-black border-solid"
@@ -167,6 +129,7 @@ window.location = window.location
     </div>
   </div>
 
+    <div id="container-1ac063648180197409e096574f95a0cf"></div>
   <div class="p-4 bg-green-200">
     Si deseas que el correo de tu sala sea agregado a la aplicación, puedes
     compartirlo a nuestro correo para que lo agregamos.<br />

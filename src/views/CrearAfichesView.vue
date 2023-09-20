@@ -92,6 +92,7 @@ const agregarAfiches = async () => {
       { headers }
     );
     alert(data.message);
+    window.location.reload();
     reestablecerFormulario();
     obtenerTotalRotulos();
     document.documentElement.scrollTop = 0; // Para navegadores diferentes a Firefox
@@ -128,7 +129,6 @@ const abrirPreview = () => {
 const cerrarPreview = () => {
   afichePreview.value = 'hidden';
 };
-window.location = window.location
 </script>
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2">

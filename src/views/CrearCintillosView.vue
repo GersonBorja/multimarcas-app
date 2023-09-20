@@ -168,6 +168,7 @@ const agregarCintillos = async () => {
         notificacionData
       );
       console.log(msg);
+      window.location.reload();
     }
     obtenerTotalCintillos();
     reestablecerFormulario();
@@ -185,7 +186,6 @@ const cerrarModalFunction = () => {
   scannerAviso.value = localStorage.setItem("baseDeDatos", false);
 };
 
-window.location = window.location
 </script>
 <template>
   <div class="w-full max-w-md m-auto">

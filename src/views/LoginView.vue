@@ -106,7 +106,6 @@ const login = async () => {
     const credential = GoogleAuthProvider.credentialFromError(error);
   }
 };
-window.location = window.location
 </script>
 <template>
     <div class="fixed w-full h-full bg-black/[.5] top-0 left-0 flex items-center justify-center z-50"  v-if="enviando">

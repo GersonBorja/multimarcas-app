@@ -49,7 +49,7 @@ import { storeToRefs } from 'pinia';
     modal.value = true
     location.href= `https://procter.work/api/cintillos/generar/${user}`
   }
-  window.location = window.location
+  
 </script>
 <template>
   <div class="p-4">

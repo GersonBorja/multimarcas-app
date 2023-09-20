@@ -45,6 +45,7 @@ const buscar = async () => {
     busquedasEncontradas(data);
     ultimaBusqueda.value = busqueda.value;
     ultimaBusquedaVal.value = true;
+    window.location.reload();
   } catch (error) {
     console.log(error);
   } finally {
@@ -96,7 +97,6 @@ const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
 };
-window.location = window.location
 </script>
 <template>
   <div

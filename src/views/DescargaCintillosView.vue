@@ -38,9 +38,9 @@ const generarDocumento = async () => {
         const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, null, { headers })
         if(data.status === 'OK') {
           
-      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
-      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
-          window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_self');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_self');
+          window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_self');
           location.href = `https://procter.work/${data.path_tmp_full}`
         }
         console.log(`https://procter.work/${data.path_tmp_full}`)

@@ -92,10 +92,12 @@ const agregarAfiches = async () => {
       { headers }
     );
     alert(data.message);
+    
     reestablecerFormulario();
     obtenerTotalRotulos();
     document.documentElement.scrollTop = 0; // Para navegadores diferentes a Firefox
     document.body.scrollTop = 0;
+    window.location.reload();
   } catch (error) {
     console.log(error);
   } finally {

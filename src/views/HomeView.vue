@@ -75,12 +75,12 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Cintillos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 448 etiquetas.</p>
-        <button
+        <router-link to="crear-cintillos"
           class="absolute bottom-0 right-0 p-4"
-          @click.prevent="enterCintillos"
+          
         >
           Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" />
-        </button>
+        </router-link>
       </div>
     </div>
 

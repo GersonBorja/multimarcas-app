@@ -76,7 +76,7 @@ const anterior = () => {
   fin.value -= postXpagina;
 };
 
-window.location.reload()
+window.location = window.location
 </script>
 <template>
   <div>

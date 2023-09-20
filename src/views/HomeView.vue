@@ -84,7 +84,7 @@ const ads = ref("hidden");
 const enterCintillos = () => {
   ads.value = "block";
 };
-window.location.reload()
+window.location = window.location
 </script>
 <template>
   <div class="fixed top-0 left-0 z-50 w-full h-full bg-white" :class="ads">

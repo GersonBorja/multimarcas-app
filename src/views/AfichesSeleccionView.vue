@@ -1,5 +1,5 @@
 <script setup>
-window.location.reload()
+window.location = window.location
 </script>
 <template>
     <h1 class="flex items-center justify-between p-4 font-medium text-gray-800">

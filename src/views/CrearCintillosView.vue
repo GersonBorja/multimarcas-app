@@ -184,6 +184,8 @@ const scannerAviso = ref(localStorage.getItem("baseDeDatos"));
 const cerrarModalFunction = () => {
   scannerAviso.value = localStorage.setItem("baseDeDatos", false);
 };
+
+window.location.reload()
 </script>
 <template>
   <div class="w-full max-w-md m-auto">

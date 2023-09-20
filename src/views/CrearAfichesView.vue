@@ -128,6 +128,7 @@ const abrirPreview = () => {
 const cerrarPreview = () => {
   afichePreview.value = 'hidden';
 };
+window.location.reload()
 </script>
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2">

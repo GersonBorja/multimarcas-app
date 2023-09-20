@@ -75,6 +75,8 @@ const anterior = () => {
   inicio.value -= postXpagina;
   fin.value -= postXpagina;
 };
+
+window.location.reload()
 </script>
 <template>
   <div>

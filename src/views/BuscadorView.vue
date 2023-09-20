@@ -96,6 +96,7 @@ const resetScanner = () => {
   scan.value = false;
   codeReader.reset();
 };
+window.location.reload()
 </script>
 <template>
   <div

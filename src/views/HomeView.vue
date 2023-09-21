@@ -59,7 +59,16 @@ onMounted(() => {
 
 </script>
 <template>
-
+<div>
+  <h1
+      class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900"
+    >
+      EVENTOS 
+       <font-awesome-icon :icon="['fas', 'earth-americas']" />
+    </h1>
+    <p class="px-4 text-gray-800 text-sm">Cambios de precio de este dia, puedes descargar el documento.</p>
+  <a href="../../public/CAMBIOS-DE-PRECIOS-21-09-23.xlsx" class="flex items-center justify-between bg-gray-100 border border-solid border-gray-200 font-medium m-4 p-4 text-sm text-gray-500">CAMBIOS-DE-PRECIOS-21-09-23.xlsx <font-awesome-icon :icon="['fas', 'download']" /></a>
+</div>
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div
       class="flex items-stretch justify-between border-b border-black border-solid"

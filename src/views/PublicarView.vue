@@ -23,7 +23,7 @@
 </script>
 <template>
   <form @submit.prevent="publicar">
-    <input type="text" placeholder="Escribe tu comentario " v-modal="comentario">
+    <input type="text" placeholder="Escribe tu comentario " v-model="comentario">
     <input type="submit" value="Comentar">
     
   </form>

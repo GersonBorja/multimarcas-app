@@ -52,9 +52,10 @@ const cerrarModal = () => {
     modal.value = false
     windowOne.value = false
     windowTwo.value = false
-    window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_parent');
+    
     router.push('/')
     resetCintillos()
+    window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_parent');
   }
 
   const correos = ref([])
@@ -94,7 +95,6 @@ const enviar = async() => {
       const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, datos, { headers })
       console.log(datos)
       console.log(data)
-      
           
     }
   }catch(error){

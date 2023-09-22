@@ -82,10 +82,9 @@ const anterior = () => {
       <h1
         class="flex items-center justify-between p-4 font-medium text-gray-800"
       >
-        <router-link to="/crear-cintillos"
+        <a href="/crear-cintillos"
           ><font-awesome-icon :icon="['fas', 'chevron-left']" />
-          VOLVER</router-link
-        >
+          VOLVER</a>
         <span>GENERAR DOCUMENTO</span>
       </h1>
       <div class="flex items-center justify-between p-4 pt-0">
@@ -95,13 +94,13 @@ const anterior = () => {
             class="mr-1 fa-spin"
           />Llevas {{ total }}/<span class="text-black">448</span>
         </div>
-        <router-link
-          :to="`/descargas`"
+        <a
+          href="/descargas"
           class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"
         >
           <font-awesome-icon :icon="['fas', 'download']" class="mr-2" />
           Descargas
-        </router-link>
+        </a>
       </div>
     </div>
 

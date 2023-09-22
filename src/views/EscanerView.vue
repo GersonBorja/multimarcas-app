@@ -25,7 +25,7 @@ const beamsClient = new Client({
 // Inicializa Pusher Beams cuando el componente se monte
 onMounted(() => {
   beamsClient.start()
-    .then(() => beamsClient.addDeviceInterest('debug-test'))
+    .then(() => beamsClient.addDeviceInterest('cintillos'))
     .then(() => console.log('¡Registro y suscripción exitosos!'))
     .catch(console.error);
 });

@@ -132,6 +132,14 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/suscribe',
+      name: 'suscribe',
+      component: () => import('../views/EscanerView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

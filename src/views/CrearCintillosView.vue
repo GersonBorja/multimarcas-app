@@ -163,11 +163,13 @@ const agregarCintillos = async () => {
       { headers }
     );
     if (data.status === "OK") {
+      
       let { msg } = await axios.post(
         "https://procter.work/api/notificacion",
         notificacionData
       );
       console.log(msg);
+      window.reload()
     }
     obtenerTotalCintillos();
     reestablecerFormulario();

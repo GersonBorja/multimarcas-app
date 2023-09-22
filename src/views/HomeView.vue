@@ -84,12 +84,12 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Cintillos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 448 etiquetas.</p>
-        <router-link to="crear-cintillos"
+        <a href="crear-cintillos"
           class="absolute bottom-0 right-0 p-4"
           
         >
           Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" />
-        </router-link>
+        </a>
       </div>
     </div>
 
@@ -107,11 +107,10 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Rotulos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 200 rotulos.</p>
-        <router-link
-          to="/afiches-seleccion"
+        <a href="/afiches-seleccion"
           class="absolute bottom-0 right-0 p-4"
           >Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']"
-        /></router-link>
+        /></a>
       </div>
     </div>
 
@@ -131,9 +130,9 @@ onMounted(() => {
         <p class="pt-2 text-xs">
           Escanea o digita la descripcion, ideal para sacar el correlativo.
         </p>
-        <router-link to="/buscador" class="absolute bottom-0 right-0 p-4"
+        <a href="/buscador" class="absolute bottom-0 right-0 p-4"
           >Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']"
-        /></router-link>
+        /></a>
       </div>
     </div>
   </div>

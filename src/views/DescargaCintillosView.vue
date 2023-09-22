@@ -36,9 +36,9 @@ const generarDocumento = async () => {
         'Content-Type': 'application/json'
 }
         const { data } = await axios.post(`https://procter.work/api/generar/cintillos`, null, { headers })
-          location.href = `https://procter.work/${data.path_tmp_full}`
+          
         if(data.status === 'OK') {
-          window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_parent');
+          location.href = `https://procter.work/${data.path_tmp_full}`
         }
         console.log(`https://procter.work/${data.path_tmp_full}`)
     }catch(error) {
@@ -52,10 +52,9 @@ const cerrarModal = () => {
     modal.value = false
     windowOne.value = false
     windowTwo.value = false
-    
+    window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_parent');
     router.push('/')
     resetCintillos()
-    window.open('https://www.highcpmrevenuegate.com/snidd0ff?key=d5add209c5ea339d1d4e0f8df6a2e610', '_parent');
   }
 
   const correos = ref([])

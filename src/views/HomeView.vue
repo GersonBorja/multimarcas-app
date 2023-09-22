@@ -66,7 +66,7 @@ onMounted(() => {
       EVENTOS 
        <font-awesome-icon :icon="['fas', 'earth-americas']" />
     </h1>
-    <p class="p-4 text-gray-800 text-sm">Hemos agregado publicidad a la aplicación para que siga siendo gratuita para todos, y darle soporte a los servidores.</p>
+    <p class="pt-0 p-4 text-gray-800 text-sm">Hemos agregado publicidad a la aplicación para que siga siendo gratuita para todos, y darle soporte a los servidores.</p>
 </div>
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div

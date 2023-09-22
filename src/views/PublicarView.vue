@@ -13,7 +13,7 @@
       const param = {
         message: comentario.value
       }
-      const { data } = axios.post('https://procter.work/api/post/publicar', param, headers)
+      const { data } = await axios.post('https://procter.work/api/post/publicar', param, headers)
       alert(data.message)
     }catch(error){
       console.log(error)

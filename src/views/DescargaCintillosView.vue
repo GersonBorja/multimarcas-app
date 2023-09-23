@@ -131,7 +131,7 @@ const abrirModalCorreos = () => {
           </p>
         </div>
       </div>
-      <h1 class="flex items-center justify-between p-4 pb-0 font-medium text-gray-800"><router-link to="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span>DESCARGAS</span></h1>
+      <h1 class="flex items-center justify-between p-4 pb-0 font-medium text-gray-800"><a href="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</a> <span>DESCARGAS</span></h1>
     <div class="p-4 border-b border-gray-400 border-dashed">
         <h1 class="pb-4 font-medium text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 1 (Descargar archivo)</h1>
         <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Esta opcion guarda en tu dispositivo un archivo excel con todos los cintillos que has creado. Este lo puedes compartir posteriormente.</p>
@@ -149,11 +149,11 @@ const abrirModalCorreos = () => {
     <div class="p-4">
         <h1 class="mb-4 font-medium text-gray-800"><font-awesome-icon :icon="['fas', 'circle']" /> OPCION 3 (Correo personalizado)</h1>
         <p class="py-4 pt-0 text-gray-800"><font-awesome-icon :icon="['fas', 'circle-info']" /> Con esta opcion puedes mandar tus cintillos al correo que tu quieras.</p>
-        <router-link to="/correo-personalizado" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"><font-awesome-icon :icon="['fas', 'envelope']" class="mr-2" /> Correo personalizado</router-link>
+        <a href="/correo-personalizado" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"><font-awesome-icon :icon="['fas', 'envelope']" class="mr-2" /> Correo personalizado</a>
     </div>
     <div class="fixed top-0 left-0 z-30 w-full h-full bg-white" v-if="show">
       
-        <h1 class="flex items-center justify-between p-4 font-bold text-gray-800"><router-link to="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</router-link> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
+        <h1 class="flex items-center justify-between p-4 font-bold text-gray-800"><a href="/cintillos"><font-awesome-icon :icon="['fas', 'chevron-left']" /> VOLVER</a> <span><font-awesome-icon :icon="['fas', 'at']" /> ENVIAR POR CORREO</span></h1>
         
         <div class="p-2 mt-2 text-sm border border-solid border-[#FFF59D] bg-[#FFF9C4]">
         Por el momento el envio de cintillos por correo a traves de la aplicacion no esta disponible para todas las salas.<br>

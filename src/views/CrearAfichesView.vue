@@ -136,13 +136,12 @@ const cerrarPreview = () => {
       class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900"
     >
       Crear Afiches
-      <router-link to="/afiches" active-class="underline"
+      <a href="/afiches" active-class="underline"
         >Afiches
         <span
           class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium rounded-full no-underline w-[20px] h-[20px]"
           >{{ totalRotulos }}</span
-        ></router-link
-      >
+        ></a>
     </h1>
 
     <form

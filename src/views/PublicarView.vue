@@ -21,7 +21,12 @@
     
   }
 
+
+
+const adLoaded = ref(false);
+
 const loadAd = () => {
+  adLoaded.value = true
   const scriptElement = document.querySelector('[src="//ophoacit.com/1?z=6366295"]');
 
   // Evita agregar el script si ya está en el DOM.
@@ -31,17 +36,19 @@ const loadAd = () => {
     script.setAttribute('data-cfasync', 'false');
     script.src = '//ophoacit.com/1?z=6366295';
 
-    // Cuando el script se haya cargado y ejecutado, se puede eliminar
     script.onload = () => {
+      adLoaded.value = false;
+
+      // Aquí puedes llamar a cualquier otra función o lógica adicional si lo necesitas.
+      
       setTimeout(() => {
         document.body.removeChild(script);
-      }, 5000); // Aquí estoy suponiendo que después de 5 segundos se elimina el script. Ajusta según tus necesidades.
+      }, 5000); 
     };
 
     document.body.appendChild(script);
   }
 };
-
 </script>
 <template>
   <form @submit.prevent="publicar">
@@ -51,4 +58,5 @@ const loadAd = () => {
   </form>
   
   <button @click="loadAd">Mostrar anuncio</button>
+  <div v-if="adLoaded">Un momento antes de enviar tu correo te mostraremos un anuncio.. una vez se muestre solo cierra la ventana y listo</div>
 </template>

@@ -20,6 +20,28 @@
     }
     
   }
+
+const loadAd = () => {
+  const scriptElement = document.querySelector('[src="//ophoacit.com/1?z=6366295"]');
+
+  // Evita agregar el script si ya está en el DOM.
+  if (!scriptElement) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.setAttribute('data-cfasync', 'false');
+    script.src = '//ophoacit.com/1?z=6366295';
+
+    // Cuando el script se haya cargado y ejecutado, se puede eliminar
+    script.onload = () => {
+      setTimeout(() => {
+        document.body.removeChild(script);
+      }, 5000); // Aquí estoy suponiendo que después de 5 segundos se elimina el script. Ajusta según tus necesidades.
+    };
+
+    document.body.appendChild(script);
+  }
+};
+
 </script>
 <template>
   <form @submit.prevent="publicar">
@@ -27,4 +49,6 @@
     <input type="submit" value="Comentar">
     
   </form>
+  
+  <button @click="loadAd">Mostrar anuncio</button>
 </template>

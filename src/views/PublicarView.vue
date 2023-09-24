@@ -20,6 +20,9 @@
     }
     
   }
+  setInterval(function() {
+  location.reload(); // Refresca la página
+}, 8000);
 </script>
 <template>
   <form @submit.prevent="publicar">

@@ -140,14 +140,6 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
-    },
-        {
-      path: '/publicar',
-      name: 'publicar',
-      component: () => import('../views/PublicarView.vue'),
-      meta: {
-        requiresAuth: true
-      }
     }
   ]
 })

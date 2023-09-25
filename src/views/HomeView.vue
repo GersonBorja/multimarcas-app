@@ -66,7 +66,7 @@ onMounted(() => {
       EVENTOS 
        <font-awesome-icon :icon="['fas', 'earth-americas']" />
     </h1>
-    <p class="pt-0 p-4 text-gray-800 text-sm">Hemos agregado publicidad a la aplicación para que siga siendo gratuita para todos, y darle soporte a los servidores.</p>
+    <p class="p-4 pt-0 text-sm text-gray-800">Hemos agregado publicidad a la aplicación para que siga siendo gratuita para todos, y darle soporte a los servidores.</p>
 </div>
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div
@@ -83,12 +83,12 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Cintillos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 448 etiquetas.</p>
-        <a href="crear-cintillos"
+        <router-link to="crear-cintillos"
           class="absolute bottom-0 right-0 p-4"
           
         >
           Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']" />
-        </a>
+        </router-link>
       </div>
     </div>
 
@@ -106,10 +106,10 @@ onMounted(() => {
       <div class="relative flex-1 p-4 text-white bg-neutral-800">
         <h2>Crear Rotulos</h2>
         <p class="pt-2 text-xs">La posibilidad de crear hasta 200 rotulos.</p>
-        <a href="/afiches-seleccion"
+        <router-link to="/afiches-seleccion"
           class="absolute bottom-0 right-0 p-4"
           >Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']"
-        /></a>
+        /></router-link>
       </div>
     </div>
 
@@ -129,14 +129,13 @@ onMounted(() => {
         <p class="pt-2 text-xs">
           Escanea o digita la descripcion, ideal para sacar el correlativo.
         </p>
-        <a href="/buscador" class="absolute bottom-0 right-0 p-4"
+        <router-link to="/buscador" class="absolute bottom-0 right-0 p-4"
           >Comenzar <font-awesome-icon :icon="['fas', 'arrow-right']"
-        /></a>
+        /></router-link>
       </div>
     </div>
   </div>
 
-    <div id="container-1ac063648180197409e096574f95a0cf"></div>
   <div class="p-4 bg-green-200">
     Si deseas que el correo de tu sala sea agregado a la aplicación, puedes
     compartirlo a nuestro correo para que lo agregamos.<br />

@@ -92,7 +92,6 @@ const agregarAfiches = async () => {
       { headers }
     );
     alert(data.message);
-    window.location.reload();
     reestablecerFormulario();
     obtenerTotalRotulos();
     document.documentElement.scrollTop = 0; // Para navegadores diferentes a Firefox
@@ -136,12 +135,12 @@ const cerrarPreview = () => {
       class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900"
     >
       Crear Afiches
-      <a href="/afiches" active-class="underline"
+      <router-link to="/afiches" active-class="underline"
         >Afiches
         <span
           class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium rounded-full no-underline w-[20px] h-[20px]"
           >{{ totalRotulos }}</span
-        ></a>
+        ></router-link>
     </h1>
 
     <form
@@ -376,7 +375,6 @@ const cerrarPreview = () => {
       Agregando Rotulos...
     </div>
   </div>
-  <div id="container-1ac063648180197409e096574f95a0cf"></div>
 </template>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");

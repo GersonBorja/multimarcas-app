@@ -59,11 +59,11 @@ import { storeToRefs } from 'pinia';
       
       <div class="flex items-center justify-between mb-3">
         <div class="text-sm text-gray-400"><font-awesome-icon :icon="['fas', 'gear']" class="fa-spin"/>Llevas {{ total }}/<span class="text-red-400">200</span></div>
-        <a href="/enviar-afiches"
+        <router-link to="/enviar-afiches"
         class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg">
         <font-awesome-icon :icon="['fas', 'download']" />
         ENVIAR CORREO
-      </a>
+      </router-link>
 
       </div>
       
@@ -100,6 +100,5 @@ import { storeToRefs } from 'pinia';
       </div>
     </div>
   </div>
-  <div id="container-1ac063648180197409e096574f95a0cf"></div>
  
 </template>

@@ -94,13 +94,12 @@ const anterior = () => {
             class="mr-1 fa-spin"
           />Llevas {{ total }}/<span class="text-black">448</span>
         </div>
-        <a
-          href="/descargas"
+        <router-link to="/descargas"
           class="inline-flex items-center px-4 py-2 text-sm font-medium rounded text-white bg-[#2E3239] hover:bg-[#37474F] border border-solid border-[#303E46] shadow-lg"
         >
           <font-awesome-icon :icon="['fas', 'download']" class="mr-2" />
           Descargas
-        </a>
+        </router-link>
       </div>
     </div>
 
@@ -155,5 +154,4 @@ const anterior = () => {
       @anterior="anterior"
     ></PaginateCintillos>
   </div>
-  <div id="container-1ac063648180197409e096574f95a0cf"></div>
 </template>

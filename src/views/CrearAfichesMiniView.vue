@@ -97,7 +97,6 @@ const agregarAfiches = async () => {
     obtenerTotalRotulos();
     document.documentElement.scrollTop = 0; // Para navegadores diferentes a Firefox
     document.body.scrollTop = 0;
-    location.reload()
   } catch (error) {
     console.log(error);
   } finally {
@@ -137,12 +136,12 @@ const cerrarPreview = () => {
       class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900"
     >
       Crear Afiches
-      <a href="/afiches-mini" active-class="underline"
+      <router-link to="/afiches-mini" active-class="underline"
         >Afiches
         <span
           class="inline-flex items-center justify-center bg-[#A2B2EE] text-[#2E3239] text-xs font-medium rounded-full no-underline w-[20px] h-[20px]"
           >{{ totalRotulos }}</span
-        ></a>
+        ></router-link>
     </h1>
 
     <form

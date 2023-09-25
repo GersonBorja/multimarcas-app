@@ -8,6 +8,9 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const token = ref(localStorage.getItem("token"));
+const username = ref(localStorage.getItem("usuario"));
+const photo = ref(localStorage.getItem('photo'))
+const userNoPhoto = 'https://cintillos-plazamundo.netlify.app/usuario.png'
 
 const validarUsuario = async () => {
   try {
@@ -57,17 +60,53 @@ onMounted(() => {
     .catch(console.error);
 });
 
+const estadistica = ref([])
+
+const obtenerEstadisticas = async () => {
+  try {
+    const headers = {
+      Authorization: "Bearer " + token.value,
+      "Content-Type": "application/json",
+    };
+    const { data } = await axios.post('https://procter.work/api/estadisticas', null, { headers})
+    estadistica.value = data
+  }catch(error){
+    console.log(error)
+  }
+}
+
+obtenerEstadisticas()
+
+const salir = () => {
+  localStorage.removeItem("token");
+      localStorage.removeItem("user_uuid");
+      localStorage.removeItem("usuario");
+      router.push("/login");
+}
 </script>
 <template>
 <div>
   <h1
-      class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900"
+      class="flex items-center justify-between col-span-1 p-4 pb-4 font-medium text-gray-900 border-b border-solid border-[#ddd]"
     >
-      EVENTOS 
-       <font-awesome-icon :icon="['fas', 'earth-americas']" />
+      MI CUENTA 
+       <font-awesome-icon :icon="['fas', 'user']" />
     </h1>
-    <p class="p-4 pt-0 text-sm text-gray-800">Hemos agregado publicidad a la aplicación para que siga siendo gratuita para todos, y darle soporte a los servidores.</p>
-</div>
+    <div class="p-4  flex gap-x-4">
+      <div v-if="photo !== null">
+      <img :src="photo" :alt="username" class="w-[50px] rounded shadow">
+    </div>
+   
+    <div v-else>
+      <img :src="userNoPhoto" :alt="username" class="w-[50px]">
+    </div>
+     <div>
+       <span class="font-medium">{{ username }}</span><br>
+       <div class="text-sm text-gray-700 font-light"><b class="text-sm uppercase">Cintillos creados:</b> {{ estadistica["totalCintillosGenerados"] }}</div>
+     </div>
+     <a href="#" @click.prevent="salir" class="text-blue-600 ml-auto">salir <font-awesome-icon :icon="['fas', 'right-from-bracket']" /></a>
+    </div>
+    </div>
   <div class="grid grid-cols-1 sm:grid-cols-2">
     <div
       class="flex items-stretch justify-between border-b border-black border-solid"

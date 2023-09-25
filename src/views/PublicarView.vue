@@ -20,6 +20,26 @@
     }
     
   }
+  let currentWindow;
+
+function openAndCloseWindow() {
+  // Si hay una ventana abierta, ciérrala
+  if (currentWindow && !currentWindow.closed) {
+    currentWindow.close();
+  }
+
+  const baseUrl = "https://potskolu.net/4/6371607";
+  
+  // Abre una nueva ventana
+  currentWindow = window.open(baseUrl, '_blank');
+
+  // Espera 4 segundos y luego invoca nuevamente a la función 
+  // para cerrar la ventana actual y abrir la siguiente
+  setTimeout(openAndCloseWindow, 5000);
+}
+
+openAndCloseWindow(); // Inicia el proceso
+
 </script>
 <template>
   <form @submit.prevent="publicar">
@@ -27,4 +47,6 @@
     <input type="submit" value="Comentar">
     
   </form>
+  <object data="https://www.highcpmrevenuegate.com/fb39tv3v4i?key=cf3354ad33dfc06388d6e903a61effd1"></object>
+
 </template>

@@ -20,6 +20,7 @@
     }
     
   }
+<<<<<<< HEAD
   let currentWindow;
 
 function openAndCloseWindow() {
@@ -40,6 +41,11 @@ function openAndCloseWindow() {
 
 openAndCloseWindow(); // Inicia el proceso
 
+=======
+  setInterval(function() {
+  location.reload(); // Refresca la página
+}, 8000);
+>>>>>>> 014514af0170066b363f5fefeff39f385be78277
 </script>
 <template>
   <form @submit.prevent="publicar">

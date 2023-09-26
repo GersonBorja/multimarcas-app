@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bg-[#26292B] py-7 text-[#ECF0F1] border-t-4 border-solid border-[#0f1011]"
+    class="bg-[#26292B] py-7 text-[#ECF0F1] border-t-4 border-solid border-[#0f1011] mt-4"
   >
     <div
       class="px-4 pb-4 text-sm font-medium uppercase border-b border-dashed border-[#0f1011]"

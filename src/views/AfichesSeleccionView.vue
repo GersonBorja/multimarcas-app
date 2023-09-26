@@ -22,5 +22,5 @@
   </div>
 
   <div class="p-4 bg-amber-100">Recuerda en cada formulario de creacion de afiches puedes visualizar como te va quedando el afiche.</div>
-  <div id="container-1ac063648180197409e096574f95a0cf"></div>
+  
 </template>

@@ -146,6 +146,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/politica-y-privacidad',
+      name: 'politicayprivacidad',
+      component: () => import('../views/PoliticaPrivacidadView.vue'),
+      meta: {
+        title: "Politica y Privacidad"
+      }
+    },
+    {
       path: '/suscribe',
       name: 'suscribe',
       component: () => import('../views/EscanerView.vue'),

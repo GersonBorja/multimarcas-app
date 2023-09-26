@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterLink, RouterView } from 'vue-router'
+import Footer from '@/components/Footer.vue'
 
 const user_tmp = ref(localStorage.getItem('token'))
 const route = useRoute()
@@ -30,4 +31,5 @@ const buttonRoute = computed(() => {
   </header>
 
   <RouterView />
+ <Footer></Footer> 
 </template>

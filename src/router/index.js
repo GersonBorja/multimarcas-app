@@ -8,7 +8,8 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomeView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Panel de Administracion"
       }
     },
     {
@@ -16,7 +17,8 @@ const router = createRouter({
       name: 'crearcintillos',
       component: () => import('../views/CrearCintillosView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Crear Cintillos"
       }
     },
     {
@@ -24,7 +26,8 @@ const router = createRouter({
       name: 'cintillos',
       component: () => import('../views/ListaCintillosView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Lista de Cintillos"
       }
     },
     {
@@ -32,7 +35,8 @@ const router = createRouter({
       name: 'crearafiches',
       component: () => import('../views/CrearAfichesView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Crear Super Ofertas | Formato 1x4"
       }
     },
     {
@@ -40,7 +44,8 @@ const router = createRouter({
       name: 'crearafichesmini',
       component: () => import('../views/CrearAfichesMiniView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Crear Super Ofertas | Formato 1x9"
       }
     },
     {
@@ -48,7 +53,8 @@ const router = createRouter({
       name: 'afiches-seleccion',
       component: () => import('../views/AfichesSeleccionView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Categoria de Afiches"
       }
     },
     {
@@ -56,7 +62,8 @@ const router = createRouter({
       name: 'afiches',
       component: () => import('../views/ListaAfichesView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Lista de Afiches | Formato 1x4"
       }
     },
     {
@@ -64,7 +71,8 @@ const router = createRouter({
       name: 'afichesmini',
       component: () => import('../views/ListaAfichesMiniView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Lista Super Oferta | Formato 1x9"
       }
     },
     {
@@ -72,7 +80,8 @@ const router = createRouter({
       name: 'enviarafiches',
       component: () => import('../views/EnviarAfichesView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Envio de Afiches | Formato 1x4"
       }
     },
     {
@@ -80,7 +89,8 @@ const router = createRouter({
       name: 'enviarafichesmini',
       component: () => import('../views/EnviarAfichesMiniView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Envio de Afiches | Formato 1x9"
       }
     },
     {
@@ -88,7 +98,8 @@ const router = createRouter({
       name: 'editarcintillo',
       component: () => import('../views/EditarCintilloView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Editar Cintillo"
       }
     },
     {
@@ -96,15 +107,8 @@ const router = createRouter({
       name: 'correoPersonal',
       component: () => import('../views/CorreoPersonalizadoView.vue'),
       meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/enviar-cintillos',
-      name: 'enviar-cintillos',
-      component: () => import('../views/DescargaCintillosView.vue'),
-      meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Correo Personalizado"
       }
     },
     {
@@ -112,25 +116,33 @@ const router = createRouter({
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Generar Cintillos"
       }
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/LoginView.vue'),
+      meta: {
+        title: "MULTIMARCAS APP"
+      }
     },
     {
       path: '/register',
       name: 'registro',
-      component: () => import('../views/RegisterView.vue')
+      component: () => import('../views/RegisterView.vue'),
+      meta: {
+        title: "Crear Cuenta"
+      }
     },
     {
       path: '/buscador',
       name: 'buscador',
       component: () => import('../views/BuscadorView.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: "Buscador de Internos"
       }
     },
     {
@@ -146,21 +158,29 @@ const router = createRouter({
 
 // proteger las rutas
 router.beforeEach((to, from, next) => {
+  // Lógica para manejar la autenticación
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!localStorage.getItem('token')) {
       next({
         path: '/login'
-      })
-    } else {
-      next()
+      });
+      return; // Asegúrate de retornar aquí para evitar que se ejecute el código siguiente
     }
   } else {
-    if (to.path === '/register' && localStorage.getItem('token')) {
-      next('/')
-    } else {
-      next()
+    if (to.path === '/register' && localStorage.getItem('token') || to.path === '/login' && localStorage.getItem('token')) {
+      next('/');
+      return; // Asegúrate de retornar aquí para evitar que se ejecute el código siguiente
     }
   }
-})
+
+  // Lógica para establecer el título
+  const pageTitle = to.meta.title;
+  if (pageTitle) {
+    document.title = pageTitle;
+  }
+
+  next();
+});
+
 
 export default router

@@ -84,9 +84,7 @@ const salir = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user_uuid");
   localStorage.removeItem("usuario");
-  if (!localStorage.getItem("photo") === null) {
-    localStorage.removeItem("photo");
-  }
+  localStorage.removeItem("photo");
   router.push("/login");
 };
 </script>

@@ -8,7 +8,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomeView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Panel de Administracion"
       }
     },
@@ -17,7 +17,7 @@ const router = createRouter({
       name: 'crearcintillos',
       component: () => import('../views/CrearCintillosView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Crear Cintillos"
       }
     },
@@ -26,7 +26,7 @@ const router = createRouter({
       name: 'cintillos',
       component: () => import('../views/ListaCintillosView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Lista de Cintillos"
       }
     },
@@ -35,7 +35,7 @@ const router = createRouter({
       name: 'crearafiches',
       component: () => import('../views/CrearAfichesView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Crear Super Ofertas | Formato 1x4"
       }
     },
@@ -44,7 +44,7 @@ const router = createRouter({
       name: 'crearafichesmini',
       component: () => import('../views/CrearAfichesMiniView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Crear Super Ofertas | Formato 1x9"
       }
     },
@@ -53,7 +53,7 @@ const router = createRouter({
       name: 'afiches-seleccion',
       component: () => import('../views/AfichesSeleccionView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Categoria de Afiches"
       }
     },
@@ -62,7 +62,7 @@ const router = createRouter({
       name: 'afiches',
       component: () => import('../views/ListaAfichesView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Lista de Afiches | Formato 1x4"
       }
     },
@@ -71,7 +71,7 @@ const router = createRouter({
       name: 'afichesmini',
       component: () => import('../views/ListaAfichesMiniView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Lista Super Oferta | Formato 1x9"
       }
     },
@@ -80,7 +80,7 @@ const router = createRouter({
       name: 'enviarafiches',
       component: () => import('../views/EnviarAfichesView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Envio de Afiches | Formato 1x4"
       }
     },
@@ -89,7 +89,7 @@ const router = createRouter({
       name: 'enviarafichesmini',
       component: () => import('../views/EnviarAfichesMiniView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Envio de Afiches | Formato 1x9"
       }
     },
@@ -98,7 +98,7 @@ const router = createRouter({
       name: 'editarcintillo',
       component: () => import('../views/EditarCintilloView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Editar Cintillo"
       }
     },
@@ -107,7 +107,7 @@ const router = createRouter({
       name: 'correoPersonal',
       component: () => import('../views/CorreoPersonalizadoView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Correo Personalizado"
       }
     },
@@ -116,7 +116,7 @@ const router = createRouter({
       name: 'generar',
       component: () => import('../views/DescargaCintillosView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Generar Cintillos"
       }
     },
@@ -141,7 +141,7 @@ const router = createRouter({
       name: 'buscador',
       component: () => import('../views/BuscadorView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: "Buscador de Internos"
       }
     },
@@ -158,7 +158,7 @@ const router = createRouter({
       name: 'suscribe',
       component: () => import('../views/EscanerView.vue'),
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

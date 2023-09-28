@@ -169,6 +169,7 @@ const agregarCintillos = async () => {
         notificacionData
       );
       console.log(msg);
+      window.reload()
     }
     obtenerTotalCintillos();
     reestablecerFormulario();

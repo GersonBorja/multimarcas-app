@@ -160,6 +160,15 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/comentarios',
+      name: 'comment',
+      component: () => import('../views/PublicarView.vue'),
+      meta: {
+        requiresAuth: true,
+        title: "Comentarios"
+      }
     }
   ]
 })

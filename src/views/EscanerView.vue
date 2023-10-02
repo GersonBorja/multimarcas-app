@@ -19,13 +19,13 @@ import { Client } from '@pusher/push-notifications-web';
 
 // Crea el cliente de Pusher Beams
 const beamsClient = new Client({
-  instanceId: '90b80143-5f43-4ed9-a447-8ad08e3ca889',
+  instanceId: '356abfa8-d2ed-4cc1-928b-0b204c5edccd',
 });
 
 // Inicializa Pusher Beams cuando el componente se monte
 onMounted(() => {
   beamsClient.start()
-    .then(() => beamsClient.addDeviceInterest('cintillos'))
+    .then(() => beamsClient.addDeviceInterest('cintillosv2'))
     .then(() => console.log('¡Registro y suscripción exitosos!'))
     .catch(console.error);
 });

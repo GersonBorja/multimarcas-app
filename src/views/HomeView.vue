@@ -195,13 +195,6 @@ const sug = ref(localStorage.getItem("sug"))
       Enviarnos mensaje</a
     >
   </div>
-  <div class="w-full h-full fixed top-0 left-0 z-40 bg-black/50 flex items-center justify-center" v-if="sug == null">
-    <div class="p-4 w-[80%] bg-white">
-      <img src="../../public/chating.png" class="w-[100px] block mx-auto"><br>
-      ¡Queremos escuchar tus ideas! 💡 Envíanos tus sugerencias para mejorar la app y nuevas funciones que te gustaría ver.
-      <router-link to="/comentarios" class="text-center block mt-4 w-full px-4 py-2 mt-4 font-bold text-white border rounded bg-[#455A64] hover:bg-[#37474F] border-[#303E46] shadow-md">Agregar sugerencias</router-link>
-    </div>
-  </div>
 </template>
 
 <style>

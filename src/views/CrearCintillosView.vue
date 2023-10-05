@@ -8,6 +8,9 @@ import { BrowserMultiFormatReader, NotFoundException } from "@zxing/library";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 dayjs.locale("es");
 dayjs.extend(relativeTime);
 
@@ -163,17 +166,14 @@ const agregarCintillos = async () => {
       { headers }
     );
     if (data.status === "OK") {
-      
-      let { msg } = await axios.post(
-        "https://procter.work/api/notificacion",
-        notificacionData
-      );
-      console.log(msg);
-      location.reload()
+      toast.success(data.message);
+      obtenerTotalCintillos();
+    }else{
+      toast.error(data.message);
     }
-    obtenerTotalCintillos();
+    
     reestablecerFormulario();
-    alert(data.message);
+    
   } catch (error) {
     console.log(error);
   } finally {

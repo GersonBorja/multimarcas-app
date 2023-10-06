@@ -91,27 +91,11 @@ const startScanner = async () => {
           audioPlayer.play();
           barra.value = res.text;
           if (dbInfo.length === 0) {
-            const notificacionData = {
-              autor: usuario.value,
-              msg: " solo escaneo la barra",
-            };
-            const { data: notification } = await axios.post(
-              "https://procter.work/api/notificacionScan",
-              notificacionData
-            );
             encontrado.value = true;
             descripcion.value = "";
             precio.value = "";
             fecha.value = "";
           } else {
-            const notificacionData = {
-              autor: usuario.value,
-              msg: " 🔎 encontro coincidencias en la base de datos",
-            };
-            const { data: notification } = await axios.post(
-              "https://procter.work/api/notificacionScan",
-              notificacionData
-            );
             encontrado.value = false;
             descripcion.value = formatearDescription(dbInfo[0].descripcion);
             precio.value = dbInfo[0].precio == null ? "" : dbInfo[0].precio;
